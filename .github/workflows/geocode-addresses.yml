@@ -1,5 +1,6 @@
 name: Geocode missing facility addresses
 on:
+  workflow_dispatch:
   push:
     branches: ['address-geocoding']
     paths:
