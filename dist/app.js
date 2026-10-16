@@ -117,6 +117,7 @@ function selectFacility(r) {
     detail.append(el('p','국방부 공식 영외마트 목록입니다. 병역명문가 이용 자격·동반 범위·증빙과 임시 휴무는 국군복지포털 또는 매장에 확인해 주세요. 원문 미기재는 휴무 확정을 뜻하지 않습니다.','fine'));
     if (r.lat !== null) detail.append(el('p','지도 위치는 원문 주소를 카카오 REST API로 별도 조회한 결과입니다. 공식 제공 좌표가 아니며 입구·이전 여부는 별도 확인이 필요합니다.','fine'));
   }
+  if (r.coordinatePlaceUrl) detail.append(el('p','시설명과 관할 지역이 일치하는 카카오 장소 검색 결과로 주소·위치를 보완했습니다. 방문 전 실제 시설과 입구를 확인해 주세요.','fine'));
   if (r.phone) { detail.append(el('h4','연락처')); const phone = el('p'); const tel = el('a',r.phone); tel.href = 'tel:'+r.phone.replace(/[^0-9+]/g,''); phone.append(tel); detail.append(phone); }
   if (r.lat === null) detail.append(el('p','위치가 등록되지 않은 시설입니다. 원문 주소와 지점을 확인해 주세요.','fine'));
   const actions = el('div',undefined,'detail-actions');
