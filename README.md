@@ -13,9 +13,9 @@ Windows에서는 `start-map.cmd`를 실행하면 http://localhost:8093 브라우
 이번 지도에 사용할 주소:
 
 - 로컬: `http://localhost:8093` (또는 직접 사용하는 `http://127.0.0.1:8093`)
-- 배포 주소: 호스팅을 연결한 뒤 실제 주소를 카카오 JavaScript SDK 도메인에 등록합니다.
+- 배포 주소: https://benefits.yjkim.dev
 
-2026-10-16 검증 시 기존 키의 로컬 SDK 요청에서 HTTP 401 `domain mismatched`가 반환됐습니다. 도메인 등록 후 새로고침해야 지도와 마커를 사용할 수 있습니다.
+운영 주소와 로컬 테스트 주소는 각각 해당 키의 JavaScript SDK 도메인에 등록해야 합니다. 지도 하단의 최종 업데이트 날짜는 배포 날짜가 아닌 현재 시설 데이터의 수집 날짜를 한국 시간으로 표시합니다.
 
 ## 데이터
 
@@ -54,3 +54,32 @@ https://open.mma.go.kr/caisGGGS/bymmgPartAjaxJsonCall.json?udjiyeok_cd=&udggeopj
 로컬에서는 `config.example.js`를 `dist/config.js`로 복사한 뒤 JavaScript 키를 입력합니다. 이 파일은 `.gitignore`로 제외됩니다. 또는 `KAKAO_JAVASCRIPT_KEY` 환경 변수를 설정하고 `node scripts/create-config.cjs`를 실행합니다. GitHub Secret의 값은 로컬에서 읽을 수 없습니다.
 
 이전에 커밋한 키는 현재 소스에서 제거했지만 과거 Git 커밋에는 남아 있습니다. 새 키를 사용한 배포가 정상 동작하는지 확인한 뒤, 기존 키는 다른 QGIS/사이트에서 사용하는지 확인하고 불필요한 도메인을 제거하거나 키를 폐기하세요. 기존 키가 다른 서비스와 공유된다면 임의로 폐기하면 해당 서비스가 중단될 수 있습니다.
+## 월간 병무청 변경 확인 및 Telegram 알림
+
+GitHub Actions의 **Check MMA facility updates**가 매월 1일 오전 9시(한국 시간)에 병무청 공식 예우시설 데이터를 확인합니다. GitHub 예약 실행은 혼잡 시 지연될 수 있고, 공개 저장소에 장기간 활동이 없으면 예약 실행이 비활성화될 수 있으므로 Actions 화면에서 상태를 확인하세요. 수동 실행은 언제든 가능합니다.
+
+### Telegram 연결
+
+이 저장소의 **Settings → Secrets and variables → Actions → Repository secrets**에 다음을 등록합니다.
+
+- `TELEGRAM_BOT_TOKEN`: BotFather에서 발급한 봇 토큰. 카카오 키와 달리 실제 비밀 자격증명이므로 파일·채팅·커밋에 넣지 않습니다.
+- `TELEGRAM_CHAT_ID`: 알림을 받을 개인 대화/그룹의 chat ID. 개인 대화는 먼저 해당 봇에 `/start`를 보내야 하며, 그룹은 봇을 추가하고 메시지 발송 권한을 허용해야 합니다.
+
+chat ID는 본인 환경에서 Telegram 공식 `getUpdates` 응답의 `message.chat.id`로 확인할 수 있습니다. 토큰을 제3자 조회 사이트에 입력하지 마세요. 공식 API 문서: https://core.telegram.org/bots/api#getupdates
+
+등록 후 **Actions → Check MMA facility updates → Run workflow**에서 `test_telegram`을 체크하면 연결 확인 메시지만 보냅니다. 체크하지 않으면 실제 원본 비교를 수행하며, 변경이 없을 때는 Telegram을 보내지 않습니다. Secrets가 없는 상태에서는 실제 알림 전송을 검증할 수 없습니다.
+
+### 변경 검토와 반영
+
+1. 시설 ID로 추가·삭제·내용 변경을 비교합니다. 행 순서·조회 시각·사용하지 않는 원본 메타데이터 변화는 알리지 않습니다.
+2. 변경이 있으면 `mma-facility-update` 브랜치에 새 `dist/facilities.json`과 `updates/mma-changes.md`를 저장하고 초안 PR을 생성합니다. 후보를 만들 때 현재 공개 지도는 수정하지 않습니다.
+3. Telegram에 변경 건수와 검토 링크를 보냅니다. 같은 후보의 알림이 성공한 경우 중복 알림을 보내지 않습니다. 발송이 실패했거나 Secrets가 나중에 설정된 경우 수동 실행으로 재시도할 수 있습니다.
+4. PR의 변경 보고서를 확인하고 검토 완료 후 `main`에 병합하면 기존 Pages 워크플로가 새 데이터로 배포합니다. 지도 하단의 날짜도 새 수집 날짜로 바뀝니다.
+
+자동 PR 생성은 **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests** 설정이 필요할 수 있습니다. 허용되지 않아도 후보 브랜치·보고서·Telegram 비교 링크는 남기므로 링크에서 직접 PR을 만들 수 있습니다. 자동 승인·자동 병합은 하지 않습니다.
+
+Actions 실행의 `mma-facility-review` 아티팩트에도 요약·변경 보고서·후보 JSON을 90일간 보관합니다. 원본 조회 오류, 빈 데이터, 중복 ID, 25% 초과 급감은 실패 처리하며 기존 배포 데이터는 유지합니다. Telegram이 연결되어 있으면 원본 확인 실패도 알립니다.
+
+개발 검증: `node --test tests/mma-data.test.cjs`
+
+읽기 전용 확인: `node scripts/monitor-mma.cjs` (보고서는 Git에서 제외된 `.monitor-output`에 저장하며 Telegram·GitHub 변경은 하지 않습니다.)

@@ -15,3 +15,14 @@ main { position: relative; }
   #detail .detail-actions a { text-align:center; }
   #detail .close { min-width:36px; min-height:36px; }
 }
+.visit-note { display:flex; flex-direction:column; gap:4px; }
+.visit-note strong { font-size:11px; font-weight:600; }
+.legend { bottom:76px; }
+@media(max-width:760px) { .legend { bottom:72px; } .visit-note strong { font-size:10px; } }
+/* Benefit labels use their own contrasting palette, separate from map dots. */
+.tags { color:#42564a; font-size:11px; }
+.tag { font-weight:700; border:1px solid transparent; }
+.tag.free { background:#e8f3ea; color:#14532d; border-color:#b9d5bf; }
+.tag.discount { background:#fff1d6; color:#704600; border-color:#e5ce9f; }
+.tag.other { background:#eaf0fa; color:#294b7a; border-color:#c1cee4; }
+.legend { color:#243a30; font-weight:600; }

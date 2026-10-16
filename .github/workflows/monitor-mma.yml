@@ -1,0 +1,46 @@
+name: Check MMA facility updates
+on:
+  schedule:
+    # UTC 00:00 on the first day of each month = Korea 09:00.
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+    inputs:
+      test_telegram:
+        description: 'Send a Telegram connection test (skip source comparison)'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: mma-facility-monitor
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate comparison logic
+        run: node --test tests/mma-data.test.cjs
+      - name: Test Telegram connection when explicitly requested
+        if: ${{ inputs.test_telegram == true }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/monitor-mma.cjs --test-telegram
+      - name: Compare official facilities and prepare review
+        if: ${{ inputs.test_telegram != true }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/monitor-mma.cjs --publish
+      - name: Save comparison report and candidate data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mma-facility-review
+          path: .monitor-output/
+          if-no-files-found: ignore
+          retention-days: 90
