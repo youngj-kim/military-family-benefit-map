@@ -1,0 +1,1077 @@
+{
+  "checkedAt": "2026-10-16T05:38:29.066Z",
+  "sourceFetchedAt": "2026-10-16T03:58:51.314Z",
+  "overrides": {
+    "1053": {
+      "lat": 36.3077818180786,
+      "lng": 127.342646778061,
+      "address": "대전 서구 관저동로 158",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "대전광역시서구관저동로 158(관저동)",
+      "originalName": "건양대학교병원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "2310": {
+      "lat": 37.4647158862253,
+      "lng": 126.648610595713,
+      "address": "인천 미추홀구 경인로 51",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "인천광역시미추홀구경인로51번길 21(숭의동)",
+      "originalName": "인천광역시 미추홀구 국민체육센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "2399": {
+      "lat": 36.7745775808388,
+      "lng": 126.444514667198,
+      "address": "충남 서산시 호수공원6로 6",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도서산시호수공원6로 6(읍내동)",
+      "originalName": "서산시 보건소",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "2968": {
+      "lat": 35.2100136734652,
+      "lng": 128.124076564732,
+      "address": "경남 진주시 남강로 1689",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경상남도진주시남강로 1689(초전동)",
+      "originalName": "진주시 농기계임대사업소",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3045": {
+      "lat": 37.3375634954741,
+      "lng": 126.739230808312,
+      "address": "경기 시흥시 경기과기대로 284",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도시흥시경기과기대로 284(정왕동)",
+      "originalName": "시흥시 에코센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3047": {
+      "lat": 37.3351852697599,
+      "lng": 126.691253210882,
+      "address": "경기 시흥시 오이도로 332",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도시흥시오이도로 332(정왕동)",
+      "originalName": "시흥시 오이도박물관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3053": {
+      "lat": 37.6533453564795,
+      "lng": 126.684292758604,
+      "address": "경기 김포시 김포한강1로 242",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도김포시김포한강1로 242A동1층 (운양동, 운양역환승센터)",
+      "originalName": "김포시 평생학습",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3059": {
+      "lat": 37.3225525736658,
+      "lng": 126.832711268963,
+      "address": "경기 안산시 단원구 화랑로 387",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도안산시 단원구화랑로 387(고잔동)",
+      "originalName": "안산시 부설주차장",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3065": {
+      "lat": 37.5368385484128,
+      "lng": 126.74472534636,
+      "address": "인천 계양구 살라리로 2",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "인천광역시계양구살라리로2번길 33(서운동, 인천광역시농업기술센터)",
+      "originalName": "인천광역시 농기계 임대",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3069": {
+      "lat": 37.4535474854293,
+      "lng": 126.749590719638,
+      "address": "인천 남동구 장수로 42",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "인천광역시남동구장수로 42(장수동, 인천광역시 청소년수련관)",
+      "originalName": "인천광역시 청소년시설",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3203": {
+      "lat": 35.146361806536,
+      "lng": 129.009614631444,
+      "address": "부산 사상구 주례로 57",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "부산광역시사상구주례로 57(주례동)",
+      "originalName": "부산디지털대학교",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3288": {
+      "lat": 36.9917517671735,
+      "lng": 127.089843895641,
+      "address": "경기 평택시 중앙2로 25",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도평택시중앙2로 25(평택동)",
+      "originalName": "대한안과의사회 평택 밝은성모안과",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3295": {
+      "lat": 36.3512439449449,
+      "lng": 127.377927544831,
+      "address": "대전 서구 대덕대로 203",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "대전광역시서구대덕대로 203(둔산동, 둔산미래빌딩 10층)",
+      "originalName": "대한안과의사회 삼성스마일안과",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3301": {
+      "lat": 36.3526651864964,
+      "lng": 127.342974158635,
+      "address": "대전 유성구 계룡로 114",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "대전광역시유성구계룡로 114(봉명동, BYC빌딩 7층)",
+      "originalName": "대한안과의사협회 새봄안과의원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3355": {
+      "lat": 36.8537094815468,
+      "lng": 126.593768678199,
+      "address": "충남 당진시 정미면 대학로 1",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도당진시정미면대학로 1(정미면덕마리)",
+      "originalName": "신성대학교 드론교육센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3356": {
+      "lat": 36.2125731147545,
+      "lng": 127.148977897367,
+      "address": "충남 논산시 부적면 계백로 1575",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도논산시부적면계백로 1575(부적면부황리)",
+      "originalName": "뚜루뚜 무인항공교육센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3360": {
+      "lat": 36.1925168630204,
+      "lng": 127.098383163083,
+      "address": "충남 논산시 중앙로 278",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도논산시중앙로 278(취암동)",
+      "originalName": "더알시티무인항공",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3377": {
+      "lat": 36.8043470266404,
+      "lng": 126.867736659799,
+      "address": "충남 아산시 선장면 아산만로 728",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도아산시선장면아산만로 728(선장면대흥리)",
+      "originalName": "한성티앤아이",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3381": {
+      "lat": 36.8873596890327,
+      "lng": 126.630472507837,
+      "address": "충남 당진시 서부로 56",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도당진시서부로 56(채운동)",
+      "originalName": "당진시 보건소",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3390": {
+      "lat": 36.4337428667924,
+      "lng": 126.889863747337,
+      "address": "충남 청양군 정산면 한티고개길 178-46",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도청양군정산면한티고개길 178- 46(정산면마치리)",
+      "originalName": "청양군 칠갑산천문대",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3394": {
+      "lat": 36.7548641620327,
+      "lng": 126.880320106262,
+      "address": "충남 아산시 도고면 도고산로 810",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도아산시도고면도고산로 810(도고면신언리)",
+      "originalName": "아산 옹기발효음식전시체험관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3395": {
+      "lat": 36.7977612131926,
+      "lng": 126.97708188267,
+      "address": "충남 아산시 실옥로 222",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도아산시실옥로 222(배미동)",
+      "originalName": "아산 장영실과학관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3397": {
+      "lat": 36.8214400797856,
+      "lng": 127.145765483021,
+      "address": "충남 천안시 서북구 축구센터로 150",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도천안시 서북구축구센터로 150(성정동)",
+      "originalName": "천안축구센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3398": {
+      "lat": 36.7396193628528,
+      "lng": 127.295598758009,
+      "address": "충남 천안시 동남구 수신면 장산서길 113",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도천안시 동남구수신면장산서길 113(수신면장산리)",
+      "originalName": "천안 홍대용과학관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3400": {
+      "lat": 36.237996861098,
+      "lng": 127.468969195371,
+      "address": "대전 동구 산내로 748",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "대전광역시동구산내로 748(상소동)",
+      "originalName": "상소오토캠핑장",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3405": {
+      "lat": 36.3261254820003,
+      "lng": 126.652711806646,
+      "address": "충남 보령시 성주면 성주산로 508",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도보령시성주면성주산로 508(성주면개화리)",
+      "originalName": "보령석탄박물관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3406": {
+      "lat": 36.3245091585878,
+      "lng": 126.602371192339,
+      "address": "충남 보령시 남포면 보령남로 234",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도보령시남포면보령남로 234(남포면봉덕리)",
+      "originalName": "보령시 보건소",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3407": {
+      "lat": 36.3343453342549,
+      "lng": 126.639001660511,
+      "address": "충남 보령시 성주면 성주산로 318-57",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도보령시성주면성주산로 318- 57(성주면성주리)",
+      "originalName": "보령시 목재문화체험장",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3408": {
+      "lat": 36.3338581451298,
+      "lng": 126.614582387315,
+      "address": "충남 보령시 성주산로 101",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도보령시성주산로 101(명천동)",
+      "originalName": "보령시 문화예술회관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3414": {
+      "lat": 36.6226219023235,
+      "lng": 126.63217171563,
+      "address": "충남 홍성군 홍북읍 이응노로 61-7",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도홍성군홍북읍이응노로 61- 7(홍북읍중계리)",
+      "originalName": "홍성군 고암이응노 생가기념관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3415": {
+      "lat": 36.537388847202,
+      "lng": 126.47632461094,
+      "address": "충남 홍성군 서부면 남당항로 171",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도홍성군서부면남당항로 171(서부면남당리)",
+      "originalName": "홍성군 남당항네트 어드벤처",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3417": {
+      "lat": 36.7518107606513,
+      "lng": 126.323232114336,
+      "address": "충남 태안군 태안읍 서해로 1952-16",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도태안군태안읍서해로 1952- 16(태안읍평천리)",
+      "originalName": "태안군 보건소",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3418": {
+      "lat": 36.7564192603879,
+      "lng": 126.313276137936,
+      "address": "충남 태안군 태안읍 백화로 199",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도태안군태안읍백화로 199(태안읍동문리)",
+      "originalName": "태안군 청소년수련관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3424": {
+      "lat": 36.2829386408308,
+      "lng": 126.909414379054,
+      "address": "충남 부여군 부여읍 성왕로 205",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도부여군부여읍성왕로 205(부여읍구아리)",
+      "originalName": "부여군 보건소",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3425": {
+      "lat": 36.293550908852,
+      "lng": 126.696242660081,
+      "address": "충남 부여군 외산면 만수로 98",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도부여군외산면만수로 98(외산면만수리, 관리사무소)",
+      "originalName": "부여군 외산수리바위 캠핑정원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3426": {
+      "lat": 36.6373955736778,
+      "lng": 126.799684704402,
+      "address": "충남 예산군 응봉면 예당관광로 158",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도예산군응봉면예당관광로 158(응봉면등촌리)",
+      "originalName": "예산 예당호모노레일",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3427": {
+      "lat": 36.5984487222736,
+      "lng": 126.780893692311,
+      "address": "충남 예산군 대흥면 임존성길 153",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도예산군대흥면임존성길 153(대흥면상중리)",
+      "originalName": "예산 봉수산자연휴양림",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3428": {
+      "lat": 36.6854813231523,
+      "lng": 126.849177606826,
+      "address": "충남 예산군 예산읍 아리랑로 185-14",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도예산군예산읍아리랑로 185- 14(예산읍예산리)",
+      "originalName": "예산 문예회관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3431": {
+      "lat": 36.6788705136662,
+      "lng": 126.833786981548,
+      "address": "충남 예산군 예산읍 예중길 42",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도예산군예산읍예중길 42(예산읍주교리)",
+      "originalName": "예산군 공공도서관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3436": {
+      "lat": 36.0228000073475,
+      "lng": 126.742692583487,
+      "address": "충남 서천군 마서면 장산로 916",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도서천군마서면장산로 916(마서면도삼리)",
+      "originalName": "서천군 조류생태전시관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3438": {
+      "lat": 36.1314554385653,
+      "lng": 126.500455841385,
+      "address": "충남 서천군 서면 서인로 89-16",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도서천군서면서인로 89- 16(서면마량리)",
+      "originalName": "서천군 성경전래지기념관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3449": {
+      "lat": 36.2573782903141,
+      "lng": 126.920299932179,
+      "address": "충남 부여군 부여읍 중정1길 60",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도부여군부여읍중정1길 60(부여읍중정리)",
+      "originalName": "부여드론융합기술센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3452": {
+      "lat": 35.4171303133021,
+      "lng": 129.206165124996,
+      "address": "경남 양산시 탑골길 248",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경상남도양산시탑골길 248(용당동)",
+      "originalName": "양산 숲애서",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3453": {
+      "lat": 35.3032390723336,
+      "lng": 129.020075158907,
+      "address": "경남 양산시 동면 강변로 30",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경상남도양산시동면강변로 30(동면금산리)",
+      "originalName": "양산 평생학습관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3641": {
+      "lat": 34.928871680183,
+      "lng": 127.500801495864,
+      "address": "전남광주통합특별시 순천시 국가정원1호길 47",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전남광주통합특별시순천시국가정원1호길 47(오천동)",
+      "originalName": "순천시 순천만국가정원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3647": {
+      "lat": 34.9094943746764,
+      "lng": 127.480345084563,
+      "address": "전남광주통합특별시 순천시 양율길 132",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전남광주통합특별시순천시양율길 132(야흥동)",
+      "originalName": "순천시 장사",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3653": {
+      "lat": 35.0438709484678,
+      "lng": 127.474485262673,
+      "address": "전남광주통합특별시 순천시 서면 청소년수련원길 170",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전남광주통합특별시순천시서면청소년수련원길 170(서면운평리)",
+      "originalName": "순천시 자연휴양림",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3659": {
+      "lat": 34.9705814569343,
+      "lng": 127.485216207202,
+      "address": "전남광주통합특별시 순천시 삼산로 16",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전남광주통합특별시순천시삼산로 16(석현동)",
+      "originalName": "순천시 문화예술회관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3709": {
+      "lat": 37.497419943137,
+      "lng": 127.48513592853,
+      "address": "경기 양평군 양평읍 마유산로 3",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도양평군양평읍마유산로 3(양평읍양근리)",
+      "originalName": "양평군 평생학습센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3716": {
+      "lat": 37.6843946820657,
+      "lng": 127.490050333352,
+      "address": "경기 가평군 설악면 신선봉로 78",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도가평군설악면신선봉로 78(설악면선촌리)",
+      "originalName": "설악국민체육센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3718": {
+      "lat": 37.8038610495507,
+      "lng": 127.348912122513,
+      "address": "경기 가평군 상면 비룡로 2253",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도가평군상면비룡로 2253- 0(상면연하리)",
+      "originalName": "상면국민체육센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3719": {
+      "lat": 37.8861086601318,
+      "lng": 127.547714733878,
+      "address": "경기 가평군 북면 가화로 999",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도가평군북면가화로 999- 0(북면목동리)",
+      "originalName": "북면국민체육센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3720": {
+      "lat": 37.8861086601318,
+      "lng": 127.547714733878,
+      "address": "경기 가평군 북면 가화로 999",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도가평군북면가화로 999- 0(북면목동리)",
+      "originalName": "북면생활체육공원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3721": {
+      "lat": 37.6299245200116,
+      "lng": 127.116833735156,
+      "address": "경기 구리시 갈매중앙로 62",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도구리시갈매중앙로 62- 0(갈매동)",
+      "originalName": "갈매멀티스포츠센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3725": {
+      "lat": 37.6834630797093,
+      "lng": 127.492364816757,
+      "address": "경기 가평군 설악면 자잠로 80",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도가평군설악면자잠로 80(설악면선촌리)",
+      "originalName": "설악반다비문화체육센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3726": {
+      "lat": 37.8190753982605,
+      "lng": 127.350845092642,
+      "address": "경기 가평군 조종면 조종희망로 26",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도가평군조종면조종희망로26번길 13(조종면현리)",
+      "originalName": "조종반다비문화체육센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3731": {
+      "lat": 35.115947549812,
+      "lng": 128.48335187843,
+      "address": "경남 창원시 마산합포구 진동면 신서촌로 15",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경상남도창원시 마산합포구진동면신서촌로 15(진동면진동리)",
+      "originalName": "창원시 진동종합복지타운",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3734": {
+      "lat": 35.1560267653569,
+      "lng": 128.706474801019,
+      "address": "경남 창원시 진해구 석동로 70",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경상남도창원시 진해구석동로 70(석동)",
+      "originalName": "창원시 진해기적의도서관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3740": {
+      "lat": 35.2067524865318,
+      "lng": 128.569265961364,
+      "address": "경남 창원시 마산합포구 문신길 147",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경상남도창원시 마산합포구문신길 147(추산동)",
+      "originalName": "창원시립 마산 문신미술관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3741": {
+      "lat": 35.1721481332217,
+      "lng": 128.658721074482,
+      "address": "경남 창원시 진해구 장복산길 47",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경상남도창원시 진해구장복산길 47(태백동)",
+      "originalName": "창원 편백 치유의 숲",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3744": {
+      "lat": 37.7574245622078,
+      "lng": 127.022224217253,
+      "address": "경기 의정부시 체육로 113-18",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도의정부시체육로 113- 18(녹양동)",
+      "originalName": "의정부장례식장",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3745": {
+      "lat": 37.7384696603361,
+      "lng": 127.049199333826,
+      "address": "경기 의정부시 시민로 125",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도의정부시시민로 125(의정부동, 5층)",
+      "originalName": "의정부간호학원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3746": {
+      "lat": 37.7440812605598,
+      "lng": 127.051509348661,
+      "address": "경기 의정부시 태평로 128",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도의정부시태평로 128(의정부동, 4층)",
+      "originalName": "경기북부간호학원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3748": {
+      "lat": 37.7475197968617,
+      "lng": 127.045861391458,
+      "address": "경기 의정부시 평화로 622",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도의정부시평화로 622(의정부동)",
+      "originalName": "성베드로병원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3749": {
+      "lat": 37.726541192523,
+      "lng": 127.047835801758,
+      "address": "경기 의정부시 평화로 389",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도의정부시평화로 389(호원동, 화성빌딩 2층-8층)",
+      "originalName": "연세베스트병원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3751": {
+      "lat": 37.7503693471011,
+      "lng": 127.050563059147,
+      "address": "경기 의정부시 동일로 713",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도의정부시동일로 713(금오동, 을지타워 4층)",
+      "originalName": "의정부모커리한방병원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3752": {
+      "lat": 37.7553521222719,
+      "lng": 127.018234420663,
+      "address": "경기 의정부시 입석로 70",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도의정부시입석로70번길 66(녹양동)",
+      "originalName": "블루힐요양병원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3753": {
+      "lat": 37.7374672874913,
+      "lng": 127.050999119782,
+      "address": "경기 의정부시 시민로 146",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도의정부시시민로 146(의정부동, 1층)",
+      "originalName": "김재우한의원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3778": {
+      "lat": 35.5520952169314,
+      "lng": 126.862884083677,
+      "address": "전북특별자치도 정읍시 정읍사로 547",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전북특별자치도정읍시정읍사로 547(시기동)",
+      "originalName": "정읍시 청소년수련관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3780": {
+      "lat": 35.5076313435535,
+      "lng": 126.835518185913,
+      "address": "전북특별자치도 정읍시 첨단과학로 201",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전북특별자치도정읍시첨단과학로 201(신정동)",
+      "originalName": "정읍시 산업단지 복합문화 센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3787": {
+      "lat": 34.9677570481467,
+      "lng": 127.588871198537,
+      "address": "전남광주통합특별시 광양시 광양읍 순광로 660",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전남광주통합특별시광양시광양읍순광로 660(광양읍인동리)",
+      "originalName": "전남도립미술관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3793": {
+      "lat": 37.9331138945513,
+      "lng": 127.793295805883,
+      "address": "강원특별자치도 춘천시 신북읍 신샘밭로 763",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도춘천시신북읍신샘밭로 763(신북읍천전리)",
+      "originalName": "통나무집닭갈비",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3797": {
+      "lat": 37.2084018247695,
+      "lng": 128.506904569716,
+      "address": "강원특별자치도 영월군 영월읍 삼옥길 31",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도영월군영월읍삼옥길 31(영월읍삼옥리)",
+      "originalName": "국제현대미술관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3801": {
+      "lat": 37.2931155744122,
+      "lng": 128.340816146621,
+      "address": "강원특별자치도 영월군 주천면 평창강로 139",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도영월군주천면평창강로 139(주천면판운리)",
+      "originalName": "영월화석박물관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3802": {
+      "lat": 37.1057914127952,
+      "lng": 128.677057016189,
+      "address": "강원특별자치도 영월군 김삿갓면 내리계곡로 1088",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도영월군김삿갓면내리계곡로 1088(김삿갓면내리)",
+      "originalName": "호안다구박물관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3803": {
+      "lat": 37.1307312957918,
+      "lng": 128.535385510324,
+      "address": "강원특별자치도 영월군 김삿갓면 영월동로 1117",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도영월군김삿갓면영월동로 1117(김삿갓면진별리)",
+      "originalName": "영월아프리카미술박물관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3804": {
+      "lat": 37.2438244130247,
+      "lng": 128.356554532732,
+      "address": "강원특별자치도 영월군 한반도면 서강로 1094",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도영월군한반도면서강로 1094(한반도면광전리)",
+      "originalName": "영월미디어기자박물관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3805": {
+      "lat": 37.2358733895601,
+      "lng": 128.239208496319,
+      "address": "강원특별자치도 영월군 주천면 송학주천로 899-6",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도영월군주천면송학주천로 899- 6(주천면금마리)",
+      "originalName": "인도미술박물관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3806": {
+      "lat": 37.1551530128664,
+      "lng": 128.608721703745,
+      "address": "강원특별자치도 영월군 김삿갓면 망경대산길 135-3",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도영월군김삿갓면망경대산길 135- 3(김삿갓면예밀리)",
+      "originalName": "만봉불화박물관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3807": {
+      "lat": 37.2528868958733,
+      "lng": 128.432115988095,
+      "address": "강원특별자치도 영월군 북면 밤재로 7",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도영월군북면밤재로 7(북면문곡리)",
+      "originalName": "영월지오뮤지엄박물관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3813": {
+      "lat": 35.224375433306,
+      "lng": 128.579887298316,
+      "address": "경남 창원시 마산회원구 삼호로 107",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경상남도창원시 마산회원구삼호로 107(양덕동)",
+      "originalName": "한국건강관리협회",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3815": {
+      "lat": 37.5695711278314,
+      "lng": 126.976140249913,
+      "address": "서울 종로구 세종대로 149",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시종로구세종대로 149(세종로, 광화문빌딩 B1층, 3층, 4층)",
+      "originalName": "KMI한국의학연구소 광화문검진센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3817": {
+      "lat": 37.5054936224827,
+      "lng": 127.050863180985,
+      "address": "서울 강남구 테헤란로 411",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시강남구테헤란로 411(삼성동, 성담빌딩 2~8층, 10층)",
+      "originalName": "KMI한국의학연구소 강남검진센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3818": {
+      "lat": 37.2502595331007,
+      "lng": 127.034690950669,
+      "address": "경기 수원시 권선구 동수원로 232",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도수원시 권선구동수원로 232(권선동, 1층 수원검진센터)",
+      "originalName": "KMI한국의학연구소 수원검진센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3820": {
+      "lat": 35.1387281351032,
+      "lng": 129.06345343296,
+      "address": "부산 동구 조방로 14",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "부산광역시동구조방로 14(범일동, 동일타워 5층)",
+      "originalName": "KMI한국의학연구소 부산검진센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3821": {
+      "lat": 35.1521187862479,
+      "lng": 126.848918457002,
+      "address": "전남광주통합특별시 서구 상무중앙로 58",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전남광주통합특별시서구상무중앙로 58(치평동, 타임스타워 빌딩 8~10층)",
+      "originalName": "KMI한국의학연구소 광주검진센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3822": {
+      "lat": 33.2836442424197,
+      "lng": 126.55977231894,
+      "address": "제주특별자치도 서귀포시 솔오름로 61",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "제주특별자치도서귀포시솔오름로 61(동홍동, 제주헬스케어타운 의료서비스센터 1~2층)",
+      "originalName": "KMI한국의학연구소 제주검진센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3838": {
+      "lat": 37.8184029737952,
+      "lng": 128.857824469058,
+      "address": "강원특별자치도 강릉시 사천면 방동길 38",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도강릉시사천면방동길 38(사천면방동리)",
+      "originalName": "강릉아산병원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3841": {
+      "lat": 37.5195659036492,
+      "lng": 127.019091004701,
+      "address": "서울 강남구 강남대로 652",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시강남구강남대로 652(신사동, 신사스퀘어 8,9층)",
+      "originalName": "더원서울안과",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3852": {
+      "lat": 36.196077385035,
+      "lng": 127.103564735082,
+      "address": "충남 논산시 논산대로 382",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "충청남도논산시논산대로 382(관촉동, 논산시보건소 보건행정과 진료팀)",
+      "originalName": "논산시 보건소",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3854": {
+      "lat": 37.7733097779031,
+      "lng": 128.913266783699,
+      "address": "강원특별자치도 강릉시 강릉대로 454",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도강릉시강릉대로 454(포남동)",
+      "originalName": "강릉시 평생학습관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3856": {
+      "lat": 37.8599044519041,
+      "lng": 128.852058591603,
+      "address": "강원특별자치도 강릉시 연곡면 해안로 1282",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도강릉시연곡면해안로 1282(연곡면동덕리)",
+      "originalName": "연곡해변 솔향기캠핑장",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3857": {
+      "lat": 37.7180284778769,
+      "lng": 129.004697816012,
+      "address": "강원특별자치도 강릉시 강동면 율곡로 1616",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도강릉시강동면율곡로 1616(강동면안인진리)",
+      "originalName": "강릉 바다내음 캠핑장",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3983": {
+      "lat": 37.4988633818978,
+      "lng": 126.920668387333,
+      "address": "서울 동작구 여의대방로 134",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시동작구여의대방로 134(대방동, 보라매 빌딩)",
+      "originalName": "보라매자생한방병원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3990": {
+      "lat": 35.8419194659153,
+      "lng": 129.209919647875,
+      "address": "경북 경주시 봉황로 23",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경상북도경주시봉황로 23(노서동)",
+      "originalName": "신라고분정보센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3993": {
+      "lat": 37.7563488390734,
+      "lng": 126.773911313978,
+      "address": "경기 파주시 후곡로 13",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도파주시후곡로 13(금촌동)",
+      "originalName": "파주시 보건소",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3994": {
+      "lat": 37.5981883548152,
+      "lng": 127.150861932617,
+      "address": "경기 구리시 왕숙천로 253",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도구리시왕숙천로 253(수택동)",
+      "originalName": "검배체육문화센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3998": {
+      "lat": 37.4970486776201,
+      "lng": 127.028627058312,
+      "address": "서울 강남구 강남대로 382",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시강남구강남대로 382(역삼동, 메리츠타워 B1층)",
+      "originalName": "미켈란치과",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3999": {
+      "lat": 37.5078269000485,
+      "lng": 127.061059386179,
+      "address": "서울 강남구 테헤란로 520",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시강남구테헤란로 520(대치동, 삼안빌딩 4층)",
+      "originalName": "가우디치과",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4000": {
+      "lat": 37.4870478093715,
+      "lng": 126.990749622557,
+      "address": "서울 서초구 서초대로 77",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시서초구서초대로77길 17(서초동, 6층)",
+      "originalName": "클리어서울안과",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4020": {
+      "lat": 38.1961225456267,
+      "lng": 128.5759108927,
+      "address": "강원특별자치도 속초시 수복로 36",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도속초시수복로 36(교동)",
+      "originalName": "속초시 보건소",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4022": {
+      "lat": 38.1964383909181,
+      "lng": 128.576587065527,
+      "address": "강원특별자치도 속초시 수복로 46",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도속초시수복로 46(교동)",
+      "originalName": "속초시 평생교육문화센터",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4023": {
+      "lat": 38.0735813520851,
+      "lng": 128.630932823487,
+      "address": "강원특별자치도 양양군 양양읍 안산1길 36",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도양양군양양읍안산1길 36(양양읍월리)",
+      "originalName": "양양군 평생학습관",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4025": {
+      "lat": 37.4449828523528,
+      "lng": 129.162584171516,
+      "address": "강원특별자치도 삼척시 성당길 91",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도삼척시성당길 91(당저동)",
+      "originalName": "삼척시 주차장",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4047": {
+      "lat": 37.6470763328248,
+      "lng": 126.783462699545,
+      "address": "경기 고양시 일산동구 중앙로 1100",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "경기도고양시 일산동구중앙로 1100(백석동)",
+      "originalName": "고양시 일산동구 보건소",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4131": {
+      "lat": 37.7292188989864,
+      "lng": 128.874162877852,
+      "address": "강원특별자치도 강릉시 구정면 정등로 130",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도강릉시구정면정등로 130(구정면여찬리)",
+      "originalName": "디자인씽킹뮤지엄",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4136": {
+      "lat": 37.5035470555751,
+      "lng": 127.047033596011,
+      "address": "서울 강남구 테헤란로 326",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시강남구테헤란로 326(역삼동, 역삼아이타워 2층)",
+      "originalName": "카이안과",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4183": {
+      "lat": 37.5162788961317,
+      "lng": 127.021019329669,
+      "address": "서울 강남구 도산대로 110",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시강남구도산대로 110(논현동, KBL센터 8층)",
+      "originalName": "모아만의원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4186": {
+      "lat": 35.1669483088462,
+      "lng": 129.132959320724,
+      "address": "부산 해운대구 센텀2로 25",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "부산광역시해운대구센텀2로 25(우동, 센텀드림월드 3층 301호)",
+      "originalName": "천리향한의원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4187": {
+      "lat": 35.8897985848155,
+      "lng": 127.73138999061,
+      "address": "전북특별자치도 무주군 설천면 만선로 185",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전북특별자치도무주군설천면만선로 185(설천면심곡리)",
+      "originalName": "무주덕유산리조트",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4188": {
+      "lat": 37.1706733779187,
+      "lng": 128.948085384031,
+      "address": "강원특별자치도 태백시 서학로 861",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "강원특별자치도태백시서학로 861(황지동)",
+      "originalName": "오투리조트",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4190": {
+      "lat": 33.2425505935188,
+      "lng": 126.423205110712,
+      "address": "제주특별자치도 서귀포시 중문관광로 222",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "제주특별자치도서귀포시중문관광로 222(중문동)",
+      "originalName": "제주 부영호텔&리조트",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4191": {
+      "lat": 33.3592182965721,
+      "lng": 126.712464223483,
+      "address": "제주특별자치도 서귀포시 남원읍 남조로 960",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "제주특별자치도서귀포시남원읍남조로 960(남원읍수망리)",
+      "originalName": "제주 부영CC",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4192": {
+      "lat": 33.3706270995717,
+      "lng": 126.679888916578,
+      "address": "제주특별자치도 서귀포시 남원읍 남조로 1105",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "제주특별자치도서귀포시남원읍남조로 1105(남원읍수망리)",
+      "originalName": "더클래식CC",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4193": {
+      "lat": 34.9400416598387,
+      "lng": 127.555502659711,
+      "address": "전남광주통합특별시 순천시 해룡면 신대로 188",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전남광주통합특별시순천시해룡면신대로 188(해룡면신대리)",
+      "originalName": "순천 부영CC",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4302": {
+      "lat": 33.4032956446708,
+      "lng": 126.385746794734,
+      "address": "제주특별자치도 제주시 애월읍 평화로 2032-20",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "제주특별자치도제주시애월읍평화로 2032- 20(애월읍소길리)",
+      "originalName": "(주)제주현대자동차운전전문학원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4309": {
+      "lat": 37.5429660369394,
+      "lng": 127.120608405035,
+      "address": "서울 강동구 선사로 50",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시강동구선사로 50(천호동)",
+      "originalName": "케어라이프코리아(주) 케어라이프몰",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4361": {
+      "lat": 34.8207977287201,
+      "lng": 126.421392306789,
+      "address": "전남광주통합특별시 목포시 영산로 623",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "전남광주통합특별시목포시영산로 623(석현동)",
+      "originalName": "목포중앙병원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4386": {
+      "lat": 37.5044682122431,
+      "lng": 127.050387028274,
+      "address": "서울 강남구 테헤란로 408",
+      "method": "kakao-road-address-exact",
+      "originalAddress": "서울특별시강남구테헤란로 408(대치동, 대치빌딩 11~19층)",
+      "originalName": "서울누네안과병원",
+      "checkedAt": "2026-10-16T05:38:29.066Z"
+    }
+  }
+}

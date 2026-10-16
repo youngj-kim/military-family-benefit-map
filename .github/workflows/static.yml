@@ -37,6 +37,8 @@ jobs:
         env:
           KAKAO_JAVASCRIPT_KEY: ${{ secrets.KAKAO_JAVASCRIPT_KEY }}
         run: node scripts/create-config.cjs
+      - name: Apply verified supplemental facility coordinates
+        run: node scripts/apply-location-overrides.cjs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
