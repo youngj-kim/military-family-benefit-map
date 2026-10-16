@@ -22,4 +22,6 @@ jobs:
         with:
           name: facility-address-geocoding
           path: .geocode-output/
+          include-hidden-files: true
+          if-no-files-found: error
           retention-days: 90
