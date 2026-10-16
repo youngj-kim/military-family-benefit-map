@@ -22,6 +22,7 @@ window.BENEFIT_CATEGORY_ICONS = Object.freeze({
   '19': '<path d="m2 12 8 2 6 7 2-1-3-8 6-7c2-3-1-4-3-2l-7 6-8-3-1 2 7 6-7-2Z"/>',
   '20': '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 22h8m-4-5v5m-5-5h10"/>',
   '21': '<path d="M2 8h5l2-4h6l2 4h5v13H2V8Z"/><circle cx="12" cy="14" r="4"/>',
+  '23': '<path d="M2 3h3l3 13h11l3-9H6M9 20h1m7 0h1"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/>',
   '22': '<path d="M3 3h18v14H3V3Zm9 14v5m-5 0h10M7 8h10m-10 4h6"/>'
 });
 window.benefitCategorySvg = function(code) {

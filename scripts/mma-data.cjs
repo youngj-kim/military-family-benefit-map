@@ -2,7 +2,7 @@
 const crypto = require('node:crypto');
 const SOURCE = 'https://www.mma.go.kr/hall/listpart.do?mc=mma0003392';
 const ENDPOINT = 'https://open.mma.go.kr/caisGGGS/bymmgPartAjaxJsonCall.json?udjiyeok_cd=&udggeopjong_gbcd=&callback=mmaCallback';
-const FIELDS = ['id','name','region','category','type','address','area','benefit','phone','website','lat','lng'];
+const FIELDS = ['id','name','region','category','type','address','area','benefit','phone','website','lat','lng','weekdayHours','saturdayHours','sundayHours','weekdayLunch','saturdayLunch','sundayLunch','notes','scale'];
 const clean = v => String(v ?? '').replace(/<br\s*\/?\s*>/gi, '\n').replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').trim();
 function parseOfficial(raw, now = new Date().toISOString()) {
   const text = raw.trim();
@@ -33,7 +33,7 @@ function compare(before,after) {
 }
 const md = v => String(v ?? '없음').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/([\\`*_{}\[\]()#+!|])/g,'\\$1').replace(/\r?\n/g,' / ');
 function report(before,after,diff) {
-  const labels={name:'시설명',region:'지역',category:'업종',type:'혜택 종류',address:'주소',area:'지역명',benefit:'혜택 내용',phone:'연락처',website:'홈페이지',lat:'위도',lng:'경도'};
+  const labels={name:'시설명',region:'지역',category:'업종',type:'혜택 종류',address:'주소',area:'지역명',benefit:'혜택 내용',phone:'연락처',website:'홈페이지',lat:'위도',lng:'경도',weekdayHours:'평일 운영시간',saturdayHours:'토요일 운영시간',sundayHours:'일요일 운영시간',weekdayLunch:'평일 점심시간',saturdayLunch:'토요일 점심시간',sundayLunch:'일요일 점심시간',notes:'휴점·유의사항',scale:'규모'};
   const lines=['# 병무청 예우시설 변경 검토','',`확인 시각: ${after.fetchedAt}`,`기준 데이터: ${before.fetchedAt}`,'',`추가 ${diff.added.length}건 · 삭제 ${diff.removed.length}건 · 변경 ${diff.changed.length}건`,'',`[병무청 공식 출처](${SOURCE})`,'','이 후보는 자동 배포하지 않습니다. 변경 내용을 확인한 뒤 데이터 업데이트 PR을 병합하세요.',''];
   for (const [title,rows] of [['추가 시설',diff.added],['삭제 시설',diff.removed]]) { lines.push(`## ${title}`,''); for (const r of rows) lines.push(`- ${md(r.name)} (ID ${md(r.id)}) · ${md(r.address || r.area)}`); if(!rows.length) lines.push('없음'); lines.push(''); }
   lines.push('## 변경 시설','');

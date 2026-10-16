@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate comparison logic
-        run: node --test tests/mma-data.test.cjs
+        run: node --test tests/mma-data.test.cjs tests/mart-data.test.cjs tests/geocode-marts.test.cjs
       - name: Test Telegram connection when explicitly requested
         if: ${{ inputs.test_telegram == true }}
         env:
@@ -33,6 +33,7 @@ jobs:
         if: ${{ inputs.test_telegram != true }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: node scripts/monitor-mma.cjs --publish

@@ -1,0 +1,41 @@
+name: Collect official mart coordinates
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/geocode-marts.cjs'
+      - '.github/workflows/geocode-marts.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: mart-coordinate-collection
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate source and coordinate collection
+        run: node --test tests/mart-data.test.cjs tests/geocode-marts.test.cjs
+      - name: Collect address coordinates into separate fields
+        env:
+          KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
+        run: node scripts/geocode-marts.cjs
+      - name: Commit enrichment and redeploy Pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- dist/marts.json; then
+            echo "No coordinate changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/marts.json
+          git commit -m "Collect official mart address coordinates"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          gh workflow run static.yml --ref main
