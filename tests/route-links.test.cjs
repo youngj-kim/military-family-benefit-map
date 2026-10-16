@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const {naverRouteUrl}=require('../dist/route-links.js');
+const {naverRouteUrl,addressSearchUrl}=require('../dist/route-links.js');
 const row={name:'시설 & 쉼터 / 1',lat:37.818336,lng:127.711765};
 test('Naver link preserves WGS84 origin/destination and safely encodes facility names',()=>{
   const u=new URL(naverRouteUrl(row,{coords:{latitude:37.464007,longitude:126.9522394}}));
@@ -14,7 +14,7 @@ test('destination-only link does not fabricate a current location',()=>{
 function controller() {
   let success, failure, target, closed=false;
   const popup={document:{createElement:()=>({style:{},append(){}}),body:{replaceChildren(){}}},opener:{},get closed(){return closed},close:()=>{closed=true},location:{replace:url=>{target=url}}};
-  const context=vm.createContext({document:{},window:{isSecureContext:true,BENEFIT_ROUTE_LINKS:{naverRouteUrl},open:()=>popup,location:{assign:()=>{throw Error("Must preserve original map tab")}}},navigator:{geolocation:{getCurrentPosition:(ok,fail)=>{success=ok;failure=fail}}}});
+  const context=vm.createContext({document:{},window:{isSecureContext:true,BENEFIT_ROUTE_LINKS:{naverRouteUrl,addressSearchUrl},open:()=>popup,location:{assign:()=>{throw Error("Must preserve original map tab")}}},navigator:{geolocation:{getCurrentPosition:(ok,fail)=>{success=ok;failure=fail}}}});
   vm.runInContext(fs.readFileSync(path.join(__dirname,'../dist/app.js'),'utf8').replace(/boot\(\);\s*$/,''),context);
   return {context,success:()=>success,failure:()=>failure,target:()=>target,popup};
 }
@@ -37,4 +37,22 @@ test('blocked popup does not request location or leave button busy',()=>{
  c.context.window.open=()=>null;
  c.context.startCurrentRoute(row,button,message);
  assert.equal(c.success(),undefined);assert.match(message.textContent,/팝업/);assert.equal(button.textContent,'길찾기');
+});
+
+test('address search preserves and encodes official address without inventing coordinates',()=>{
+ const r={name:'럭키',lat:null,lng:null,address:'경기도 성남시 이매로 173(럭키회관 1층)'};
+ for(const provider of ['kakao','naver']) {
+  const url=new URL(addressSearchUrl(r,provider));
+  assert.equal(decodeURIComponent(url.pathname.split('/').pop()),r.address);
+  assert.equal(url.search,'');
+ }
+ assert.equal(addressSearchUrl({address:'  '}),null);
+});
+test('unlocated facility opens address search without location permission or blank tab',()=>{
+ const c=controller();let opened;
+ c.context.window.open=(...args)=>{opened=args};
+ c.context.startCurrentRoute({...row,lat:null,lng:null,address:'경기 성남시 이매로 173'},{},{},'naver');
+ assert.equal(c.success(),undefined);
+ assert.ok(opened[0].startsWith('https://map.naver.com/p/search/'));
+ assert.equal(opened[1],'_blank');assert.equal(opened[2],'noopener,noreferrer');
 });

@@ -30,7 +30,7 @@ function renderList() {
   filtered.slice(0,limit).forEach(r => {
     const button = el('button',undefined,'facility' + (selected?.id === r.id ? ' selected' : ''));
     button.dataset.id = r.id; button.setAttribute('aria-label',r.name + ' 상세 보기'); button.append(tags(r),el('h3',r.name),el('p',r.address || r.area || '주소 정보 없음'),el('p',r.benefit || '자세한 혜택은 시설에 문의해 주세요.','summary'));
-    if (r.lat === null) button.append(el('span',r.sourceKind === 'mart' ? '좌표 미확인 · 지도 이동·길찾기 불가' : '위치 미등록 · 목록에서 혜택 확인 가능','unlocated'));
+    if (r.lat === null) button.append(el('span',r.sourceKind === 'mart' ? (r.address.trim() ? '좌표 미확인 · 주소로 지도 검색 가능' : '좌표 미확인 · 주소 정보 없음') : '위치 미등록 · 목록에서 혜택 확인 가능','unlocated'));
     else if (r.sourceKind === 'mart') button.append(el('span','주소 기반 위치 · 실제 입구는 확인 필요','unlocated'));
     else if (userPosition) button.append(el('span',`내 위치에서 직선 ${distance(r).toFixed(1)} km`,'unlocated'));
     button.addEventListener('click',() => selectFacility(r)); fragment.append(button);
@@ -54,6 +54,11 @@ function currentRouteUrl(row, position) {
   return `https://map.kakao.com/link/from/${encodeURIComponent('현재 위치')},${position.coords.latitude},${position.coords.longitude}/to/${encodeURIComponent(row.name)},${row.lat},${row.lng}`;
 }
 function startCurrentRoute(row, button, message, provider = 'kakao') {
+  if (row.lat === null) {
+    const url = window.BENEFIT_ROUTE_LINKS.addressSearchUrl(row,provider);
+    if (url) window.open(url,'_blank','noopener,noreferrer');
+    return;
+  }
   const originalLabel = button.textContent;
   if (!window.isSecureContext || !navigator.geolocation) {
     message.textContent = '현재 위치는 HTTPS 또는 localhost에서 사용할 수 있습니다. 위치 권한과 인터넷 연결을 확인한 뒤 다시 시도해 주세요.';
@@ -97,7 +102,7 @@ function closeDetail() { selected = null; $('detail').hidden = true; if (info) i
 function selectFacility(r) {
   selected = r;
   if (info) info.close();
-  if (map && r.lat === null) $('map-status').textContent = r.name + ': 좌표 미확인으로 지도 이동·길찾기를 사용할 수 없습니다.';
+  if (map && r.lat === null) $('map-status').textContent = r.name + (r.address.trim() ? ': 좌표 미확인 · 상세 창에서 주소로 지도 검색이 가능합니다.' : ': 좌표와 주소가 등록되지 않았습니다.');
   document.querySelectorAll('.facility').forEach(n => n.classList.toggle('selected',n.dataset.id === r.id));
   const detail = $('detail'); detail.replaceChildren(); detail.hidden = false;
   const close = el('button','×','close'); close.setAttribute('aria-label','상세 닫기'); close.onclick = closeDetail;
@@ -117,13 +122,15 @@ function selectFacility(r) {
   const actions = el('div',undefined,'detail-actions');
   const routeMessage = el('p', '', 'fine');
   routeMessage.setAttribute('role', 'status');
-  const route = el('button', '카카오 현위치 길찾기 ↗', 'primary');
-  const naverRoute = el('button', '네이버 현위치 길찾기 ↗', 'primary naver-route');
-  for (const button of [route,naverRoute]) { button.type='button'; button.disabled=r.lat===null; }
+  const addressOnly = r.lat === null;
+  const hasAddress = Boolean(r.address.trim());
+  const route = el('button', addressOnly ? '카카오 주소로 찾기 ↗' : '카카오 현위치 길찾기 ↗', 'primary');
+  const naverRoute = el('button', addressOnly ? '네이버 주소로 찾기 ↗' : '네이버 현위치 길찾기 ↗', 'primary naver-route');
+  for (const button of [route,naverRoute]) { button.type='button'; button.disabled=addressOnly && !hasAddress; }
   route.onclick = () => startCurrentRoute(r, route, routeMessage);
   naverRoute.onclick = () => startCurrentRoute(r, naverRoute, routeMessage, 'naver');
   actions.append(route,naverRoute);
-  detail.append(el('p', r.lat===null ? '위치 좌표가 확인되지 않아 현위치 길찾기를 사용할 수 없습니다. 주소와 공식 원문을 확인해 주세요.' : '현위치 길찾기를 누르면 위치 권한을 확인하고 현재 위치를 선택한 지도 서비스에 전달합니다.', 'fine'));
+  detail.append(el('p', r.lat===null ? (hasAddress ? '좌표가 확인되지 않아 원문 주소로 지도 검색을 엽니다. 검색 결과의 실제 시설을 확인한 뒤 길찾기를 선택해 주세요. 원문 주소가 담당 부서 주소일 수도 있습니다.' : '좌표와 주소가 없어 지도 검색을 사용할 수 없습니다. 공식 원문을 확인해 주세요.') : '현위치 길찾기를 누르면 위치 권한을 확인하고 현재 위치를 선택한 지도 서비스에 전달합니다.', 'fine'));
   const source = el('p',undefined,'fine source-detail');
   source.append(el('span','출처: '),r.sourceKind === 'mart' ? link('국방부 영외마트 원문',datasetInfo.mart.source) : link('병무청 시설 원문','https://www.mma.go.kr/hall/listdetail.do?mmgudgigwan_cd='+encodeURIComponent(r.id)));
   if(r.sourceKind === 'mart')source.append(el('span',' · '),link('국군복지포털 이용 안내','https://www.welfare.mil.kr/'));
