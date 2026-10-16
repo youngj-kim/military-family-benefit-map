@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e34">
+  <title>병역명문가 혜택 지도</title>
+  <meta name="description" content="병무청 공식 예우시설을 지역과 업종, 혜택별로 찾아보세요. 카카오 지도와 길찾기로 방문을 준비할 수 있습니다.">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<header><a class="brand" href="./"><span class="emblem" aria-hidden="true">✦</span><span>병역명문가 <b>혜택 지도</b><small>가족의 자부심, 일상의 혜택으로</small></span></a><a class="source-link" href="https://www.mma.go.kr/hall/listpart.do?mc=mma0003392" target="_blank" rel="noopener">병무청 원문 ↗</a></header>
+<main>
+  <aside aria-label="시설 검색 및 결과">
+    <section class="intro"><span class="eyebrow">우리 가족을 위한 우대시설</span><h1>가까운 곳에서<br>혜택을 찾아보세요.</h1><p>문화생활부터 여행, 의료까지.<br>지역과 혜택을 골라 한눈에 살펴보세요.</p></section>
+    <section class="filters" aria-label="검색 조건">
+      <label class="search-label" for="search">시설·주소·혜택 검색</label><input id="search" type="search" placeholder="예: 춘천, 박물관, 주차료" autocomplete="off">
+      <div class="filter-row"><label for="region">지역<select id="region"><option value="">전국 전체</option></select></label><label for="category">업종<select id="category"><option value="">모든 업종</option></select></label></div>
+      <fieldset id="types"><legend>혜택 종류</legend><label><input type="radio" name="type" value="" checked><span>전체</span></label><label><input type="radio" name="type" value="01"><span>면제</span></label><label><input type="radio" name="type" value="02"><span>할인</span></label><label><input type="radio" name="type" value="03"><span>기타</span></label></fieldset>
+      <div class="tools"><button id="locate">◎ 내 위치 기준</button><button id="reset">초기화</button></div>
+    </section>
+    <div class="results-heading"><strong id="count" aria-live="polite">시설 불러오는 중…</strong><label><input id="inbounds" type="checkbox"> 지도 안에서</label></div>
+    <div id="results" aria-label="검색 결과"></div><button id="more" hidden>결과 더 보기</button>
+    <footer id="data-note">병무청 공식 예우시설 데이터</footer>
+  </aside>
+  <section class="map-section" aria-label="카카오 지도">
+    <div id="map"></div>
+    <div class="map-toolbar"><span id="map-status" role="status">카카오 지도를 준비하고 있습니다</span><button id="fit">검색 결과 전체 보기</button><button id="settings">지도 설정</button></div>
+    <div id="map-placeholder"><div class="map-glyph" aria-hidden="true">⌖</div><h2>혜택을 지도 위에 펼쳐보세요</h2><p id="placeholder-message">카카오 JavaScript 키를 연결하면<br>시설 위치와 주변 혜택을 볼 수 있습니다.</p><button id="connect" class="primary">카카오 지도 연결</button><small>키 없이도 왼쪽 목록에서 모든 혜택을 검색할 수 있어요.</small></div>
+    <div class="legend"><span class="dot free"></span>면제 <span class="dot discount"></span>할인 <span class="dot other"></span>기타</div>
+    <article id="detail" hidden aria-label="선택한 시설 상세"></article>
+    <div class="visit-note">방문 전 시설에 적용 대상·증빙서류·혜택을 확인해 주세요.</div>
+  </section>
+</main>
+<dialog id="key-dialog"><form id="key-form"><h2>카카오 지도 연결</h2><p>카카오 개발자 콘솔에서 이 주소를 JavaScript SDK 도메인으로 등록해 주세요.</p><code id="origin"></code><label>JavaScript 키<input id="key" type="password" autocomplete="off" placeholder="JavaScript 키 입력" required pattern="[a-fA-F0-9]{32}"></label><p class="fine">입력한 키는 이 탭에서만 사용합니다. REST API 키나 비밀키를 입력하지 마세요.</p><div class="dialog-actions"><button type="button" id="cancel-key">닫기</button><button class="primary" type="submit">지도 연결</button></div></form></dialog>
+</body></html>
