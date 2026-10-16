@@ -43,6 +43,31 @@ function renderMarkers() {
   clusterer.addMarkers(markers); $('map-status').textContent = `지도 표시 ${markers.length.toLocaleString('ko')}곳 · 위치 미등록 ${filtered.length-markers.length}곳`;
 }
 function link(text,url,className) { const a = el('a',text,className); a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; return a; }
+function currentRouteUrl(row, position) {
+  return `https://map.kakao.com/link/from/${encodeURIComponent('현재 위치')},${position.coords.latitude},${position.coords.longitude}/to/${encodeURIComponent(row.name)},${row.lat},${row.lng}`;
+}
+function startCurrentRoute(row, button, message) {
+  if (!window.isSecureContext || !navigator.geolocation) {
+    message.textContent = '현재 위치는 HTTPS 또는 localhost에서 사용할 수 있습니다. 아래 목적지 길찾기에서 출발지를 직접 선택해 주세요.';
+    return;
+  }
+  button.disabled = true;
+  button.textContent = '현재 위치 확인 중…';
+  message.textContent = '';
+  const restore = () => { button.disabled = false; button.textContent = '현위치에서 길찾기 ↗'; };
+  navigator.geolocation.getCurrentPosition(position => {
+    restore();
+    if (!button.isConnected) return;
+    message.textContent = '카카오맵으로 이동합니다…';
+    window.location.assign(currentRouteUrl(row, position));
+  }, error => {
+    restore();
+    if (!button.isConnected) return;
+    message.textContent = error.code === 1
+      ? '위치 권한이 허용되지 않았습니다. 권한을 허용하거나 아래 목적지 길찾기에서 출발지를 직접 선택해 주세요.'
+      : '현재 위치를 확인하지 못했습니다. 다시 시도하거나 아래 목적지 길찾기를 이용해 주세요.';
+  }, {enableHighAccuracy:true, timeout:10000, maximumAge:30000});
+}
 function closeDetail() { selected = null; $('detail').hidden = true; if (info) info.close(); document.querySelectorAll('.facility.selected').forEach(n => n.classList.remove('selected')); }
 function selectFacility(r) {
   selected = r;
@@ -53,10 +78,18 @@ function selectFacility(r) {
   if (r.phone) { detail.append(el('h4','연락처')); const phone = el('p'); const tel = el('a',r.phone); tel.href = 'tel:'+r.phone.replace(/[^0-9+]/g,''); phone.append(tel); detail.append(phone); }
   if (r.lat === null) detail.append(el('p','위치가 등록되지 않은 시설입니다. 주소와 지점을 확인한 뒤 카카오맵에서 검색해 주세요.','fine'));
   const actions = el('div',undefined,'detail-actions');
-  if (r.lat !== null) actions.append(link('길찾기 ↗',`https://map.kakao.com/link/to/${encodeURIComponent(r.name)},${r.lat},${r.lng}`,'primary'));
+  const routeMessage = el('p', '', 'fine');
+  routeMessage.setAttribute('role', 'status');
+  if (r.lat !== null) {
+    const route = el('button', '현위치에서 길찾기 ↗', 'primary');
+    route.type = 'button';
+    route.onclick = () => startCurrentRoute(r, route, routeMessage);
+    actions.append(route, link('목적지 길찾기 ↗', `https://map.kakao.com/link/to/${encodeURIComponent(r.name)},${r.lat},${r.lng}`));
+    detail.append(el('p', '현위치에서 길찾기를 누르면 위치 권한을 확인하고 현재 위치를 카카오맵에 전달합니다.', 'fine'));
+  }
   actions.append(link('카카오맵 검색 ↗','https://map.kakao.com/link/search/'+encodeURIComponent(r.name+' '+r.area)),link('병무청 상세 ↗','https://www.mma.go.kr/hall/listdetail.do?mmgudgigwan_cd='+encodeURIComponent(r.id)));
   if (r.website) { const value = /^https?:\/\//i.test(r.website) ? r.website : 'https://'+r.website; try {const u = new URL(value); if (['https:','http:'].includes(u.protocol)) actions.append(link('시설 홈페이지 ↗',u.href));} catch {} }
-  detail.append(actions,el('p','혜택은 변경될 수 있습니다. 방문 전 명문가증·신분증·가족관계서류 등 필요한 증빙과 적용 대상을 확인해 주세요.','fine'));
+  detail.append(actions,routeMessage,el('p','혜택은 변경될 수 있습니다. 방문 전 명문가증·신분증·가족관계서류 등 필요한 증빙과 적용 대상을 확인해 주세요.','fine'));
   if (matchMedia('(max-width: 760px)').matches) document.querySelector('.map-section').scrollIntoView({behavior:'smooth',block:'start'});
   if (map && r.lat !== null) { const pos = new kakao.maps.LatLng(r.lat,r.lng); if (map.getLevel()>5) map.setLevel(5); map.panTo(pos); const label = el('div',r.name); label.style.cssText='padding:8px 12px;font-size:12px;white-space:nowrap'; info.setContent(label); info.setPosition(pos); info.open(map); }
 }
