@@ -33,10 +33,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Generate map configuration
+        env:
+          KAKAO_JAVASCRIPT_KEY: ${{ secrets.KAKAO_JAVASCRIPT_KEY }}
+        run: node scripts/create-config.cjs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
+          # Upload site files including the generated browser configuration
           path: 'dist'
       - name: Deploy to GitHub Pages
         id: deployment

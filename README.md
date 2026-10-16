@@ -8,7 +8,7 @@
 
 Windows에서는 `start-map.cmd`를 실행하면 http://localhost:8093 브라우저와 서버를 함께 엽니다. 서버 창을 닫으면 접속이 종료됩니다. 사용한 접속 주소의 도메인을 그대로 등록해야 합니다. 포트 변경은 `BENEFIT_MAP_PORT` 환경 변수로 지정할 수 있습니다.
 
-카카오 개발자 콘솔에서 카카오맵 API 사용을 활성화하고 JavaScript 키의 SDK 도메인에 실제 접속 주소를 등록하세요. 로컬 주소와 배포 주소는 각각 등록해야 합니다. `dist/config.js`에 설정된 공개 JavaScript 키로 지도가 자동 연결됩니다. 방문자에게 키 입력을 요청하지 않습니다. REST API 키는 사용하지 않습니다.
+카카오 개발자 콘솔에서 카카오맵 API 사용을 활성화하고 JavaScript 키의 SDK 도메인에 실제 접속 주소를 등록하세요. 로컬 주소와 배포 주소는 각각 등록해야 합니다. GitHub Actions가 저장소 Secret `KAKAO_JAVASCRIPT_KEY`로 `dist/config.js`를 생성하여 지도가 자동 연결됩니다. 생성된 파일은 Git에서 제외합니다. 방문자에게 키 입력을 요청하지 않습니다. REST API 키는 사용하지 않습니다.
 
 이번 지도에 사용할 주소:
 
@@ -43,8 +43,14 @@ https://open.mma.go.kr/caisGGGS/bymmgPartAjaxJsonCall.json?udjiyeok_cd=&udggeopj
 
 빌드 과정이 없는 HTML/CSS/JavaScript 웹사이트입니다. 정적 호스팅 서비스에서 GitHub 저장소의 `main` 브랜치를 연결하고, 프레임워크 없음 및 배포 디렉터리 `dist`를 선택합니다. 빌드 명령은 비워 둡니다. 이 저장소 업로드만으로 웹사이트가 자동 게시되지는 않습니다.
 
-`dist/config.js`에는 브라우저에서 공개되는 카카오 JavaScript 키만 포함됩니다. 해당 키의 허용 SDK 도메인을 실제 배포 주소로 제한해야 합니다. 방문자가 별도로 키를 입력하지 않아도 자동으로 지도를 불러옵니다. REST API 키, Admin 키, 개인 인증 토큰은 저장소에 넣지 않습니다.
+`dist/config.js`는 저장소에 포함하지 않습니다. 배포 워크플로가 Actions Secret `KAKAO_JAVASCRIPT_KEY`를 환경 변수로 전달하여 `node scripts/create-config.cjs`로 생성합니다. 값이 없거나 형식이 잘못되면 배포를 실패 처리하며 키 값은 로그로 출력하지 않습니다. 배포 산출물에는 브라우저에서 사용하는 JavaScript 키가 포함됩니다. 해당 키의 허용 SDK 도메인을 실제 배포 주소로 제한해야 합니다. 방문자가 별도로 키를 입력하지 않아도 자동으로 지도를 불러옵니다. REST API 키, Admin 키, 개인 인증 토큰은 저장소에 넣지 않습니다.
 
 ## 라이선스
 
 직접 작성한 웹사이트 코드는 MIT License를 따릅니다. 병무청에서 제공한 시설 데이터와 카카오 지도 SDK에는 이 저장소의 MIT 라이선스를 적용하지 않으며 각 제공처의 이용 조건을 따릅니다. 데이터 출처와 수집 시점은 위 데이터 항목에 표기했습니다.
+
+## 로컬 키 설정과 기존 키
+
+로컬에서는 `config.example.js`를 `dist/config.js`로 복사한 뒤 JavaScript 키를 입력합니다. 이 파일은 `.gitignore`로 제외됩니다. 또는 `KAKAO_JAVASCRIPT_KEY` 환경 변수를 설정하고 `node scripts/create-config.cjs`를 실행합니다. GitHub Secret의 값은 로컬에서 읽을 수 없습니다.
+
+이전에 커밋한 키는 현재 소스에서 제거했지만 과거 Git 커밋에는 남아 있습니다. 새 키를 사용한 배포가 정상 동작하는지 확인한 뒤, 기존 키는 다른 QGIS/사이트에서 사용하는지 확인하고 불필요한 도메인을 제거하거나 키를 폐기하세요. 기존 키가 다른 서비스와 공유된다면 임의로 폐기하면 해당 서비스가 중단될 수 있습니다.
