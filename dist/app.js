@@ -30,7 +30,7 @@ function renderList() {
   filtered.slice(0,limit).forEach(r => {
     const button = el('button',undefined,'facility' + (selected?.id === r.id ? ' selected' : ''));
     button.dataset.id = r.id; button.setAttribute('aria-label',r.name + ' 상세 보기'); button.append(tags(r),el('h3',r.name),el('p',r.address || r.area || '주소 정보 없음'),el('p',r.benefit || '자세한 혜택은 시설에 문의해 주세요.','summary'));
-    if (r.lat === null) button.append(el('span',r.sourceKind === 'mart' ? '주소 기반 좌표 미확인 · 지도 검색 가능' : '위치 미등록 · 목록에서 혜택 확인 가능','unlocated'));
+    if (r.lat === null) button.append(el('span',r.sourceKind === 'mart' ? '좌표 미확인 · 지도 이동·길찾기 불가' : '위치 미등록 · 목록에서 혜택 확인 가능','unlocated'));
     else if (r.sourceKind === 'mart') button.append(el('span','주소 기반 위치 · 실제 입구는 확인 필요','unlocated'));
     else if (userPosition) button.append(el('span',`내 위치에서 직선 ${distance(r).toFixed(1)} km`,'unlocated'));
     button.addEventListener('click',() => selectFacility(r)); fragment.append(button);
@@ -79,6 +79,8 @@ function startCurrentRoute(row, button, message, provider = 'kakao') {
 function closeDetail() { selected = null; $('detail').hidden = true; if (info) info.close(); document.querySelectorAll('.facility.selected').forEach(n => n.classList.remove('selected')); }
 function selectFacility(r) {
   selected = r;
+  if (info) info.close();
+  if (map && r.lat === null) $('map-status').textContent = r.name + ': 좌표 미확인으로 지도 이동·길찾기를 사용할 수 없습니다.';
   document.querySelectorAll('.facility').forEach(n => n.classList.toggle('selected',n.dataset.id === r.id));
   const detail = $('detail'); detail.replaceChildren(); detail.hidden = false;
   const close = el('button','×','close'); close.setAttribute('aria-label','상세 닫기'); close.onclick = closeDetail;

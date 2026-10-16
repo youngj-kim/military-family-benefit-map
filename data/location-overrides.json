@@ -398,6 +398,19 @@
       "originalName": "양산 평생학습관",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "3544": {
+      "lat": 37.58118254602181,
+      "lng": 127.00299333329085,
+      "address": "서울 종로구 대학로8길 7 (동숭동)",
+      "method": "verified-official-location-correction",
+      "originalAddress": "서울특별시종로구대학로 8- 7(효제동)",
+      "originalName": "아르코예술극장",
+      "originalLat": 37.581258,
+      "originalLng": 124.002864,
+      "source": "https://theater.arko.or.kr/theaterguide/location/arko",
+      "coordinateSourceUrl": "https://place.map.kakao.com/10593353",
+      "checkedAt": "2026-10-16T05:55:39.234Z"
+    },
     "3641": {
       "lat": 34.928871680183,
       "lng": 127.500801495864,
