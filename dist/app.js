@@ -47,7 +47,8 @@ function link(text,url,className) { const a = el('a',text,className); a.href = u
 function currentRouteUrl(row, position) {
   return `https://map.kakao.com/link/from/${encodeURIComponent('현재 위치')},${position.coords.latitude},${position.coords.longitude}/to/${encodeURIComponent(row.name)},${row.lat},${row.lng}`;
 }
-function startCurrentRoute(row, button, message) {
+function startCurrentRoute(row, button, message, provider = 'kakao') {
+  const originalLabel = button.textContent;
   if (!window.isSecureContext || !navigator.geolocation) {
     message.textContent = '현재 위치는 HTTPS 또는 localhost에서 사용할 수 있습니다. 아래 목적지 길찾기에서 출발지를 직접 선택해 주세요.';
     return;
@@ -55,12 +56,12 @@ function startCurrentRoute(row, button, message) {
   button.disabled = true;
   button.textContent = '현재 위치 확인 중…';
   message.textContent = '';
-  const restore = () => { button.disabled = false; button.textContent = '현위치에서 길찾기 ↗'; };
+  const restore = () => { button.disabled = false; button.textContent = originalLabel; };
   navigator.geolocation.getCurrentPosition(position => {
     restore();
     if (!button.isConnected) return;
-    message.textContent = '카카오맵으로 이동합니다…';
-    window.location.assign(currentRouteUrl(row, position));
+    message.textContent = provider === 'naver' ? '네이버 지도로 이동합니다…' : '카카오맵으로 이동합니다…';
+    window.location.assign(provider === 'naver' ? window.BENEFIT_ROUTE_LINKS.naverRouteUrl(row, position) : currentRouteUrl(row, position));
   }, error => {
     restore();
     if (!button.isConnected) return;
@@ -82,13 +83,18 @@ function selectFacility(r) {
   const routeMessage = el('p', '', 'fine');
   routeMessage.setAttribute('role', 'status');
   if (r.lat !== null) {
-    const route = el('button', '현위치에서 길찾기 ↗', 'primary');
+    const route = el('button', '카카오 현위치 길찾기 ↗', 'primary');
     route.type = 'button';
     route.onclick = () => startCurrentRoute(r, route, routeMessage);
-    actions.append(route, link('목적지 길찾기 ↗', `https://map.kakao.com/link/to/${encodeURIComponent(r.name)},${r.lat},${r.lng}`));
-    detail.append(el('p', '현위치에서 길찾기를 누르면 위치 권한을 확인하고 현재 위치를 카카오맵에 전달합니다.', 'fine'));
+    const naverRoute = el('button', '네이버 현위치 길찾기 ↗', 'primary naver-route');
+    naverRoute.type = 'button';
+    naverRoute.onclick = () => startCurrentRoute(r, naverRoute, routeMessage, 'naver');
+    actions.append(route, naverRoute,
+      link('카카오 목적지 길찾기 ↗', `https://map.kakao.com/link/to/${encodeURIComponent(r.name)},${r.lat},${r.lng}`),
+      link('네이버 목적지 길찾기 ↗', window.BENEFIT_ROUTE_LINKS.naverRouteUrl(r)));
+    detail.append(el('p', '현위치에서 길찾기를 누르면 위치 권한을 확인하고 현재 위치를 선택한 지도 서비스에 전달합니다.', 'fine'));
   }
-  actions.append(link('카카오맵 검색 ↗','https://map.kakao.com/link/search/'+encodeURIComponent(r.name+' '+r.area)),link('병무청 상세 ↗','https://www.mma.go.kr/hall/listdetail.do?mmgudgigwan_cd='+encodeURIComponent(r.id)));
+  actions.append(link('네이버 지도 검색 ↗','https://map.naver.com/p/search/'+encodeURIComponent(r.name+' '+r.area)),link('카카오맵 검색 ↗','https://map.kakao.com/link/search/'+encodeURIComponent(r.name+' '+r.area)),link('병무청 상세 ↗','https://www.mma.go.kr/hall/listdetail.do?mmgudgigwan_cd='+encodeURIComponent(r.id)));
   if (r.website) { const value = /^https?:\/\//i.test(r.website) ? r.website : 'https://'+r.website; try {const u = new URL(value); if (['https:','http:'].includes(u.protocol)) actions.append(link('시설 홈페이지 ↗',u.href));} catch {} }
   detail.append(actions,routeMessage,el('p','혜택은 변경될 수 있습니다. 방문 전 명문가증·신분증·가족관계서류 등 필요한 증빙과 적용 대상을 확인해 주세요.','fine'));
   if (matchMedia('(max-width: 760px)').matches) detail.scrollIntoView({behavior:'smooth',block:'start'});

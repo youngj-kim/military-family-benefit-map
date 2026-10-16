@@ -26,3 +26,5 @@ main { position: relative; }
 .tag.discount { background:#fff1d6; color:#704600; border-color:#e5ce9f; }
 .tag.other { background:#eaf0fa; color:#294b7a; border-color:#c1cee4; }
 .legend { color:#243a30; font-weight:600; }
+.detail-actions .naver-route { background:#0c6b39; border-color:#0c6b39; color:#fff; }
+.detail-actions .naver-route:hover { background:#08542c; }
