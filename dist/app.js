@@ -59,16 +59,23 @@ function startCurrentRoute(row, button, message, provider = 'kakao') {
     message.textContent = '현재 위치는 HTTPS 또는 localhost에서 사용할 수 있습니다. 위치 권한과 인터넷 연결을 확인한 뒤 다시 시도해 주세요.';
     return;
   }
+  const routeWindow = window.open('about:blank', '_blank');
+  if (!routeWindow) {
+    message.textContent = '새 탭을 열지 못했습니다. 이 사이트의 팝업을 허용한 뒤 다시 눌러 주세요.';
+    return;
+  }
+  routeWindow.opener = null;
   button.disabled = true;
   button.textContent = '현재 위치 확인 중…';
   message.textContent = '';
   const restore = () => { button.disabled = false; button.textContent = originalLabel; };
   navigator.geolocation.getCurrentPosition(position => {
     restore();
-    if (!button.isConnected) return;
+    if (!button.isConnected || routeWindow.closed) { routeWindow.close(); return; }
     message.textContent = provider === 'naver' ? '네이버 지도로 이동합니다…' : '카카오맵으로 이동합니다…';
     routeWindow.location.replace(provider === 'naver' ? window.BENEFIT_ROUTE_LINKS.naverRouteUrl(row, position) : currentRouteUrl(row, position));
   }, error => {
+    routeWindow.close();
     restore();
     if (!button.isConnected) return;
     message.textContent = error.code === 1
