@@ -7,7 +7,7 @@ const typeClass = type => type === '01' ? 'free' : type === '02' ? 'discount' : 
 let facilities = [], filtered = [], map = null, clusterer = null, info = null, markerById = new Map(), selected = null, limit = 60, userPosition = null, locationMarker = null, sdkLoading = false;
 const el = (tag, text, className) => { const n = document.createElement(tag); if (text !== undefined) n.textContent = text; if (className) n.className = className; return n; };
 function categoryName(row) { return categories[Number(row.category) - 1] || '기타'; }
-function tags(row) { const t = el('div', undefined, 'tags'); t.append(el('span', typeNames[row.type] || '기타', 'tag ' + typeClass(row.type)), el('span', categoryName(row) + ' · ' + (row.area || regions[row.region] || '지역 미상'))); return t; }
+function tags(row) { const t = el('div', undefined, 'tags'); const icon = el('span', undefined, 'category-symbol'); icon.innerHTML = window.benefitCategorySvg(row.category); t.append(icon,el('span', typeNames[row.type] || '기타', 'tag ' + typeClass(row.type)), el('span', categoryName(row) + ' · ' + (row.area || regions[row.region] || '지역 미상'))); return t; }
 function distance(row) { if (!userPosition || row.lat === null) return Infinity; const rad = n => n * Math.PI / 180; const a = Math.sin(rad(row.lat-userPosition.lat)/2)**2 + Math.cos(rad(userPosition.lat))*Math.cos(rad(row.lat))*Math.sin(rad(row.lng-userPosition.lng)/2)**2; return 6371*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a)); }
 function filterRows() {
   const query = $('search').value.trim().toLocaleLowerCase('ko'), region = $('region').value, category = $('category').value, type = document.querySelector('input[name=type]:checked').value;
@@ -36,8 +36,9 @@ function renderMarkers() {
   clusterer.clear(); markerById.clear();
   const markers = filtered.filter(r => r.lat !== null).map(r => {
     const color = r.type === '01' ? '#36714d' : r.type === '02' ? '#c18a31' : '#6b80a8';
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36"><path d="M14 35C11 29 1 21 1 14a13 13 0 1 1 26 0c0 7-10 15-13 21" fill="${color}" stroke="white" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="white"/></svg>`;
-    const marker = new kakao.maps.Marker({position:new kakao.maps.LatLng(r.lat,r.lng),title:r.name,image:new kakao.maps.MarkerImage('data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg),new kakao.maps.Size(28,36),{offset:new kakao.maps.Point(14,36)})});
+    const shape = window.BENEFIT_CATEGORY_ICONS[r.category] || window.BENEFIT_CATEGORY_ICONS['05'];
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" viewBox="0 0 34 44"><path d="M17 42C13 34 1 26 1 17a16 16 0 1 1 32 0c0 9-12 17-16 25" fill="${color}" stroke="white" stroke-width="2"/><g transform="translate(6 5) scale(.92)" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${shape}</g></svg>`;
+    const marker = new kakao.maps.Marker({position:new kakao.maps.LatLng(r.lat,r.lng),title:r.name,image:new kakao.maps.MarkerImage('data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg),new kakao.maps.Size(34,44),{offset:new kakao.maps.Point(17,44)})});
     kakao.maps.event.addListener(marker,'click',() => selectFacility(r)); markerById.set(r.id,marker); return marker;
   });
   clusterer.addMarkers(markers); $('map-status').textContent = `지도 표시 ${markers.length.toLocaleString('ko')}곳 · 위치 미등록 ${filtered.length-markers.length}곳`;
@@ -90,7 +91,7 @@ function selectFacility(r) {
   actions.append(link('카카오맵 검색 ↗','https://map.kakao.com/link/search/'+encodeURIComponent(r.name+' '+r.area)),link('병무청 상세 ↗','https://www.mma.go.kr/hall/listdetail.do?mmgudgigwan_cd='+encodeURIComponent(r.id)));
   if (r.website) { const value = /^https?:\/\//i.test(r.website) ? r.website : 'https://'+r.website; try {const u = new URL(value); if (['https:','http:'].includes(u.protocol)) actions.append(link('시설 홈페이지 ↗',u.href));} catch {} }
   detail.append(actions,routeMessage,el('p','혜택은 변경될 수 있습니다. 방문 전 명문가증·신분증·가족관계서류 등 필요한 증빙과 적용 대상을 확인해 주세요.','fine'));
-  if (matchMedia('(max-width: 760px)').matches) document.querySelector('.map-section').scrollIntoView({behavior:'smooth',block:'start'});
+  if (matchMedia('(max-width: 760px)').matches) detail.scrollIntoView({behavior:'smooth',block:'start'});
   if (map && r.lat !== null) { const pos = new kakao.maps.LatLng(r.lat,r.lng); if (map.getLevel()>5) map.setLevel(5); map.panTo(pos); const label = el('div',r.name); label.style.cssText='padding:8px 12px;font-size:12px;white-space:nowrap'; info.setContent(label); info.setPosition(pos); info.open(map); }
 }
 function fitResults() { if (!map) { $('map-status').textContent = '지도 연결 후 이용할 수 있습니다. 시설 목록은 계속 검색할 수 있습니다.'; return; } const rows = filtered.filter(r => r.lat !== null); if (!rows.length) { $('map-status').textContent = '검색 결과에 등록된 좌표가 없습니다.'; return; } const bounds = new kakao.maps.LatLngBounds(); rows.forEach(r => bounds.extend(new kakao.maps.LatLng(r.lat,r.lng))); map.setBounds(bounds,80,60,100,60); }
