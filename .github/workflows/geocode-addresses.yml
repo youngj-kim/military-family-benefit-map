@@ -1,0 +1,25 @@
+name: Geocode missing facility addresses
+on:
+  push:
+    branches: ['address-geocoding']
+    paths:
+      - 'scripts/geocode-addresses.cjs'
+      - '.github/workflows/geocode-addresses.yml'
+permissions:
+  contents: read
+jobs:
+  geocode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve missing coordinates by exact road address
+        env:
+          KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
+        run: node scripts/geocode-addresses.cjs
+      - name: Save candidate overrides and manual-review details
+        uses: actions/upload-artifact@v4
+        with:
+          name: facility-address-geocoding
+          path: .geocode-output/
+          retention-days: 90
