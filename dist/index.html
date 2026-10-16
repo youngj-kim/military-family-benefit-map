@@ -25,12 +25,11 @@
   </aside>
   <section class="map-section" aria-label="카카오 지도">
     <div id="map"></div>
-    <div class="map-toolbar"><span id="map-status" role="status">카카오 지도를 준비하고 있습니다</span><button id="fit">검색 결과 전체 보기</button><button id="settings">지도 설정</button></div>
-    <div id="map-placeholder"><div class="map-glyph" aria-hidden="true">⌖</div><h2>혜택을 지도 위에 펼쳐보세요</h2><p id="placeholder-message">카카오 JavaScript 키를 연결하면<br>시설 위치와 주변 혜택을 볼 수 있습니다.</p><button id="connect" class="primary">카카오 지도 연결</button><small>키 없이도 왼쪽 목록에서 모든 혜택을 검색할 수 있어요.</small></div>
+    <div class="map-toolbar"><span id="map-status" role="status">카카오 지도를 준비하고 있습니다</span><button id="fit">검색 결과 전체 보기</button></div>
+    <div id="map-placeholder"><div class="map-glyph" aria-hidden="true">⌖</div><h2>혜택 지도를 준비하고 있습니다</h2><p id="placeholder-message">잠시만 기다려 주세요.</p><button id="retry-map" class="primary">지도 다시 불러오기</button><small>시설 목록과 혜택은 왼쪽에서 계속 검색할 수 있습니다.</small></div>
     <div class="legend"><span class="dot free"></span>면제 <span class="dot discount"></span>할인 <span class="dot other"></span>기타</div>
     <article id="detail" hidden aria-label="선택한 시설 상세"></article>
     <div class="visit-note">방문 전 시설에 적용 대상·증빙서류·혜택을 확인해 주세요.</div>
   </section>
 </main>
-<dialog id="key-dialog"><form id="key-form"><h2>카카오 지도 연결</h2><p>카카오 개발자 콘솔에서 이 주소를 JavaScript SDK 도메인으로 등록해 주세요.</p><code id="origin"></code><label>JavaScript 키<input id="key" type="password" autocomplete="off" placeholder="JavaScript 키 입력" required pattern="[a-fA-F0-9]{32}"></label><p class="fine">입력한 키는 이 탭에서만 사용합니다. REST API 키나 비밀키를 입력하지 마세요.</p><div class="dialog-actions"><button type="button" id="cancel-key">닫기</button><button class="primary" type="submit">지도 연결</button></div></form></dialog>
 </body></html>

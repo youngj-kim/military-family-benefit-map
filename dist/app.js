@@ -93,20 +93,19 @@ function selectFacility(r) {
   if (matchMedia('(max-width: 760px)').matches) document.querySelector('.map-section').scrollIntoView({behavior:'smooth',block:'start'});
   if (map && r.lat !== null) { const pos = new kakao.maps.LatLng(r.lat,r.lng); if (map.getLevel()>5) map.setLevel(5); map.panTo(pos); const label = el('div',r.name); label.style.cssText='padding:8px 12px;font-size:12px;white-space:nowrap'; info.setContent(label); info.setPosition(pos); info.open(map); }
 }
-function fitResults() { if (!map) { openSettings(); return; } const rows = filtered.filter(r => r.lat !== null); if (!rows.length) { $('map-status').textContent = '검색 결과에 등록된 좌표가 없습니다.'; return; } const bounds = new kakao.maps.LatLngBounds(); rows.forEach(r => bounds.extend(new kakao.maps.LatLng(r.lat,r.lng))); map.setBounds(bounds,80,60,100,60); }
-function openSettings() { $('origin').textContent = location.origin; $('key-dialog').showModal(); }
+function fitResults() { if (!map) { $('map-status').textContent = '지도 연결 후 이용할 수 있습니다. 시설 목록은 계속 검색할 수 있습니다.'; return; } const rows = filtered.filter(r => r.lat !== null); if (!rows.length) { $('map-status').textContent = '검색 결과에 등록된 좌표가 없습니다.'; return; } const bounds = new kakao.maps.LatLngBounds(); rows.forEach(r => bounds.extend(new kakao.maps.LatLng(r.lat,r.lng))); map.setBounds(bounds,80,60,100,60); }
 function mapFailure(message) { $('map-status').textContent = '지도 연결 확인 필요'; $('map-placeholder').hidden = false; $('placeholder-message').textContent = message; sdkLoading = false; }
 function connectMap(key) {
   if (sdkLoading) return;
-  if (!/^[a-f0-9]{32}$/i.test(key)) { mapFailure('올바른 카카오 JavaScript 키를 입력해 주세요.'); return; }
+  if (!/^[a-f0-9]{32}$/i.test(key)) { mapFailure('지도 연결을 준비하지 못했습니다. 잠시 후 다시 시도해 주세요.'); return; }
   if (map) { location.reload(); return; }
   sdkLoading = true; $('map-status').textContent = '카카오 지도 연결 중…';
   document.getElementById('kakao-sdk')?.remove();
   const script = document.createElement('script'); script.id = 'kakao-sdk'; script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&libraries=services,clusterer&appkey='+encodeURIComponent(key);
-  const timeout = setTimeout(() => { if (!map) mapFailure('지도 연결 시간이 초과되었습니다. 인터넷 연결과 JavaScript 키의 SDK 도메인 등록을 확인해 주세요.'); },15000);
-  script.onerror = () => { clearTimeout(timeout); mapFailure('지도를 불러오지 못했습니다. 카카오맵 API 사용 설정, JavaScript 키와 SDK 도메인을 확인해 주세요.'); };
+  const timeout = setTimeout(() => { if (!map) mapFailure('지도 연결 시간이 초과되었습니다. 인터넷 연결을 확인하고 다시 시도해 주세요.'); },15000);
+  script.onerror = () => { clearTimeout(timeout); mapFailure('지도를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요. 시설 목록과 길찾기는 계속 이용할 수 있습니다.'); };
   script.onload = () => {
-    if (!window.kakao?.maps?.load) { clearTimeout(timeout); mapFailure('카카오 지도 인증을 확인해 주세요. 지도 설정에서 키와 SDK 도메인을 확인할 수 있습니다.'); return; }
+    if (!window.kakao?.maps?.load) { clearTimeout(timeout); mapFailure('지도 연결이 일시적으로 제한되었습니다. 잠시 후 다시 시도해 주세요.'); return; }
     kakao.maps.load(() => { try {
       map = new kakao.maps.Map($('map'),{center:new kakao.maps.LatLng(36.35,127.8),level:13});
       map.addControl(new kakao.maps.ZoomControl(),kakao.maps.ControlPosition.RIGHT);
@@ -114,7 +113,7 @@ function connectMap(key) {
       $('map-placeholder').hidden = true; sdkLoading = false; clearTimeout(timeout); $('inbounds').disabled = false;
       kakao.maps.event.addListener(map,'idle',() => { if ($('inbounds').checked) filterRows(); });
       new ResizeObserver(() => map.relayout()).observe($('map')); renderMarkers();
-    } catch { clearTimeout(timeout); map = null; mapFailure('카카오 지도 초기화에 실패했습니다. API 사용 설정과 SDK 도메인을 확인해 주세요.'); } });
+    } catch { clearTimeout(timeout); map = null; mapFailure('지도를 준비하지 못했습니다. 페이지를 새로고침해 주세요.'); } });
   };
   document.head.append(script);
 }
@@ -124,15 +123,13 @@ async function boot() {
   $('inbounds').disabled = true;
   ['search','region','category','types','inbounds'].forEach(id => $(id).addEventListener(id === 'search' ? 'input' : 'change',filterRows));
   $('more').onclick = () => { limit += 60; renderList(); };
-  $('fit').onclick = fitResults; $('connect').onclick = openSettings; $('settings').onclick = openSettings;
-  $('cancel-key').onclick = () => $('key-dialog').close();
-  $('key-form').onsubmit = event => { event.preventDefault(); const key = $('key').value.trim(); $('key-dialog').close(); if (map) { $('key').value = ''; $('map-status').textContent = '지도가 이미 연결되어 있습니다. 키를 변경하려면 페이지를 새로고침해 주세요.'; return; } connectMap(key); $('key').value = ''; };
+  $('fit').onclick = fitResults; $('retry-map').onclick = () => location.reload();
   $('reset').onclick = () => { $('search').value=''; $('region').value=''; $('category').value=''; document.querySelector('input[name=type][value=""]').checked=true; $('inbounds').checked=false; userPosition=null; if (locationMarker) locationMarker.setMap(null); $('locate').textContent='◎ 내 위치 기준'; closeDetail(); filterRows(); if (map) fitResults(); };
   $('locate').onclick = () => { if (!navigator.geolocation) { $('map-status').textContent='이 브라우저에서는 위치 기능을 지원하지 않습니다.'; return; } $('locate').disabled=true; $('map-status').textContent='현재 위치 확인 중…'; navigator.geolocation.getCurrentPosition(p => { userPosition={lat:p.coords.latitude,lng:p.coords.longitude}; $('locate').disabled=false; $('locate').textContent='◎ 가까운 순 정렬'; if(map) { const pos = new kakao.maps.LatLng(userPosition.lat,userPosition.lng); map.setLevel(6); map.panTo(pos); if(locationMarker) locationMarker.setMap(null); locationMarker = new kakao.maps.Marker({map,position:pos,title:'내 위치'}); } filterRows(); if(!map) $('map-status').textContent='내 위치에서 가까운 순으로 목록을 정렬했습니다.'; },() => { $('locate').disabled=false; $('map-status').textContent='위치를 확인하지 못했습니다. 위치 권한을 허용하거나 지역을 직접 선택해 주세요.'; },{timeout:10000,maximumAge:60000}); };
   try { const response = await fetch('facilities.json'); if (!response.ok) throw new Error('data'); const data = await response.json(); if (!Array.isArray(data.facilities)) throw new Error('schema'); facilities=data.facilities;
     $('data-note').textContent=`출처: 병무청 예우시설 ${facilities.length.toLocaleString('ko')}건 · 수집 ${new Date(data.fetchedAt).toLocaleDateString('ko-KR',{timeZone:'Asia/Seoul'})} 전국 공통 시설은 특정 지점의 좌표일 수 있습니다. 실시간 갱신 자료가 아닙니다.`;
     filterRows();
   } catch { $('count').textContent='시설 정보를 불러오지 못했습니다'; $('results').append(el('p','인터넷 연결을 확인하고 새로고침해 주세요.','empty')); }
-  const key = window.BENEFIT_MAP_CONFIG?.kakaoJavascriptKey || ''; if (key) connectMap(key); else $('map-status').textContent='지도 연결 전 · 시설 목록 검색 가능';
+  const key = window.BENEFIT_MAP_CONFIG?.kakaoJavascriptKey || ''; if (key) connectMap(key); else mapFailure('지도를 준비하지 못했습니다. 시설 목록에서 혜택과 길찾기를 이용해 주세요.');
 }
 boot();
