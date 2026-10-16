@@ -13,7 +13,7 @@ test('destination-only link does not fabricate a current location',()=>{
 });const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 function controller() {
   let success, failure, target, closed=false;
-  const popup={opener:{},get closed(){return closed},close:()=>{closed=true},location:{replace:url=>{target=url}}};
+  const popup={document:{createElement:()=>({style:{},append(){}}),body:{replaceChildren(){}}},opener:{},get closed(){return closed},close:()=>{closed=true},location:{replace:url=>{target=url}}};
   const context=vm.createContext({document:{},window:{isSecureContext:true,BENEFIT_ROUTE_LINKS:{naverRouteUrl},open:()=>popup,location:{assign:()=>{throw Error("Must preserve original map tab")}}},navigator:{geolocation:{getCurrentPosition:(ok,fail)=>{success=ok;failure=fail}}}});
   vm.runInContext(fs.readFileSync(path.join(__dirname,'../dist/app.js'),'utf8').replace(/boot\(\);\s*$/,''),context);
   return {context,success:()=>success,failure:()=>failure,target:()=>target,popup};
