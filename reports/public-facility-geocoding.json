@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-16T06:35:00.050Z",
-  "matched": 6,
+  "checkedAt": "2026-10-16T07:36:04.760Z",
+  "matched": 0,
   "review": 2,
   "excluded": 16,
   "results": [
@@ -10,19 +10,6 @@
       "originalAddress": "",
       "status": "excluded",
       "reason": "지역 전체 주민센터를 포괄하는 항목 — 개별 지점 임의 선택 안 함"
-    },
-    {
-      "id": "3074",
-      "name": "광명시 보건소",
-      "originalAddress": "",
-      "status": "matched",
-      "lat": 37.456677518651624,
-      "lng": 126.87884356633005,
-      "address": "경기 광명시 오리로 613",
-      "placeName": "광명시보건소",
-      "placeId": "8186207",
-      "placeUrl": "https://place.map.kakao.com/8186207",
-      "method": "kakao-keyword-exact-public-facility"
     },
     {
       "id": "2395",
@@ -60,50 +47,11 @@
       "reason": "지역 전체 주민센터를 포괄하는 항목 — 개별 지점 임의 선택 안 함"
     },
     {
-      "id": "3057",
-      "name": "부천시 보건소",
-      "originalAddress": "경기도부천시 원미구옥산로10번길 16(중동)",
-      "status": "matched",
-      "lat": 37.4942780756416,
-      "lng": 126.780966779124,
-      "address": "경기 부천시 원미구 옥산로10번길 16",
-      "placeName": "부천시보건소",
-      "placeId": "8642758",
-      "placeUrl": "https://place.map.kakao.com/8642758",
-      "method": "kakao-keyword-exact-public-facility"
-    },
-    {
-      "id": "3463",
-      "name": "양산시 보건소",
-      "originalAddress": "경상남도양산시중앙로 39(남부동, 보건행정과)",
-      "status": "matched",
-      "lat": 35.3357377933616,
-      "lng": 129.02496592622626,
-      "address": "경남 양산시 삽량로 169",
-      "placeName": "양산시보건소",
-      "placeId": "7995062",
-      "placeUrl": "https://place.map.kakao.com/7995062",
-      "method": "kakao-keyword-exact-public-facility"
-    },
-    {
       "id": "3460",
       "name": "양산시 주민자치센터",
       "originalAddress": "경상남도양산시중앙로 39(남부동, 행정과)",
       "status": "excluded",
       "reason": "지역 전체 주민센터를 포괄하는 항목 — 개별 지점 임의 선택 안 함"
-    },
-    {
-      "id": "3862",
-      "name": "양양군 보건소",
-      "originalAddress": "",
-      "status": "matched",
-      "lat": 38.0777773464954,
-      "lng": 128.627449093264,
-      "address": "강원특별자치도 양양군 양양읍 양양로 9-5",
-      "placeName": "양양군보건소",
-      "placeId": "17998766",
-      "placeUrl": "https://place.map.kakao.com/17998766",
-      "method": "kakao-keyword-exact-public-facility"
     },
     {
       "id": "3859",
@@ -129,7 +77,7 @@
     {
       "id": "3430",
       "name": "예산군 보건소",
-      "originalAddress": "충청남도서천군서천읍군청로 22(서천읍군사리)",
+      "originalAddress": "충청남도예산군예산읍군청로 22(예산읍예산리)",
       "status": "review",
       "reason": "검색 결과가 많아 유일한 시설인지 확인 불가"
     },
@@ -148,37 +96,11 @@
       "reason": "시설명·지역 완전 일치 결과 없음"
     },
     {
-      "id": "2309",
-      "name": "인천광역시 미추홀구 보건소",
-      "originalAddress": "",
-      "status": "matched",
-      "lat": 37.46109685606303,
-      "lng": 126.67744386456887,
-      "address": "인천 미추홀구 주안서로 25",
-      "placeName": "미추홀구보건소",
-      "placeId": "8053375",
-      "placeUrl": "https://place.map.kakao.com/8053375",
-      "method": "kakao-keyword-exact-public-facility"
-    },
-    {
       "id": "2308",
       "name": "인천광역시 미추홀구 주민자치센터",
       "originalAddress": "",
       "status": "excluded",
       "reason": "지역 전체 주민센터를 포괄하는 항목 — 개별 지점 임의 선택 안 함"
-    },
-    {
-      "id": "3087",
-      "name": "인천광역시 부평구 보건소",
-      "originalAddress": "",
-      "status": "matched",
-      "lat": 37.4988337069768,
-      "lng": 126.724246834459,
-      "address": "인천 부평구 부흥로 291",
-      "placeName": "부평구보건소",
-      "placeId": "7907583",
-      "placeUrl": "https://place.map.kakao.com/7907583",
-      "method": "kakao-keyword-exact-public-facility"
     },
     {
       "id": "3738",
