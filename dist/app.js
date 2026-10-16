@@ -50,54 +50,6 @@ function renderMarkers() {
   clusterer.addMarkers(markers); $('map-status').textContent = `지도 표시 ${markers.length.toLocaleString('ko')}곳 · 위치 미등록 ${filtered.length-markers.length}곳`;
 }
 function link(text,url,className) { const a = el('a',text,className); a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; return a; }
-function currentRouteUrl(row, position) {
-  return `https://map.kakao.com/link/from/${encodeURIComponent('현재 위치')},${position.coords.latitude},${position.coords.longitude}/to/${encodeURIComponent(row.name)},${row.lat},${row.lng}`;
-}
-function startCurrentRoute(row, button, message, provider = 'kakao') {
-  if (row.lat === null) {
-    const url = window.BENEFIT_ROUTE_LINKS.addressSearchUrl(row,provider);
-    if (url) window.open(url,'_blank','noopener,noreferrer');
-    return;
-  }
-  const originalLabel = button.textContent;
-  if (!window.isSecureContext || !navigator.geolocation) {
-    message.textContent = '현재 위치는 HTTPS 또는 localhost에서 사용할 수 있습니다. 위치 권한과 인터넷 연결을 확인한 뒤 다시 시도해 주세요.';
-    return;
-  }
-  const routeWindow = window.open('about:blank', '_blank');
-  if (!routeWindow) {
-    message.textContent = '새 탭을 열지 못했습니다. 이 사이트의 팝업을 허용한 뒤 다시 눌러 주세요.';
-    return;
-  }
-  routeWindow.document.title = '길찾기 · 현재 위치 확인 중';
-  const waiting = routeWindow.document.createElement('main');
-  waiting.style.cssText = 'font-family:system-ui,sans-serif;max-width:480px;margin:20vh auto;padding:24px;line-height:1.7;color:#173e33';
-  const heading = routeWindow.document.createElement('h1');
-  heading.textContent = '현재 위치를 확인하고 있습니다';
-  heading.style.fontSize = '22px';
-  const hint = routeWindow.document.createElement('p');
-  hint.textContent = '위치 권한 요청이 표시되면 허용해 주세요. 확인되면 길찾기로 자동 이동합니다.';
-  waiting.append(heading,hint);
-  routeWindow.document.body.replaceChildren(waiting);
-  routeWindow.opener = null;
-  button.disabled = true;
-  button.textContent = '현재 위치 확인 중…';
-  message.textContent = '';
-  const restore = () => { button.disabled = false; button.textContent = originalLabel; };
-  navigator.geolocation.getCurrentPosition(position => {
-    restore();
-    if (!button.isConnected || routeWindow.closed) { routeWindow.close(); return; }
-    message.textContent = provider === 'naver' ? '네이버 지도로 이동합니다…' : '카카오맵으로 이동합니다…';
-    routeWindow.location.replace(provider === 'naver' ? window.BENEFIT_ROUTE_LINKS.naverRouteUrl(row, position) : currentRouteUrl(row, position));
-  }, error => {
-    routeWindow.close();
-    restore();
-    if (!button.isConnected) return;
-    message.textContent = error.code === 1
-      ? '위치 권한이 허용되지 않았습니다. 권한을 허용하거나 위치 권한과 인터넷 연결을 확인한 뒤 다시 시도해 주세요.'
-      : '현재 위치를 확인하지 못했습니다. 위치 권한과 인터넷 연결을 확인한 뒤 다시 시도해 주세요.';
-  }, {enableHighAccuracy:false, timeout:8000, maximumAge:60000});
-}
 function closeDetail() { selected = null; $('detail').hidden = true; if (info) info.close(); document.querySelectorAll('.facility.selected').forEach(n => n.classList.remove('selected')); }
 function selectFacility(r) {
   selected = r;
@@ -121,22 +73,22 @@ function selectFacility(r) {
   if (r.phone) { detail.append(el('h4','연락처')); const phone = el('p'); const tel = el('a',r.phone); tel.href = 'tel:'+r.phone.replace(/[^0-9+]/g,''); phone.append(tel); detail.append(phone); }
   if (r.lat === null) detail.append(el('p','위치가 등록되지 않은 시설입니다. 원문 주소와 지점을 확인해 주세요.','fine'));
   const actions = el('div',undefined,'detail-actions');
-  const routeMessage = el('p', '', 'fine');
-  routeMessage.setAttribute('role', 'status');
   const addressOnly = r.lat === null;
   const hasAddress = Boolean(r.address.trim());
-  const route = el('button', addressOnly ? '카카오 주소로 찾기 ↗' : '카카오 현위치 길찾기 ↗', 'primary');
-  const naverRoute = el('button', addressOnly ? '네이버 주소로 찾기 ↗' : '네이버 현위치 길찾기 ↗', 'primary naver-route');
-  for (const button of [route,naverRoute]) { button.type='button'; button.disabled=addressOnly && !hasAddress; }
-  route.onclick = () => startCurrentRoute(r, route, routeMessage);
-  naverRoute.onclick = () => startCurrentRoute(r, naverRoute, routeMessage, 'naver');
+  const routeAction = (provider,label,className) => {
+    const url = window.BENEFIT_ROUTE_LINKS.destinationRouteUrl(r,provider);
+    if (url) return link(label,url,className);
+    const button = el('button',label,className); button.type='button'; button.disabled=true; return button;
+  };
+  const route = routeAction('kakao',addressOnly ? '카카오 주소로 찾기 ↗' : '카카오 길찾기 ↗','primary');
+  const naverRoute = routeAction('naver',addressOnly ? '네이버 주소로 찾기 ↗' : '네이버 길찾기 ↗','primary naver-route');
   actions.append(route,naverRoute);
-  detail.append(el('p', r.lat===null ? (hasAddress ? '좌표가 확인되지 않아 원문 주소로 지도 검색을 엽니다. 검색 결과의 실제 시설을 확인한 뒤 길찾기를 선택해 주세요. 원문 주소가 담당 부서 주소일 수도 있습니다.' : '좌표와 주소가 없어 지도 검색을 사용할 수 없습니다. 공식 원문을 확인해 주세요.') : '현위치 길찾기를 누르면 위치 권한을 확인하고 현재 위치를 선택한 지도 서비스에 전달합니다.', 'fine'));
+  detail.append(el('p', r.lat===null ? (hasAddress ? '좌표가 확인되지 않아 원문 주소로 지도 검색을 엽니다. 검색 결과의 실제 시설을 확인한 뒤 길찾기를 선택해 주세요. 원문 주소가 담당 부서 주소일 수도 있습니다.' : '좌표와 주소가 없어 지도 검색을 사용할 수 없습니다. 공식 원문을 확인해 주세요.') : '새 탭에서 목적지가 지정된 길찾기를 엽니다. 출발지는 카카오·네이버 지도에서 선택해 주세요.', 'fine'));
   const source = el('p',undefined,'fine source-detail');
   source.append(el('span','출처: '),r.sourceKind === 'mart' ? link('국방부 영외마트 원문',datasetInfo.mart.source) : link('병무청 시설 원문','https://www.mma.go.kr/hall/listdetail.do?mmgudgigwan_cd='+encodeURIComponent(r.id)));
   if(r.sourceKind === 'mart')source.append(el('span',' · '),link('국군복지포털 이용 안내','https://www.welfare.mil.kr/'));
   detail.append(source);
-  detail.append(actions,routeMessage,el('p','혜택은 변경될 수 있습니다. 방문 전 명문가증·신분증·가족관계서류 등 필요한 증빙과 적용 대상을 확인해 주세요.','fine'));
+  detail.append(actions,el('p','혜택은 변경될 수 있습니다. 방문 전 명문가증·신분증·가족관계서류 등 필요한 증빙과 적용 대상을 확인해 주세요.','fine'));
   if (matchMedia('(max-width: 760px)').matches) detail.scrollIntoView({behavior:'smooth',block:'start'});
   if (map && r.lat !== null) { const pos = new kakao.maps.LatLng(r.lat,r.lng); if (map.getLevel()>5) map.setLevel(5); map.panTo(pos); const label = el('div',r.name); label.style.cssText='padding:8px 12px;font-size:12px;white-space:nowrap'; info.setContent(label); info.setPosition(pos); info.open(map); }
 }
