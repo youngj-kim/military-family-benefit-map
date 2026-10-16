@@ -67,7 +67,7 @@ function startCurrentRoute(row, button, message, provider = 'kakao') {
     restore();
     if (!button.isConnected) return;
     message.textContent = provider === 'naver' ? '네이버 지도로 이동합니다…' : '카카오맵으로 이동합니다…';
-    window.location.assign(provider === 'naver' ? window.BENEFIT_ROUTE_LINKS.naverRouteUrl(row, position) : currentRouteUrl(row, position));
+    routeWindow.location.replace(provider === 'naver' ? window.BENEFIT_ROUTE_LINKS.naverRouteUrl(row, position) : currentRouteUrl(row, position));
   }, error => {
     restore();
     if (!button.isConnected) return;
