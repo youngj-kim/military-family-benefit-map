@@ -18,6 +18,8 @@
       <label class="search-label" for="search">시설·주소·혜택 검색</label><input id="search" type="search" placeholder="예: 춘천, 박물관, 주차료" autocomplete="off">
       <div class="filter-row"><label for="region">지역<select id="region"><option value="">전국 전체</option></select></label><label for="category">업종<select id="category"><option value="">모든 업종</option></select></label></div>
       <fieldset id="types"><legend>혜택 종류</legend><label><input type="radio" name="type" value="" checked><span>전체</span></label><label><input type="radio" name="type" value="01"><span>면제</span></label><label><input type="radio" name="type" value="02"><span>할인</span></label><label><input type="radio" name="type" value="03"><span>기타</span></label></fieldset>
+      <label class="saved-filter"><input id="saved-only" type="checkbox"> 즐겨찾기만 보기 <span id="saved-count">0</span></label>
+      <p class="fine">즐겨찾기는 이 브라우저에 저장됩니다.</p>
       <div class="tools"><button id="locate">◎ 내 위치 기준</button><button id="reset">초기화</button></div>
     </section>
     <div class="results-heading"><strong id="count" aria-live="polite">시설 불러오는 중…</strong><label><input id="inbounds" type="checkbox"> 지도 안에서</label></div>
@@ -34,4 +36,6 @@
   </section>
     <article id="detail" hidden aria-label="선택한 시설 상세"></article>
 </main>
+<nav class="mobile-nav" aria-label="화면 이동"><button id="show-map">지도 보기</button><button id="show-list">목록·검색 보기</button></nav>
+<p id="action-status" role="status" aria-live="polite"></p>
 </body></html>
