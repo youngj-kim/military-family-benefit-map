@@ -50,3 +50,19 @@ fieldset:disabled { opacity:.55; }
   .mobile-nav button { flex:1; min-height:44px; }
   #action-status { bottom:80px; }
 }
+
+/* Update history remains readable independently of the map SDK. */
+.header-links{display:flex;align-items:center;gap:14px}
+#show-updates{font-size:12px;white-space:nowrap}
+#update-dialog{width:calc(100% - 24px);max-width:720px;max-height:85dvh;padding:0;overflow:auto}
+.update-dialog-heading{position:sticky;top:0;background:white;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line);z-index:1}
+.update-dialog-heading h2{margin:0;font-size:20px}
+#update-history-content{padding:16px 22px 24px}
+#update-history-content details{border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:12px}
+#update-history-content details details{margin-top:14px;margin-bottom:0;background:var(--paper)}
+#update-history-content summary{cursor:pointer;font-weight:700;line-height:1.6}
+#update-history-content p{font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;margin:9px 0}
+#update-history-content h4{font-size:15px;margin:24px 0 12px;color:var(--green)}
+#update-history-content h5{font-size:14px;margin:20px 0 8px}
+#update-history-content .update-counts{color:var(--green)}
+@media(max-width:760px){.header-links{gap:7px}.header-links .source-link{display:none}#show-updates{padding:8px}.update-dialog-heading{padding:14px}#update-history-content{padding:14px}.update-dialog-heading h2{font-size:18px}}
