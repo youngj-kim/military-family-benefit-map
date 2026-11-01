@@ -4,6 +4,7 @@ const path = require('node:path');
 const {fetchOfficial, fingerprint, compare, report} = require('./mma-data.cjs');
 const {fetchMarts} = require('./mart-data.cjs');
 const {enrichMarts} = require('./geocode-marts.cjs');
+const {appendHistory} = require('./update-history.cjs');
 const ROOT = path.join(__dirname,'..');
 const BRANCH = 'mma-facility-update';
 const OUTPUT = path.join(ROOT,'.monitor-output');
@@ -83,7 +84,10 @@ async function run() {
   const [pendingMma,pendingMart,state]=await Promise.all([branchFile('dist/facilities.json'),branchFile('dist/marts.json'),branchFile('.monitor/state.json')]);
   const identical=pendingMma&&pendingMart&&fingerprint([...pendingMma.value.facilities,...pendingMart.value.facilities])===hash;
   if(identical&&state?.value.notifiedHash===hash){console.log('Same pending update already notified. No duplicate Telegram notification.');return;}
-  if(!identical)await candidateCommit({'dist/facilities.json':JSON.stringify(afterMma),'dist/marts.json':JSON.stringify(afterMart),'updates/mma-changes.md':reportText,'.monitor/state.json':JSON.stringify({sourceHash:hash,notifiedHash:null})+'\n'});
+  const historyPath=path.join(ROOT,'dist/update-history.json');
+  const history=fs.existsSync(historyPath)?JSON.parse(fs.readFileSync(historyPath,'utf8')):[];
+  const nextHistory=appendHistory(history,reportText,afterMma.fetchedAt);
+  if(!identical)await candidateCommit({'dist/update-history.json':JSON.stringify(nextHistory,null,2)+'\n','dist/facilities.json':JSON.stringify(afterMma),'dist/marts.json':JSON.stringify(afterMart),'updates/mma-changes.md':reportText,'.monitor/state.json':JSON.stringify({sourceHash:hash,notifiedHash:null})+'\n'});
   const review=await reviewLink(summary);
   await telegram(summary+'\n\n지도에는 아직 반영하지 않았습니다.\n변경 검토 및 업데이트: '+review+'\n\n확인: '+new Date(afterMma.fetchedAt).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})+' (한국 시간)');
   const saved=await branchFile('.monitor/state.json');
