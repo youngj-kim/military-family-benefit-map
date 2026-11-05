@@ -13,7 +13,16 @@ Windows에서는 `start-map.cmd`를 실행하면 http://localhost:8093 브라우
 이번 지도에 사용할 주소:
 
 - 로컬: `http://localhost:8093` (또는 직접 사용하는 `http://127.0.0.1:8093`)
-- 배포 주소: https://benefits.yjkim.dev
+- 배포 주소: https://yeumap.yjkim.dev
+
+### 예우맵 주소 이전
+
+1. 카카오 개발자 콘솔의 기존 앱에 JavaScript SDK 허용 도메인 `https://yeumap.yjkim.dev`를 추가합니다. 기존 허용 주소는 전환 확인 전까지 유지합니다.
+2. GitHub 저장소 Settings → Pages에서 Custom domain을 `yeumap.yjkim.dev`로 변경합니다. DNS를 추가할 수 있는 상태에서 이어서 진행합니다.
+3. Squarespace의 `yjkim.dev` DNS 설정에 CNAME을 추가합니다. 호스트는 `yeumap`, 대상은 `youngj-kim.github.io`이며 저장소 경로는 붙이지 않습니다.
+4. GitHub Pages의 DNS 확인과 HTTPS 인증서 발급을 확인하고 Enforce HTTPS를 활성화합니다. 새 주소의 지도·시설 공유·길찾기를 확인한 후 배포 주소 표기를 갱신합니다.
+
+이 저장소는 GitHub Actions로 배포하므로 `dist/CNAME` 파일만 추가해서는 주소가 변경되지 않습니다. GitHub Pages 설정에서 변경해야 합니다. 서로 다른 서브도메인인 기존 `benefits` 주소에서 새 주소로의 자동 리디렉션은 별도로 구성해야 하며, CNAME 변경만으로 HTTP 리디렉션이 되지는 않습니다. 브라우저에 저장한 즐겨찾기는 주소별로 분리되므로 새 주소로 자동 이전되지 않습니다.
 
 운영 주소와 로컬 테스트 주소는 각각 해당 키의 JavaScript SDK 도메인에 등록해야 합니다. 지도 하단의 최종 업데이트 날짜는 배포 날짜가 아닌 현재 시설 데이터의 수집 날짜를 한국 시간으로 표시합니다.
 
@@ -31,6 +40,7 @@ https://open.mma.go.kr/caisGGGS/bymmgPartAjaxJsonCall.json?udjiyeok_cd=&udggeopj
 
 - 전국 목록 검색, 22개 업종, 지역, 면제·할인·기타 필터
 - 카카오 지도 마커 군집화, 지도 영역 검색, 결과 전체 보기
+- 지도 첫 화면은 서울 용산구 중심으로 표시하며, 검색 조건은 전국 전체를 유지합니다. 시설 공유 링크는 해당 시설 위치로 이동합니다.
 - 시설 상세 혜택·연락처·원문·카카오 길찾기
 - 길찾기: 위치 확인 없이 목적지를 지정한 카카오·네이버 길찾기를 새 탭에서 바로 엽니다. 출발지는 지도 서비스에서 선택합니다.
 - 위치 권한을 허용한 경우 직선거리 기준 가까운 순 정렬

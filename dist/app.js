@@ -144,7 +144,7 @@ function connectMap(key) {
   script.onload = () => {
     if (!window.kakao?.maps?.load) { clearTimeout(timeout); mapFailure('지도 연결이 일시적으로 제한되었습니다. 잠시 후 다시 시도해 주세요.'); return; }
     kakao.maps.load(() => { try {
-      map = new kakao.maps.Map($('map'),{center:new kakao.maps.LatLng(36.35,127.8),level:13});
+      map = new kakao.maps.Map($('map'),{center:new kakao.maps.LatLng(37.5326,126.9905),level:7});
       map.addControl(new kakao.maps.ZoomControl(),kakao.maps.ControlPosition.RIGHT);
       clusterer = new kakao.maps.MarkerClusterer({map,averageCenter:true,minLevel:7}); info = new kakao.maps.InfoWindow({removable:true});
       $('map-placeholder').hidden = true; sdkLoading = false; clearTimeout(timeout); $('inbounds').disabled = false;
