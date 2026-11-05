@@ -5,6 +5,7 @@ const {fetchOfficial, fingerprint, compare, report} = require('./mma-data.cjs');
 const {fetchMarts} = require('./mart-data.cjs');
 const {enrichMarts} = require('./geocode-marts.cjs');
 const {appendHistory} = require('./update-history.cjs');
+const {candidateCommit: commitCandidate} = require('./candidate-branch.cjs');
 const ROOT = path.join(__dirname,'..');
 const BRANCH = 'mma-facility-update';
 const OUTPUT = path.join(ROOT,'.monitor-output');
@@ -35,12 +36,7 @@ async function telegram(message) {
   }
 }
 async function candidateCommit(files) {
-  let ref=await api('/git/ref/heads/'+BRANCH,'GET',undefined,true);
-  if (!ref) { const main=await api('/git/ref/heads/main'); ref=await api('/git/refs','POST',{ref:'refs/heads/'+BRANCH,sha:main.object.sha}); }
-  const commit=await api('/git/commits/'+ref.object.sha);
-  const tree=await api('/git/trees','POST',{base_tree:commit.tree.sha,tree:Object.entries(files).map(([file,content])=>({path:file,mode:'100644',type:'blob',content}))});
-  const next=await api('/git/commits','POST',{message:'Prepare official MMA facility data update',tree:tree.sha,parents:[ref.object.sha]});
-  await api('/git/refs/heads/'+BRANCH,'PATCH',{sha:next.sha,force:false});
+  await commitCandidate(api,BRANCH,files);
 }
 async function reviewLink(summary) {
   const owner=repository.split('/')[0];

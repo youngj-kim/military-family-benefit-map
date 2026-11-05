@@ -35,6 +35,11 @@ fieldset:disabled { opacity:.55; }
 .visit-note strong { overflow-wrap:anywhere; }
 @media(max-width:760px) { .legend { bottom:88px; } }
 .detail-actions button:disabled { opacity:.45; cursor:not-allowed; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
+.facility-name { display:block; font-size:15px; font-weight:700; margin:9px 0 5px; letter-spacing:-.4px; }
+.facility-address,.facility .summary { display:block; font-size:12px; margin:4px 0; line-height:1.6; }
+.facility .summary { display:-webkit-box; }
+#show-updates.has-update::after { content:'새 소식'; margin-left:6px; font-size:10px; color:#fff; background:var(--green); padding:2px 5px; border-radius:8px; }
 .source-detail a { color:#315a44; text-decoration:underline; text-underline-offset:2px; }
 .saved-filter { display:flex; align-items:center; gap:7px; font-size:12px; }
 #saved-count { border-radius:12px; background:#e7ede4; padding:2px 7px; }

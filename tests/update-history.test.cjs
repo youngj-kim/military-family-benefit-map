@@ -13,15 +13,16 @@ test('archives both sources and preserves previous releases without duplicate ID
  assert.throws(()=>appendHistory([], 'invalid', 'bad'));
 });
 const vm=require('node:vm');
-test('popup opens once per release, reopens from button, and keeps text safe',async()=>{
- class Node {constructor(){this.children=[];this.handlers={};this.open=false;}append(n){this.children.push(n)}replaceChildren(){this.children=[]}addEventListener(n,f){this.handlers[n]=f}showModal(){this.open=true}close(){this.open=false;this.handlers.close?.()}}
+test('new releases show a badge without interrupting the map; button opens history',async()=>{
+ class Node {constructor(){this.children=[];this.handlers={};this.open=false;this.classes=new Set();this.classList={add:v=>this.classes.add(v),remove:v=>this.classes.delete(v)};}append(n){this.children.push(n)}replaceChildren(){this.children=[]}addEventListener(n,f){this.handlers[n]=f}showModal(){this.open=true}close(){this.open=false;this.handlers.close?.()}}
  const entries=JSON.parse(fs.readFileSync('dist/update-history.json','utf8'));
  const saved=new Map();
  async function boot(){const nodes=Object.fromEntries(['show-updates','update-dialog','update-history-content','close-updates'].map(id=>[id,new Node()]));
  vm.runInNewContext(fs.readFileSync('dist/update-history.js','utf8'),{document:{getElementById:id=>nodes[id],createElement:()=>new Node()},fetch:async()=>({ok:true,json:async()=>entries}),localStorage:{getItem:k=>saved.get(k),setItem:(k,v)=>saved.set(k,v)}});
  await new Promise(resolve=>setImmediate(resolve));return nodes;}
- const first=await boot();assert.equal(first['update-dialog'].open,true);assert.equal(first['update-history-content'].children.length,1);
+ const first=await boot();assert.equal(first['update-dialog'].open,false);assert.equal(first['update-history-content'].children.length,1);assert.ok(first['show-updates'].classes.has('has-update'));
+ first['show-updates'].handlers.click();assert.equal(first['update-dialog'].open,true);assert.equal(first['show-updates'].classes.has('has-update'),false);
  first['close-updates'].handlers.click();assert.equal(first['update-dialog'].open,false);
  const repeat=await boot();assert.equal(repeat['update-dialog'].open,false);repeat['show-updates'].handlers.click();assert.equal(repeat['update-dialog'].open,true);
- entries.unshift({...entries[0],id:'next'});assert.equal((await boot())['update-dialog'].open,true);
+ entries.unshift({...entries[0],id:'next'});assert.equal((await boot())['show-updates'].classes.has('has-update'),true);
 });

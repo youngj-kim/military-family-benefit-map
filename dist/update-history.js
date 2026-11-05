@@ -5,7 +5,7 @@
   const content = document.getElementById('update-history-content');
   const key = 'benefit-map-seen-update';
   let latestId;
-  function open() { if (!dialog.open) dialog.showModal(); }
+  function open() { if (!dialog.open) dialog.showModal(); seen(); button.classList.remove('has-update'); }
   function seen() { if (latestId) { try { localStorage.setItem(key, latestId); } catch {} } }
   button.addEventListener('click', open);
   document.getElementById('close-updates').addEventListener('click', () => dialog.close());
@@ -35,6 +35,6 @@
       renderReport(entry.report, details); section.append(details); content.append(section);
     }
     let previous; try { previous = localStorage.getItem(key); } catch {}
-    if (previous !== latestId) open();
+    if (previous !== latestId) button.classList.add('has-update');
   }).catch(() => { content.replaceChildren(); textNode('p', '업데이트 기록을 불러오지 못했습니다. 잠시 후 페이지를 새로고침해 주세요.', content); });
 })();

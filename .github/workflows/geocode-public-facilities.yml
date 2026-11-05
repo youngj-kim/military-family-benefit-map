@@ -19,6 +19,9 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
       - name: Validate conservative place matching
         run: node --test tests/public-facilities.test.cjs tests/location-overrides.test.cjs
       - name: Collect unique facility and jurisdiction matches

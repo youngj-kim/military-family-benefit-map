@@ -42,7 +42,7 @@ async function fetchMarts() {
     } catch(error) {if(attempt===2)throw error;await new Promise(resolve=>setTimeout(resolve,2000*(attempt+1)));}
   }
 }
-module.exports={SOURCE,CATALOG,ENDPOINT,parseSheet,snapshot,fetchMarts};
+module.exports={SOURCE,CATALOG,ENDPOINT,parseSheet,snapshot,fetchMarts,region};
 if(require.main===module) {
   const fs=require('node:fs'),path=require('node:path');
   const result=process.argv[2]?Promise.resolve(snapshot(parseSheet(fs.readFileSync(process.argv[2],'utf8')),process.argv[3]||'')):fetchMarts();

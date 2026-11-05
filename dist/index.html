@@ -5,13 +5,14 @@
   <meta name="theme-color" content="#173e34">
   <title>예우맵 | 병역명문가 예우시설지도</title>
   <meta name="description" content="예우맵은 병역명문가 예우시설지도입니다. 병무청 공식 예우시설과 영외마트를 지역·업종·혜택별로 검색하고 길찾기를 이용하세요.">
-  <link rel="stylesheet" href="style.css">
-  <script src="config.js" defer></script><script src="category-icons.js" defer></script><script src="route-links.js?v=destination-only" defer></script><script src="app.js?v=yongsan-start" defer></script>
-  <script src="update-history.js?v=1" defer></script>
+  <link rel="stylesheet" href="style.css?v=review-20261105">
+  <script src="config.js" defer></script><script src="category-icons.js?v=review-20261105" defer></script><script src="route-links.js?v=review-20261105" defer></script><script src="facility-utils.js?v=review-20261105" defer></script><script src="app.js?v=review-20261105" defer></script>
+  <script src="update-history.js?v=review-20261105" defer></script>
 </head>
 <body>
 <header><a class="brand" href="./"><span class="emblem" aria-hidden="true">✦</span><span><b>예우맵</b><small>병역명문가 예우시설지도</small></span></a><div class="header-links"><button id="show-updates" aria-haspopup="dialog" aria-controls="update-dialog">업데이트 내역</button><a class="source-link" href="https://www.mma.go.kr/hall/listpart.do?mc=mma0003392" target="_blank" rel="noopener">병무청 원문 ↗</a></div></header>
 <main>
+  <h1 class="sr-only">예우맵 · 병역명문가 예우시설지도</h1>
   <aside aria-label="시설 검색 및 결과">
     <section class="filters" aria-label="검색 조건">
       <fieldset id="datasets"><legend>시설 종류</legend><label><input type="radio" name="dataset" value="mma" checked><span>예우시설</span></label><label><input type="radio" name="dataset" value="mart"><span>영외마트</span></label><label><input type="radio" name="dataset" value="all"><span>전체 보기</span></label></fieldset>
@@ -35,7 +36,7 @@
 
     <div class="visit-note"><strong id="map-updated">데이터 최종 업데이트: 확인 중</strong><span>방문 전 시설에 적용 대상·증빙서류·혜택을 확인해 주세요.</span></div>
   </section>
-    <article id="detail" hidden aria-label="선택한 시설 상세"></article>
+    <article id="detail" hidden tabindex="-1" aria-label="선택한 시설 상세"></article>
 </main>
 <nav class="mobile-nav" aria-label="화면 이동"><button id="show-map">지도 보기</button><button id="show-list">목록·검색 보기</button></nav>
 <p id="action-status" role="status" aria-live="polite"></p>

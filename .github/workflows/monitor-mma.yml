@@ -21,8 +21,13 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
       - name: Validate comparison logic
-        run: node --test tests/mma-data.test.cjs tests/mart-data.test.cjs tests/geocode-marts.test.cjs
+        run: |
+          node scripts/check-syntax.cjs
+          node --test tests/*.test.cjs
       - name: Test Telegram connection when explicitly requested
         if: ${{ inputs.test_telegram == true }}
         env:
