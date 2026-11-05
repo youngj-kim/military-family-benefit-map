@@ -57,13 +57,15 @@ fieldset:disabled { opacity:.55; }
 }
 
 /* Update history remains readable independently of the map SDK. */
-.header-links{display:flex;align-items:center;gap:14px}
-.guide-link{font-size:12px;text-underline-offset:3px;white-space:nowrap;padding:10px 0}
+.header-links{display:flex;align-items:center;gap:8px}
+.header-links>a,.header-links>button{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:9px 13px;border:1px solid var(--line);border-radius:9px;background:white;color:var(--green);font-size:12px;font-weight:400;line-height:1.5;text-decoration:none;white-space:nowrap}
+.header-links>a:hover,.header-links>button:hover{background:#edf2eb}
+.header-links>a[aria-current="page"]{background:#edf2eb;border-color:#bdcdbf}
 .service-notice{margin:0 28px 20px;padding:13px 14px;border:1px solid #dce3d5;border-radius:10px;background:#f4f7ef;font-size:12px;line-height:1.65}
 .service-notice strong{color:var(--green)}
 .service-notice p{margin:5px 0 8px;font-size:11px;color:#435448;line-height:1.7}
 .service-notice a{color:var(--green);text-underline-offset:3px}
-@media(max-width:760px){.service-notice{margin:0 20px 18px}.guide-link{font-size:11px}.brand small{letter-spacing:0}}
+@media(max-width:760px){.service-notice{margin:0 20px 18px}.brand small{letter-spacing:0}}
 #show-updates{font-size:12px;white-space:nowrap}
 #update-dialog{width:calc(100% - 24px);max-width:720px;max-height:85dvh;padding:0;overflow:auto}
 .update-dialog-heading{position:sticky;top:0;background:white;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line);z-index:1}
@@ -76,7 +78,7 @@ fieldset:disabled { opacity:.55; }
 #update-history-content h4{font-size:15px;margin:24px 0 12px;color:var(--green)}
 #update-history-content h5{font-size:14px;margin:20px 0 8px}
 #update-history-content .update-counts{color:var(--green)}
-@media(max-width:760px){.header-links{gap:7px}.header-links .source-link{display:none}#show-updates{padding:8px}.update-dialog-heading{padding:14px}#update-history-content{padding:14px}.update-dialog-heading h2{font-size:18px}}
+@media(max-width:760px){header{height:auto;min-height:72px;padding:14px 16px;gap:12px;flex-wrap:wrap}.header-links{width:100%;gap:8px;flex-wrap:wrap}.header-links>a,.header-links>button{min-height:38px;padding:9px 10px}.update-dialog-heading{padding:14px}#update-history-content{padding:14px}.update-dialog-heading h2{font-size:18px}}
 /* Compact default details keep the main facts and actions together. */
 #detail{top:68px;width:460px;max-height:calc(100% - 82px);padding:18px}
 #detail>.tags{padding-right:32px;flex-wrap:wrap;gap:5px;line-height:1.5}
