@@ -23,20 +23,45 @@ test('all pages advertise the same standalone app and correctly sized PNG icons'
     assert.equal(png.readUInt32BE(20),Number(icon.sizes.split('x')[1]));
   }
 });
-function fixture(standalone=false){
-  const handlers={},nodes={};
-  for(const id of ['install-app','install-status','install-link'])nodes[id]={hidden:false,handlers:{},addEventListener(type,callback){this.handlers[type]=callback;}};
+function fixture(standalone=false,userAgent=''){
+  const handlers={},nodes={},timers=new Map();let timerId=0;
+  for(const id of ['install-app','install-status','install-link','install-banner','install-main','install-main-status','install-open-chrome','install-dismiss'])nodes[id]={hidden:false,handlers:{},addEventListener(type,callback){this.handlers[type]=callback;}};
   vm.runInNewContext(fs.readFileSync('dist/install.js','utf8'),{
     window:{matchMedia:()=>({matches:standalone,addEventListener(){}}),addEventListener:(type,callback)=>{handlers[type]=callback;}},
-    navigator:{},document:{getElementById:id=>nodes[id],querySelectorAll:()=>[nodes['install-link']]}
+    navigator:{userAgent},document:{getElementById:id=>nodes[id],querySelectorAll:()=>[nodes['install-link']]},
+    setTimeout:callback=>{timers.set(++timerId,callback);return timerId;},clearTimeout:id=>timers.delete(id)
   });
-  return {handlers,nodes};
+  return {handlers,nodes,timers};
 }
 test('unsupported browsers keep manual installation instructions without intercepting links',async()=>{
   const {nodes}=fixture();let intercepted=false;
   assert.equal(nodes['install-app'].hidden,true);assert.equal(nodes['install-link'].hidden,false);
   await nodes['install-link'].handlers.click({preventDefault(){intercepted=true;}});
   assert.equal(intercepted,false);
+});
+test('Galaxy main screen offers a large button and unlocks when the browser permits installation',async()=>{
+  const {handlers,nodes,timers}=fixture(false,'Mozilla/5.0 (Linux; Android 15) Chrome/140.0');let prompts=0;
+  assert.equal(nodes['install-banner'].hidden,false);assert.equal(nodes['install-main'].hidden,false);
+  await nodes['install-main'].handlers.click({preventDefault(){}});
+  assert.equal(nodes['install-main'].disabled,true);assert.equal(timers.size,1);
+  handlers.beforeinstallprompt({preventDefault(){},prompt:async()=>{prompts++;},userChoice:Promise.resolve({outcome:'accepted'})});
+  assert.equal(nodes['install-main'].disabled,false);assert.equal(timers.size,0);assert.equal(prompts,0);
+  await nodes['install-main'].handlers.click({preventDefault(){}});assert.equal(prompts,1);
+  handlers.appinstalled();assert.equal(nodes['install-banner'].hidden,true);
+});
+test('embedded Galaxy browsers offer a user-activated Chrome link instead of a fake install',()=>{
+  const {nodes}=fixture(false,'Mozilla/5.0 (Linux; Android 15; wv) Chrome/140.0 KAKAOTALK');
+  assert.equal(nodes['install-main'].hidden,true);assert.equal(nodes['install-open-chrome'].hidden,false);
+  assert.match(nodes['install-open-chrome'].href,/^intent:\/\/yeumap\.yjkim\.dev\//);
+  assert.match(nodes['install-open-chrome'].href,/package=com.android.chrome/);
+});
+test('waiting has a bounded fallback and a dismissed banner stays dismissed',async()=>{
+  const {handlers,nodes,timers}=fixture(false,'Android Chrome');
+  await nodes['install-main'].handlers.click({preventDefault(){}});[...timers.values()][0]();
+  assert.equal(nodes['install-main'].disabled,false);assert.match(nodes['install-main-status'].textContent,/아직/);
+  nodes['install-dismiss'].handlers.click();assert.equal(nodes['install-banner'].hidden,true);
+  handlers.beforeinstallprompt({preventDefault(){},prompt:async()=>{},userChoice:Promise.resolve({outcome:'dismissed'})});
+  assert.equal(nodes['install-banner'].hidden,true);
 });
 test('install prompt is shown only after a user click and is consumed once',async()=>{
   const {handlers,nodes}=fixture();let prompted=0,intercepted=false;

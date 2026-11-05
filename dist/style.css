@@ -63,6 +63,19 @@ fieldset:disabled { opacity:.55; }
 .service-notice a{color:var(--green);text-underline-offset:3px}
 .service-links{display:flex;flex-wrap:wrap;gap:6px 14px}
 [data-app-install][hidden],#install-app[hidden]{display:none!important}
+.install-banner{position:fixed;right:20px;bottom:24px;z-index:7;width:360px;max-width:calc(100% - 32px);padding:18px;background:white;border:1px solid #c6d7c5;border-radius:16px;box-shadow:0 8px 28px #173e3426}
+.install-banner[hidden],#install-main[hidden],#install-open-chrome[hidden]{display:none!important}
+.install-banner-copy{display:flex;align-items:center;gap:12px;padding-right:22px;margin-bottom:14px}
+.install-banner-copy img{border-radius:10px;flex:none}
+.install-banner-copy strong{display:block;font-size:17px;line-height:1.5}
+.install-banner-copy span{display:block;font-size:13px;line-height:1.5;color:var(--muted);margin-top:2px}
+.install-banner .install-dismiss{position:absolute;right:8px;top:8px;min-width:34px;min-height:34px;padding:4px;border:0;background:transparent;font-size:21px}
+#install-main,.install-browser-link{display:block;width:100%;min-height:52px;text-align:center;font-size:18px;font-weight:700;padding:12px;border-radius:10px}
+.install-browser-link{color:white;background:var(--green);text-decoration:none}
+#install-main:disabled{cursor:wait;opacity:.65}
+#install-main-status{font-size:13px;line-height:1.6;margin:10px 0 0;color:#435448}
+#install-main-status:empty{display:none}
+@media(max-width:760px){.install-banner{bottom:calc(78px + env(safe-area-inset-bottom));left:12px;right:12px;width:auto;max-width:none;padding:16px}.install-banner-copy strong{font-size:17px}}
 @media(max-width:760px){.service-notice{margin:0 20px 18px}.brand small{letter-spacing:0}}
 #show-updates{font-size:12px;white-space:nowrap}
 #update-dialog{width:calc(100% - 24px);max-width:720px;max-height:85dvh;padding:0;overflow:auto}

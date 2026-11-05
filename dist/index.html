@@ -48,6 +48,13 @@
   </section>
     <article id="detail" hidden tabindex="-1" aria-label="선택한 시설 상세"></article>
 </main>
+<section id="install-banner" class="install-banner" aria-label="예우맵 설치" hidden>
+  <button id="install-dismiss" class="install-dismiss" aria-label="설치 안내 닫기">×</button>
+  <div class="install-banner-copy"><img src="icons/icon-192.png" alt="" width="44" height="44"><div><strong>홈 화면에서 바로 열어요</strong><span>예우맵을 휴대폰에 설치해 보세요.</span></div></div>
+  <button id="install-main" class="primary">예우맵 설치</button>
+  <a id="install-open-chrome" class="install-browser-link" hidden>Chrome에서 열기</a>
+  <p id="install-main-status" role="status" aria-live="polite"></p>
+</section>
 <nav class="mobile-nav" aria-label="화면 이동"><button id="show-map">지도 보기</button><button id="show-list">목록·검색 보기</button></nav>
 <p id="action-status" role="status" aria-live="polite"></p>
 <dialog id="update-dialog" aria-labelledby="update-dialog-title"><div class="update-dialog-heading"><h2 id="update-dialog-title">업데이트 내역</h2><button id="close-updates" aria-label="업데이트 내역 닫기" autofocus>닫기</button></div><div id="update-history-content" aria-live="polite"><p>업데이트 기록을 불러오는 중…</p></div></dialog>
