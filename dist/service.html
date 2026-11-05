@@ -3,6 +3,14 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#173e34">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="예우맵">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <script src="install.js" defer></script>
   <title>서비스·데이터 안내 | 예우맵</title>
   <meta name="description" content="예우맵의 운영 성격, 자료 출처, 위치 권한, 브라우저 저장과 외부 서비스 이용을 안내합니다.">
   <link rel="stylesheet" href="style.css?v=guide-20261105"><link rel="stylesheet" href="guide.css?v=guide-20261105">
@@ -34,6 +42,12 @@
     <p>즐겨찾기한 시설 식별자와 확인한 업데이트의 식별자를 브라우저 저장소(localStorage)에 보관합니다. 자동 만료 기간은 없으며, 같은 브라우저의 같은 사이트 주소에서 유지됩니다. 다른 기기나 주소로 자동 동기화하지 않습니다.</p>
     <p>즐겨찾기는 시설 상세에서 해제할 수 있습니다. 저장된 정보를 모두 지우려면 브라우저의 사이트 데이터 삭제 기능을 이용하세요. 이 경우 즐겨찾기와 업데이트 확인 기록도 함께 삭제됩니다.</p>
     <p>시설 검색은 내려받은 자료를 브라우저에서 필터링합니다. 예우맵은 검색어·이름·군번·가족관계 서류를 수집하는 별도 접수 서버나 회원가입 기능을 운영하지 않습니다.</p>
+  </section>
+  <section aria-labelledby="web-app-title">
+    <h2 id="web-app-title">홈 화면에 설치해서 사용하기</h2>
+    <p>예우맵을 설치형 웹앱으로 추가하면 홈 화면 아이콘에서 앱처럼 실행할 수 있습니다. 별도 회원가입이나 백그라운드 위치 추적을 추가하지 않으며, 기존 위치 권한과 저장 정보 안내가 동일하게 적용됩니다.</p>
+    <p>오프라인 지도나 시설 자료를 별도로 저장하지 않습니다. 설치 후에도 인터넷 연결이 필요하며, 브라우저와 설치한 앱의 즐겨찾기는 기기·브라우저에 따라 별도로 저장될 수 있습니다.</p>
+    <div class="guide-actions"><a data-app-install href="install.html?v=pwa-20261105">홈 화면에 설치</a></div>
   </section>
   <section aria-labelledby="external-title">
     <h2 id="external-title">외부 서비스와 접속 기록</h2>

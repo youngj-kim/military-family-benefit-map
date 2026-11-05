@@ -17,4 +17,9 @@ body.guide-page{padding-bottom:0}
 .guide-actions a{display:inline-block;padding:11px 16px;border:1px solid var(--line);border-radius:9px;background:white;text-decoration:none;font-size:13px}
 .guide-actions .primary{background:var(--green);color:white}
 .guide-content .guide-footer{padding:24px 0 0;border-top:1px solid var(--line);margin-top:28px;font-size:12px}
+.install-identity{display:flex;align-items:center;gap:14px;margin:24px 0}
+.install-identity img{border-radius:14px}
+.install-identity strong{display:block;font-size:20px}
+.install-identity small{display:block;color:var(--muted);margin-top:5px}
+#install-app{min-height:44px;margin-bottom:12px}
 @media(max-width:760px){.guide-page header{padding:14px 20px;gap:14px}.guide-page .header-links{gap:8px}.guide-content{padding:28px 20px 44px}.guide-content h1{font-size:26px}.guide-content h2{font-size:19px}.guide-content section{padding-top:22px;margin-top:22px}}

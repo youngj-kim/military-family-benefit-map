@@ -61,6 +61,8 @@ fieldset:disabled { opacity:.55; }
 .service-notice strong{color:var(--green)}
 .service-notice p{margin:5px 0 8px;font-size:11px;color:#435448;line-height:1.7}
 .service-notice a{color:var(--green);text-underline-offset:3px}
+.service-links{display:flex;flex-wrap:wrap;gap:6px 14px}
+[data-app-install][hidden],#install-app[hidden]{display:none!important}
 @media(max-width:760px){.service-notice{margin:0 20px 18px}.brand small{letter-spacing:0}}
 #show-updates{font-size:12px;white-space:nowrap}
 #update-dialog{width:calc(100% - 24px);max-width:720px;max-height:85dvh;padding:0;overflow:auto}
