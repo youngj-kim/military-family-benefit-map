@@ -127,20 +127,26 @@ function focusMap(r) {
 function renderDetail(r) {
   const detail = $('detail'); detail.replaceChildren(); detail.hidden = false;
   const close = el('button','×','close'); close.setAttribute('aria-label','상세 닫기'); close.onclick = closeDetail;
-  detail.append(close,tags(r),el('h2',r.name),el('h4','혜택 및 적용 조건'),el('p',r.benefit || '공식 상세 페이지 또는 시설에 문의해 주세요.'),el('h4','주소'),el('p',r.address || r.area || '주소 정보 없음'));
+  detail.append(close,tags(r),el('h2',r.name),el('h4','혜택 및 적용 조건'));
+  const benefit = r.benefit || '공식 원문 또는 시설에 문의해 주세요.';
+  if (benefit.length > 180 || benefit.split('\n').length > 4) {
+    detail.append(el('p',benefit.slice(0,140).trimEnd()+'…'));
+    const full = el('details',undefined,'detail-extra');
+    full.append(el('summary','혜택·조건 전체 보기'),el('p',benefit)); detail.append(full);
+  } else detail.append(el('p',benefit));
+  const facts = el('dl',undefined,'detail-facts');
+  facts.append(el('dt','주소'),el('dd',r.address || r.area || '주소 정보 없음'));
+  if (r.phone) { const phone = el('dd'); const tel = el('a',r.phone); tel.href = 'tel:'+r.phone.replace(/[^0-9+]/g,''); phone.append(tel); facts.append(el('dt','연락처'),phone); }
+  detail.append(facts);
   if (r.sourceKind === 'mart') {
-    detail.append(el('h4','운영정보 · 원본 자료 기준'),el('p',`평일: ${r.weekdayHours || '원문 미기재'}
-토요일: ${r.saturdayHours || '원문 미기재'}
-일요일: ${r.sundayHours || '원문 미기재'}`),el('h4','점심시간'),el('p',`평일: ${r.weekdayLunch || '원문 미기재'}
-토요일: ${r.saturdayLunch || '원문 미기재'}
-일요일: ${r.sundayLunch || '원문 미기재'}`));
-    if (r.notes) detail.append(el('h4','휴점·분리운영 등 유의사항'),el('p',r.notes));
-    detail.append(el('p','국방부 공식 영외마트 목록입니다. 병역명문가 이용 자격·동반 범위·증빙과 임시 휴무는 국군복지포털 또는 매장에 확인해 주세요. 원문 미기재는 휴무 확정을 뜻하지 않습니다.','fine'));
-    if (r.lat !== null) detail.append(el('p','지도 위치는 원문 주소를 카카오 REST API로 별도 조회한 결과입니다. 공식 제공 좌표가 아니며 입구·이전 여부는 별도 확인이 필요합니다.','fine'));
+    const hours = el('dl',undefined,'detail-facts');
+    hours.append(el('dt','평일'),el('dd',r.weekdayHours || '원문 미기재'),el('dt','토요일'),el('dd',r.saturdayHours || '원문 미기재'),el('dt','일요일'),el('dd',r.sundayHours || '원문 미기재'));
+    detail.append(el('h4','운영시간 · 자료 기준'),hours);
+    const extra = el('details',undefined,'detail-extra');
+    extra.append(el('summary','점심시간·휴점 안내'),el('p',`평일 점심: ${r.weekdayLunch || '원문 미기재'}\n토요일 점심: ${r.saturdayLunch || '원문 미기재'}\n일요일 점심: ${r.sundayLunch || '원문 미기재'}`));
+    if (r.notes) extra.append(el('p',r.notes)); detail.append(extra);
   }
-  if (r.coordinatePlaceUrl) detail.append(el('p','시설명과 관할 지역이 일치하는 카카오 장소 검색 결과로 주소·위치를 보완했습니다. 방문 전 실제 시설과 입구를 확인해 주세요.','fine'));
-  if (r.phone) { detail.append(el('h4','연락처')); const phone = el('p'); const tel = el('a',r.phone); tel.href = 'tel:'+r.phone.replace(/[^0-9+]/g,''); phone.append(tel); detail.append(phone); }
-  if (r.lat === null) detail.append(el('p','위치가 등록되지 않은 시설입니다. 원문 주소와 지점을 확인해 주세요.','fine'));
+  if (r.lat === null) detail.append(el('p',r.address.trim() ? '위치 미확인 · 아래 버튼으로 주소 검색' : '주소·좌표 미등록 · 공식 원문 확인 필요','fine'));
   const actions = el('div',undefined,'detail-actions');
   const save = el('button',saved.has(facilityKey(r)) ? '★ 저장됨' : '☆ 즐겨찾기');
   save.id = 'save-facility';
@@ -152,13 +158,9 @@ function renderDetail(r) {
   const report = new URL('https://github.com/youngj-kim/military-family-benefit-map/issues/new');
   report.searchParams.set('title',`[시설 정보 수정] ${r.name}`);
   report.searchParams.set('body',`시설: ${r.name}\n시설 ID: ${facilityKey(r)}\n시설 링크: ${facilityUrl(r)}\n\n수정할 내용 (주소·혜택·폐업 등):\n\n확인 가능한 공식 출처 또는 확인 날짜:\n\n개인정보는 적지 말아 주세요.`);
-  actions.append(link('정보 수정 제보 ↗',report.href));
-  detail.append(el('p','정보 수정 제보는 GitHub 로그인 후 공개 이슈로 접수됩니다. 개인정보는 적지 마세요.','fine'));
-  const visit = el('section',undefined,'visit-check');
-  visit.append(el('h4','방문 전 확인'),el('p',r.sourceKind === 'mart' ? '이용 자격 · 동반 가능 범위 · 필요한 증빙 · 당일 운영시간을 매장 또는 국군복지포털에서 확인하세요.' : '위 혜택 원문에서 적용 대상 · 가족 동반 범위 · 필요한 증빙 · 예약 조건을 확인하세요. 원문에 없는 조건은 시설에 문의해 주세요.'));
-  detail.append(visit);
+  const reportLink = link('정보 수정 제보 ↗',report.href);
+  reportLink.title = 'GitHub 공개 이슈 · 개인정보 입력 금지'; actions.append(reportLink);
   const addressOnly = r.lat === null;
-  const hasAddress = Boolean(r.address.trim());
   const routeAction = (provider,label,className) => {
     const url = window.BENEFIT_ROUTE_LINKS.destinationRouteUrl(r,provider);
     if (url) return link(label,url,className);
@@ -166,13 +168,11 @@ function renderDetail(r) {
   };
   const route = routeAction('kakao',addressOnly ? '카카오 주소로 찾기 ↗' : '카카오 길찾기 ↗','primary');
   const naverRoute = routeAction('naver',addressOnly ? '네이버 주소로 찾기 ↗' : '네이버 길찾기 ↗','primary naver-route');
-  actions.append(route,naverRoute);
-  detail.append(el('p', r.lat===null ? (hasAddress ? '좌표가 확인되지 않아 원문 주소로 지도 검색을 엽니다. 검색 결과의 실제 시설을 확인한 뒤 길찾기를 선택해 주세요. 원문 주소가 담당 부서 주소일 수도 있습니다.' : '좌표와 주소가 없어 지도 검색을 사용할 수 없습니다. 공식 원문을 확인해 주세요.') : '새 탭에서 목적지가 지정된 길찾기를 엽니다. 출발지는 카카오·네이버 지도에서 선택해 주세요.', 'fine'));
+  actions.prepend(route,naverRoute);
   const source = el('p',undefined,'fine source-detail');
   source.append(el('span','출처: '),r.sourceKind === 'mart' ? link('국방부 영외마트 원문',datasetInfo.mart.source) : link('병무청 시설 원문','https://www.mma.go.kr/hall/listdetail.do?mmgudgigwan_cd='+encodeURIComponent(r.id)));
   if(r.sourceKind === 'mart')source.append(el('span',' · '),link('국군복지포털 이용 안내','https://www.welfare.mil.kr/'));
-  detail.append(source);
-  detail.append(actions,el('p','혜택은 변경될 수 있습니다. 방문 전 명문가증·신분증·가족관계서류 등 필요한 증빙과 적용 대상을 확인해 주세요.','fine'));
+  detail.append(actions,source);
 }
 function fitResults() { if (!map) { $('map-status').textContent = '지도 연결 후 이용할 수 있습니다. 시설 목록은 계속 검색할 수 있습니다.'; return; } const rows = filtered.filter(r => r.lat !== null); if (!rows.length) { $('map-status').textContent = '검색 결과에 등록된 좌표가 없습니다.'; return; } const bounds = new kakao.maps.LatLngBounds(); rows.forEach(r => bounds.extend(new kakao.maps.LatLng(r.lat,r.lng))); map.setBounds(bounds,80,60,100,60); }
 function mapFailure(message) { $('map-status').textContent = '지도 연결 확인 필요'; $('map-placeholder').hidden = false; $('placeholder-message').textContent = message; sdkLoading = false; }

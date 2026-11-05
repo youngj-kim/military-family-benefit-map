@@ -58,6 +58,12 @@ fieldset:disabled { opacity:.55; }
 
 /* Update history remains readable independently of the map SDK. */
 .header-links{display:flex;align-items:center;gap:14px}
+.guide-link{font-size:12px;text-underline-offset:3px;white-space:nowrap;padding:10px 0}
+.service-notice{margin:0 28px 20px;padding:13px 14px;border:1px solid #dce3d5;border-radius:10px;background:#f4f7ef;font-size:12px;line-height:1.65}
+.service-notice strong{color:var(--green)}
+.service-notice p{margin:5px 0 8px;font-size:11px;color:#435448;line-height:1.7}
+.service-notice a{color:var(--green);text-underline-offset:3px}
+@media(max-width:760px){.service-notice{margin:0 20px 18px}.guide-link{font-size:11px}.brand small{letter-spacing:0}}
 #show-updates{font-size:12px;white-space:nowrap}
 #update-dialog{width:calc(100% - 24px);max-width:720px;max-height:85dvh;padding:0;overflow:auto}
 .update-dialog-heading{position:sticky;top:0;background:white;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line);z-index:1}
@@ -71,3 +77,21 @@ fieldset:disabled { opacity:.55; }
 #update-history-content h5{font-size:14px;margin:20px 0 8px}
 #update-history-content .update-counts{color:var(--green)}
 @media(max-width:760px){.header-links{gap:7px}.header-links .source-link{display:none}#show-updates{padding:8px}.update-dialog-heading{padding:14px}#update-history-content{padding:14px}.update-dialog-heading h2{font-size:18px}}
+/* Compact default details keep the main facts and actions together. */
+#detail{top:68px;width:460px;max-height:calc(100% - 82px);padding:18px}
+#detail>.tags{padding-right:32px;flex-wrap:wrap;gap:5px;line-height:1.5}
+#detail .tag{white-space:nowrap;flex-shrink:0}
+#detail h2{font-size:20px;margin:8px 0 10px}
+#detail h4{margin:6px 0 4px}
+#detail p{font-size:12px;line-height:1.6;margin:0 0 8px}
+.detail-facts{display:grid;grid-template-columns:46px minmax(0,1fr);gap:5px 8px;margin:12px 0;font-size:12px;line-height:1.65}
+.detail-facts dt{color:var(--muted);font-size:11px}
+.detail-facts dd{margin:0;white-space:pre-line}
+.detail-extra{margin:8px 0;font-size:12px}
+.detail-extra summary{cursor:pointer;color:var(--green);font-size:11px;line-height:1.8}
+#detail .detail-extra p{margin-top:8px}
+#detail .detail-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:12px 0}
+#detail .detail-actions a,#detail .detail-actions button{padding:8px 7px;text-align:center;font-size:11px;line-height:1.4}
+#detail .detail-actions .primary{grid-column:auto}
+#detail .source-detail{font-size:10px;margin:0}
+@media(max-width:760px){#detail{width:auto;max-height:none;padding:16px;margin:12px 12px 0}#detail h2{font-size:19px}#detail .detail-actions a,#detail .detail-actions button{padding:10px 6px}}
