@@ -1,6 +1,6 @@
 :root{color-scheme:only light}
-.theme-control{display:inline-flex;align-items:center;gap:7px;font-size:12px;white-space:nowrap}
-.theme-control select{width:auto;margin:0;min-height:38px;padding:8px;border-radius:9px;font-size:12px}
+.theme-control{display:inline-flex;align-items:center;gap:7px;font-size:0.75rem;white-space:nowrap}
+.theme-control select{width:auto;margin:0;min-height:38px;padding:8px;border-radius:9px;font-size:0.75rem}
 :root[data-theme="dark"]{color-scheme:dark;--paper:#14231c;--muted:#a7b8ae;--line:#405449;--green:#b8dfc4}
 [data-theme="dark"] body{color:#e6efe9}
 [data-theme="dark"] header,[data-theme="dark"] button,[data-theme="dark"] select,[data-theme="dark"] input[type="search"],[data-theme="dark"] fieldset span,[data-theme="dark"] #detail,[data-theme="dark"] dialog,[data-theme="dark"] .update-dialog-heading,[data-theme="dark"] .mobile-nav,[data-theme="dark"] .install-banner,[data-theme="dark"] .header-links>a,[data-theme="dark"] .header-links>button,[data-theme="dark"] .guide-actions a,[data-theme="dark"] .map-toolbar span,[data-theme="dark"] .legend{background:#21362a;color:#e6efe9;border-color:var(--line)}
