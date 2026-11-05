@@ -5,7 +5,7 @@ const {isDeepStrictEqual} = require('node:util');
 const {roadQuery, normalizeAddress} = require('./geocode-addresses.cjs');
 const {region} = require('./mart-data.cjs');
 const RETRY_MS = 7 * 24 * 60 * 60 * 1000;
-const VERSION = 2;
+const VERSION = 3;
 const fields = ['geocodedLat','geocodedLng','geocodeAddress','geocodedAt','geocodeProvider','geocodeStatus','geocodeVersion','geocodeRegion'];
 const domestic = point => point && Number(point.y) >= 32 && Number(point.y) <= 39.5 && Number(point.x) >= 124 && Number(point.x) <= 132;
 function exactPoint(address, documents) {

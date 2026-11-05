@@ -24,12 +24,19 @@ test('wrong road numbers and multiple exact points remain unlocated',()=>{
 });
 test('not-found cache expires after seven days and legacy failures retry immediately',async()=>{
   const now=Date.parse('2026-11-05T00:00:00Z');let calls=0;
-  const failed={...row,geocodeAddress:row.address,geocodeProvider:'kakao-address',geocodeStatus:'not_found',geocodeVersion:2,geocodedAt:new Date(now-86400000).toISOString()};
+  const failed={...row,geocodeAddress:row.address,geocodeProvider:'kakao-address',geocodeStatus:'not_found',geocodeVersion:3,geocodedAt:new Date(now-86400000).toISOString()};
   const request=async()=>{calls++;return {ok:true,status:200,json:async()=>({documents:[]})};};
   const options={now,pause:async()=>{}};
   await enrichMarts({facilities:[row]},{facilities:[failed]},key,request,options);assert.equal(calls,0);
   await enrichMarts({facilities:[row]},{facilities:[{...failed,geocodedAt:new Date(now-8*86400000).toISOString()}]},key,request,options);assert.equal(calls,1);
   await enrichMarts({facilities:[row]},{facilities:[{...failed,geocodeVersion:undefined}]},key,request,options);assert.equal(calls,2);
+});
+test('road query retains numbered lanes and requires a real building number',()=>{
+  const {roadQuery}=require('../scripts/geocode-addresses.cjs');
+  assert.equal(roadQuery('대구광역시 수성구 고모로 33길 84(국군복지단오성마트)'),'대구광역시 수성구 고모로 33길 84');
+  assert.equal(roadQuery('부산 강서구 대저동 공항진입로42번길 20'),'부산 강서구 대저동 공항진입로42번길 20');
+  assert.equal(roadQuery('경기 파주시 보광로962'),'경기 파주시 보광로 962');
+  assert.equal(roadQuery('강원도 홍천군 무궁화로4길 사랑아파트 내'),null);
 });
 test('unchanged source addresses reuse saved coordinates without API calls',async()=>{
   const previous={facilities:[{...row,geocodeAddress:row.address,geocodeProvider:'kakao-address',geocodeStatus:'located',geocodedLat:37.5,geocodedLng:127}]};

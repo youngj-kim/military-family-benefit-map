@@ -4,7 +4,7 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 function normalizeAddress(value) {
   return value.replace(/\([^)]*\)/g, '').trim()
-    .replace(/^서울특별시/, '서울').replace(/^부산광역시/, '부산').replace(/^대구광역시/, '대구')
+    .replace(/^서울(?:특별)?시/, '서울').replace(/^부산(?:광역)?시/, '부산').replace(/^대구광역시/, '대구')
     .replace(/^인천광역시/, '인천').replace(/^광주광역시/, '광주').replace(/^대전광역시/, '대전')
     .replace(/^울산광역시/, '울산').replace(/^세종특별자치시/, '세종').replace(/^경기도/, '경기')
     .replace(/^강원(?:특별자치)?도/, '강원').replace(/^전북(?:특별자치)?도|^전라북도/, '전북')
@@ -14,8 +14,8 @@ function normalizeAddress(value) {
 }
 function roadQuery(address) {
   const clean = address.replace(/\([^)]*\)/g, '').trim();
-  const match = clean.match(/^(.*?(?:로|길)\s*\d+(?:\s*-\s*\d+)?)/);
-  return match ? match[1].replace(/\s*-\s*/g, '-').replace(/-0$/, '') : null;
+  const match = clean.match(/^(.*(?:로|길))\s*(\d+(?:\s*-\s*\d+)?)(?=\s|$)/);
+  return match ? (match[1].trim()+' '+match[2]).replace(/\s*-\s*/g, '-').replace(/-0$/, '') : null;
 }
 function manualReason(row) {
   if (/과\)|과\s*$|담당|시청|군청|구청|생활체육과|공원녹지과|경제교통과|건설교통실/.test(row.address)) return '담당 부서/관청 주소 — 실제 이용 시설 확인 필요';
