@@ -16,6 +16,14 @@
   });
   document.addEventListener('DOMContentLoaded', () => {
     apply();
+    const menu = document.querySelector('.menu-toggle');
+    if (menu) menu.addEventListener('click', () => {
+      const expanded = menu.getAttribute('aria-expanded') !== 'true';
+      menu.setAttribute('aria-expanded', String(expanded));
+      document.querySelector('#header-menu').classList.toggle('is-open', expanded);
+    });
+    const mapInfo = document.querySelector('.map-info');
+    if (mapInfo) mapInfo.open = !window.matchMedia('(max-width:760px)').matches;
     document.querySelectorAll('[data-text-size]').forEach(control => {
       control.addEventListener('change', () => {
         size = normalize(control.value);

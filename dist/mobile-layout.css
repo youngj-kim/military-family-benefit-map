@@ -1,0 +1,28 @@
+.menu-toggle{display:none}
+.map-info{flex:none;background:var(--paper);border-top:1px solid var(--line);padding:10px 16px;color:var(--muted)}
+.map-info>summary{cursor:pointer;font-size:.875rem}
+.map-info .legend{position:static;max-width:none;width:fit-content;margin:10px 0;padding:0;background:transparent}
+.map-info .visit-note{position:static;padding:0;background:transparent;font-size:.75rem;z-index:auto}
+@media(min-width:761px){.map-info>summary{display:none}.map-info .legend{position:absolute;bottom:90px;left:20px;padding:10px 14px;background:white;max-width:calc(100% - 40px)}[data-theme="dark"] .map-info .legend{background:#21362a}}
+@media(max-width:760px){
+  header,.guide-page header{min-height:72px;padding:10px 16px;gap:8px}
+  .brand{font-size:1rem;gap:9px;flex:1}
+  .brand small{font-size:.65rem}
+  .emblem{width:33px;height:39px;font-size:24px;flex:none}
+  .menu-toggle{display:block;font-size:.875rem;flex:none;padding:8px 10px}
+  header .header-links{display:none}
+  header .header-links.is-open{display:flex;padding:8px 0 4px}
+  .map-section{height:auto;min-height:0;overflow:visible}
+  .map-canvas{flex:none;height:60dvh;min-height:340px}
+  .map-section>.map-toolbar{position:static;inset:auto;z-index:auto;display:flex;flex-wrap:nowrap;align-items:center;gap:8px;padding:8px 12px;background:var(--paper);border-top:1px solid var(--line);pointer-events:auto}
+  .map-section>.map-toolbar span{flex:1;flex-basis:auto;font-size:.75rem;padding:0;background:transparent;border:0;box-shadow:none;line-height:1.5}
+  .map-section>.map-toolbar button{flex:none;max-width:45%;padding:8px 10px;font-size:.75rem;box-shadow:none}
+  .map-info{padding:8px 12px}
+  .map-info>summary{min-height:36px;display:flex;align-items:center;gap:8px;list-style:none}
+  .map-info>summary::after{content:'＋';margin-left:auto}
+  .map-info[open]>summary::after{content:'−'}
+  .map-info .legend{font-size:.75rem;gap:5px}
+  .mobile-nav{padding:6px 12px calc(6px + env(safe-area-inset-bottom));gap:8px}
+  .mobile-nav button{font-size:.875rem;padding:8px}
+  .install-banner{bottom:calc(68px + env(safe-area-inset-bottom))}
+}
