@@ -10,7 +10,9 @@
   const dismiss = document.getElementById('install-dismiss');
   const ua = navigator.userAgent || '';
   const android = /Android/i.test(ua);
+  const mobileWhale = android && /Whale\//i.test(ua);
   const embedded = android && /KAKAOTALK|NAVER|Instagram|FBAN|FBAV|;\s*wv\b/i.test(ua);
+  const useChromeFallback = mobileWhale || embedded;
   let dismissed = false, waiting = false, prompting = false, waitTimer;
   const links = document.querySelectorAll('[data-app-install]');
   const mode = window.matchMedia('(display-mode: standalone)');
@@ -19,16 +21,17 @@
   if (chromeLink) {
     const fallback = encodeURIComponent('https://yeumap.yjkim.dev/install.html');
     chromeLink.href = 'intent://yeumap.yjkim.dev/#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+fallback+';end';
+    if (mobileWhale) chromeLink.textContent = 'Chrome에서 열어 설치';
   }
   function update() {
     if (button) button.hidden = installed || !installPrompt;
     if (banner) banner.hidden = installed || dismissed || (!android && !installPrompt);
     if (mainButton) {
-      mainButton.hidden = embedded && !installPrompt;
+      mainButton.hidden = useChromeFallback && !installPrompt;
       mainButton.disabled = waiting || prompting;
       mainButton.textContent = waiting ? '설치 준비 중…' : prompting ? '설치 확인 중…' : '예우맵 설치';
     }
-    if (chromeLink) chromeLink.hidden = !embedded || !!installPrompt || installed;
+    if (chromeLink) chromeLink.hidden = !useChromeFallback || !!installPrompt || installed;
     links.forEach(link => { link.hidden = installed; });
     if (installed) message(mode.matches || navigator.standalone === true ? '예우맵을 앱 화면으로 사용 중입니다.' : '설치되었습니다. 홈 화면의 예우맵 아이콘을 눌러 주세요.');
   }
@@ -78,5 +81,6 @@
   if (dismiss) dismiss.addEventListener('click',() => { dismissed = true; update(); });
   links.forEach(link => link.addEventListener('click',install));
   update();
-  if (embedded && !installed) message('카카오톡 등의 앱 안에서는 설치가 제한될 수 있어요. 아래 버튼으로 Chrome에서 열어 주세요.');
+  if (mobileWhale && !installed) message('모바일 웨일에서 설치 창이 열리지 않으면 Chrome에서 한 번 설치해 주세요. 평소 사용하는 브라우저는 바꾸지 않아도 됩니다.');
+  else if (embedded && !installed) message('카카오톡 등의 앱 안에서는 설치가 제한될 수 있어요. 아래 버튼으로 Chrome에서 열어 주세요.');
 })();

@@ -55,6 +55,20 @@ test('embedded Galaxy browsers offer a user-activated Chrome link instead of a f
   assert.match(nodes['install-open-chrome'].href,/^intent:\/\/yeumap\.yjkim\.dev\//);
   assert.match(nodes['install-open-chrome'].href,/package=com.android.chrome/);
 });
+test('mobile Whale immediately offers Chrome without waiting, but accepts a real install event',()=>{
+  const {handlers,nodes,timers}=fixture(false,'Mozilla/5.0 (Linux; Android 15) Chrome/140.0 Whale/3.8.0');
+  assert.equal(nodes['install-banner'].hidden,false);assert.equal(nodes['install-main'].hidden,true);
+  assert.equal(nodes['install-open-chrome'].hidden,false);assert.equal(nodes['install-open-chrome'].textContent,'Chrome에서 열어 설치');
+  assert.equal(timers.size,0);assert.match(nodes['install-main-status'].textContent,/모바일 웨일/);
+  handlers.beforeinstallprompt({preventDefault(){},prompt:async()=>{},userChoice:Promise.resolve({outcome:'accepted'})});
+  assert.equal(nodes['install-main'].hidden,false);assert.equal(nodes['install-open-chrome'].hidden,true);
+});
+test('desktop Whale keeps normal install event handling',()=>{
+  const {handlers,nodes}=fixture(false,'Mozilla/5.0 (Windows NT 10.0) Chrome/140.0 Whale/4.0.0');
+  assert.equal(nodes['install-banner'].hidden,true);assert.equal(nodes['install-open-chrome'].hidden,true);
+  handlers.beforeinstallprompt({preventDefault(){},prompt:async()=>{},userChoice:Promise.resolve({outcome:'accepted'})});
+  assert.equal(nodes['install-banner'].hidden,false);assert.equal(nodes['install-main'].hidden,false);
+});
 test('waiting has a bounded fallback and a dismissed banner stays dismissed',async()=>{
   const {handlers,nodes,timers}=fixture(false,'Android Chrome');
   await nodes['install-main'].handlers.click({preventDefault(){}});[...timers.values()][0]();
