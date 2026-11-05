@@ -29,11 +29,11 @@
     if (mainButton) {
       mainButton.hidden = useChromeFallback && !installPrompt;
       mainButton.disabled = waiting || prompting;
-      mainButton.textContent = waiting ? '설치 준비 중…' : prompting ? '설치 확인 중…' : '예우맵 설치';
+      mainButton.textContent = waiting ? '설치 준비 중…' : prompting ? '설치 확인 중…' : '예우지도 설치';
     }
     if (chromeLink) chromeLink.hidden = !useChromeFallback || !!installPrompt || installed;
     links.forEach(link => { link.hidden = installed; });
-    if (installed) message(mode.matches || navigator.standalone === true ? '예우맵을 앱 화면으로 사용 중입니다.' : '설치되었습니다. 홈 화면의 예우맵 아이콘을 눌러 주세요.');
+    if (installed) message(mode.matches || navigator.standalone === true ? '예우지도를 앱 화면으로 사용 중입니다.' : '설치되었습니다. 홈 화면의 예우지도 아이콘을 눌러 주세요.');
   }
   async function mainInstall(event) {
     if (installPrompt) return install(event);
@@ -43,7 +43,7 @@
     update();
     waitTimer = setTimeout(() => {
       waiting = false;
-      message('아직 설치 창을 열 수 없습니다. Chrome에서 접속했는지 확인해 주세요. 이미 설치했다면 홈 화면의 예우맵을 눌러 주세요.');
+      message('아직 설치 창을 열 수 없습니다. Chrome에서 접속했는지 확인해 주세요. 이미 설치했다면 홈 화면의 예우지도를 눌러 주세요.');
       update();
     },45000);
   }
@@ -57,7 +57,7 @@
     try {
       await prompt.prompt();
       const choice = await prompt.userChoice;
-      message(choice.outcome === 'accepted' ? '설치를 요청했습니다. 홈 화면에서 예우맵 아이콘을 확인해 주세요.' : '설치를 취소했습니다. 원하실 때 다시 설치할 수 있습니다.');
+      message(choice.outcome === 'accepted' ? '설치를 요청했습니다. 홈 화면에서 예우지도 아이콘을 확인해 주세요.' : '설치를 취소했습니다. 원하실 때 다시 설치할 수 있습니다.');
     } catch {
       message('설치 창을 열지 못했습니다. 잠시 후 다시 시도해 주세요.');
     } finally {
@@ -71,7 +71,7 @@
     installPrompt = event;
     waiting = false;
     clearTimeout(waitTimer);
-    message('‘예우맵 설치’를 누른 뒤, 확인 창에서 ‘설치’를 눌러 주세요.');
+    message('‘예우지도 설치’를 누른 뒤, 확인 창에서 ‘설치’를 눌러 주세요.');
     update();
   });
   window.addEventListener('appinstalled',() => { installed = true; installPrompt = null; waiting = false; clearTimeout(waitTimer); update(); });

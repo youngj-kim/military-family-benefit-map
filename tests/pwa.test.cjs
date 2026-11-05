@@ -5,7 +5,7 @@ const vm=require('node:vm');
 const path=require('node:path');
 test('all pages advertise the same standalone app and correctly sized PNG icons',()=>{
   const manifest=JSON.parse(fs.readFileSync('dist/manifest.webmanifest','utf8'));
-  assert.equal(manifest.name,'예우맵');assert.equal(manifest.short_name,'예우맵');
+  assert.equal(manifest.name,'병역명문가 예우지도');assert.equal(manifest.short_name,'예우지도');
   assert.equal(manifest.id,'/');assert.equal(manifest.start_url,'/');assert.equal(manifest.scope,'/');
   assert.equal(manifest.display,'standalone');assert.equal(manifest.prefer_related_applications,false);
   for(const name of fs.readdirSync('dist').filter(name=>name.endsWith('.html'))){
