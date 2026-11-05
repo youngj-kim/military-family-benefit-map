@@ -91,6 +91,11 @@ fieldset:disabled { opacity:.55; }
 #update-history-content .update-counts{color:var(--green)}
 @media(max-width:760px){header{height:auto;min-height:72px;padding:14px 16px;gap:12px;flex-wrap:wrap}.header-links{width:100%;gap:8px;flex-wrap:wrap}.header-links>a,.header-links>button{min-height:38px;padding:9px 10px}.update-dialog-heading{padding:14px}#update-history-content{padding:14px}.update-dialog-heading h2{font-size:18px}}
 /* Compact default details keep the main facts and actions together. */
+.map-section{display:flex;flex-direction:column}
+.map-canvas{position:relative;flex:1;min-height:0;overflow:hidden}
+.map-section>.visit-note{position:static;inset:auto;flex:none;z-index:auto;border-radius:0;border-top:1px solid var(--line);padding:10px 16px;background:var(--paper);font-size:11px}
+.map-canvas>.legend{bottom:36px}
+@media(max-width:760px){.map-section>.visit-note{padding:9px 12px;font-size:10px}.map-canvas>.legend{bottom:36px}}
 #detail{top:68px;width:460px;max-height:calc(100% - 82px);padding:18px}
 #detail>.tags{padding-right:32px;flex-wrap:wrap;gap:5px;line-height:1.5}
 #detail .tag{white-space:nowrap;flex-shrink:0}
