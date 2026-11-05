@@ -1,0 +1,22 @@
+:root{color-scheme:only light}
+.theme-control{display:inline-flex;align-items:center;gap:7px;font-size:12px;white-space:nowrap}
+.theme-control select{width:auto;margin:0;min-height:38px;padding:8px;border-radius:9px;font-size:12px}
+:root[data-theme="dark"]{color-scheme:dark;--paper:#14231c;--muted:#a7b8ae;--line:#405449;--green:#b8dfc4}
+[data-theme="dark"] body{color:#e6efe9}
+[data-theme="dark"] header,[data-theme="dark"] button,[data-theme="dark"] select,[data-theme="dark"] input[type="search"],[data-theme="dark"] fieldset span,[data-theme="dark"] #detail,[data-theme="dark"] dialog,[data-theme="dark"] .update-dialog-heading,[data-theme="dark"] .mobile-nav,[data-theme="dark"] .install-banner,[data-theme="dark"] .header-links>a,[data-theme="dark"] .header-links>button,[data-theme="dark"] .guide-actions a,[data-theme="dark"] .map-toolbar span,[data-theme="dark"] .legend{background:#21362a;color:#e6efe9;border-color:var(--line)}
+[data-theme="dark"] button:hover,[data-theme="dark"] .facility:hover,[data-theme="dark"] .facility.selected,[data-theme="dark"] .header-links>a:hover,[data-theme="dark"] .header-links>a[aria-current="page"]{background:#304d3b}
+[data-theme="dark"] .facility{background:transparent;color:#e6efe9}
+[data-theme="dark"] .facility:hover,[data-theme="dark"] .facility.selected{background:#304d3b}
+[data-theme="dark"] .facility .summary,[data-theme="dark"] #detail p,[data-theme="dark"] .service-notice p,[data-theme="dark"] .guide-content p,[data-theme="dark"] .guide-content li,[data-theme="dark"] #install-main-status,[data-theme="dark"] .tags{color:#c4d4c9}
+[data-theme="dark"] .service-notice,[data-theme="dark"] .guide-callout,[data-theme="dark"] .visit-check,[data-theme="dark"] #saved-count{background:#21362a;border-color:var(--line)}
+[data-theme="dark"] .guide-content a,[data-theme="dark"] .source-detail a{color:#b8dfc4}
+[data-theme="dark"] .primary,[data-theme="dark"] .guide-actions .primary,[data-theme="dark"] fieldset input:checked+span,[data-theme="dark"] .install-browser-link,[data-theme="dark"] #action-status,[data-theme="dark"] #show-updates.has-update::after{background:#326b4b;color:#fff;border-color:#5c9572}
+[data-theme="dark"] .primary:hover{background:#3d7b58}
+[data-theme="dark"] .emblem{background:#173e34;color:#e6d9a6}
+[data-theme="dark"] .visit-note{color:#a7b8ae}
+[data-theme="dark"] .saved-label,[data-theme="dark"] .unlocated{color:#edcf8f}
+[data-theme="dark"] #mart-location-note{color:#d5b9ef}
+[data-theme="dark"] #map-placeholder{background:radial-gradient(ellipse at 55% 40%,#283f30,#14231c)}
+[data-theme="dark"] .map-glyph{background:#21362a;color:#b8dfc4;border-color:#5c7965}
+/* Keep the provider's map tiles, controls and attribution in their native palette. */
+#map{color-scheme:only light;color:#243a30}

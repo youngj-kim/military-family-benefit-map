@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#173e34">
+  <script src="theme.js"></script>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
@@ -17,9 +18,10 @@
   <link rel="stylesheet" href="header.css?v=nav-20261105">
   <script src="config.js" defer></script><script src="category-icons.js?v=review-20261105" defer></script><script src="route-links.js?v=review-20261105" defer></script><script src="facility-utils.js?v=review-20261105" defer></script><script src="app.js?v=review-20261105" defer></script>
   <script src="update-history.js?v=review-20261105" defer></script>
+  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
-<header><a class="brand" href="./"><span class="emblem" aria-hidden="true">✦</span><span><b>예우맵</b><small>병역명문가 예우시설지도</small></span></a><div class="header-links"><a class="guide-link" href="guide.html?v=nav-20261105">제도·신청 안내</a><button id="show-updates" aria-haspopup="dialog" aria-controls="update-dialog">업데이트 내역</button><a class="source-link" href="https://www.mma.go.kr/hall/listpart.do?mc=mma0003392" target="_blank" rel="noopener">병무청 원문 ↗</a></div></header>
+<header><a class="brand" href="./"><span class="emblem" aria-hidden="true">✦</span><span><b>예우맵</b><small>병역명문가 예우시설지도</small></span></a><div class="header-links"><a class="guide-link" href="guide.html?v=nav-20261105">제도·신청 안내</a><button id="show-updates" aria-haspopup="dialog" aria-controls="update-dialog">업데이트 내역</button><a class="source-link" href="https://www.mma.go.kr/hall/listpart.do?mc=mma0003392" target="_blank" rel="noopener">병무청 원문 ↗</a><label class="theme-control" for="theme-mode"><span>화면</span><select id="theme-mode" data-theme-select><option value="system">기기 설정</option><option value="light">라이트</option><option value="dark">다크</option></select></label></div></header>
 <main>
   <h1 class="sr-only">예우맵 · 병역명문가 예우시설지도</h1>
   <aside aria-label="시설 검색 및 결과">
