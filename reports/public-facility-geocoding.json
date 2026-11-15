@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-15T14:56:01.523Z",
+  "checkedAt": "2026-11-15T14:56:47.596Z",
   "matched": 0,
-  "review": 3,
+  "review": 2,
   "excluded": 16,
   "results": [
     {
@@ -129,13 +129,6 @@
       "originalAddress": "충청남도홍성군홍성읍아문길 27(홍성읍오관리, 홍성군청 행정지원과 행정팀)",
       "status": "excluded",
       "reason": "지역 전체 주민센터를 포괄하는 항목 — 개별 지점 임의 선택 안 함"
-    },
-    {
-      "id": "4407",
-      "name": "횡성군 보건소",
-      "originalAddress": "강원특별자치도횡성군횡성읍횡성로 379(횡성읍읍하리)",
-      "status": "review",
-      "reason": "검색 결과가 많아 유일한 시설인지 확인 불가"
     }
   ]
 }

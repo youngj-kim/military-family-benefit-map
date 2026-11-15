@@ -1,20 +1,8 @@
 {
-  "checkedAt": "2026-11-15T14:56:03.743Z",
-  "matched": 7,
+  "checkedAt": "2026-11-15T14:56:49.399Z",
+  "matched": 0,
   "review": 11,
   "results": [
-    {
-      "id": "3819",
-      "name": "KMI한국의학연구소 대구검진센터",
-      "originalAddress": "대구광역시중구중앙대로66길 20(남산동, 탑마트 B1~1층)",
-      "status": "matched",
-      "lat": 35.861248430063974,
-      "lng": 128.59329004684105,
-      "address": "대구 중구 중앙대로66길 20",
-      "placeName": "KMI한국의학연구소 대구검진센터",
-      "placeUrl": "http://place.map.kakao.com/1170389081",
-      "method": "kakao-keyword-matched-road-address"
-    },
     {
       "id": "3837",
       "name": "미래메디컬그룹",
@@ -665,30 +653,6 @@
           "url": "http://place.map.kakao.com/17357292"
         }
       ]
-    },
-    {
-      "id": "3435",
-      "name": "서천군 장항스카이워크",
-      "originalAddress": "충청남도서천군장항읍장항산단로34번길 122- 16(장항읍송림리)",
-      "status": "matched",
-      "lat": 36.0184392978959,
-      "lng": 126.665562504211,
-      "matchedAddress": "충남 서천군 장항읍 장항산단로34번길 122-16",
-      "query": "충청남도서천군장항읍장항산단로34번길 122-16",
-      "method": "kakao-road-address-exact",
-      "address": "충남 서천군 장항읍 장항산단로34번길 122-16"
-    },
-    {
-      "id": "4390",
-      "name": "성지병원",
-      "originalAddress": "강원특별자치도원주시원일로 22(인동, 성지병원)",
-      "status": "matched",
-      "lat": 37.345514518925,
-      "lng": 127.954196243612,
-      "matchedAddress": "강원특별자치도 원주시 원일로 22",
-      "query": "강원특별자치도원주시원일로 22",
-      "method": "kakao-road-address-exact",
-      "address": "강원특별자치도 원주시 원일로 22"
     },
     {
       "id": "3860",
@@ -1709,30 +1673,6 @@
       ]
     },
     {
-      "id": "4408",
-      "name": "평창군 계방산 워케이션센터",
-      "originalAddress": "강원특별자치도평창군용평면이승복생가길 168- 0(용평면노동리)",
-      "status": "matched",
-      "lat": 37.700292360469,
-      "lng": 128.480414181855,
-      "matchedAddress": "강원특별자치도 평창군 용평면 이승복생가길 168",
-      "query": "강원특별자치도평창군용평면이승복생가길 168",
-      "method": "kakao-road-address-exact",
-      "address": "강원특별자치도 평창군 용평면 이승복생가길 168"
-    },
-    {
-      "id": "4413",
-      "name": "평창군 종합문화예술회관",
-      "originalAddress": "강원특별자치도평창군평창읍문화예술길 51(평창읍종부리)",
-      "status": "matched",
-      "lat": 37.3614686614276,
-      "lng": 128.390875766954,
-      "matchedAddress": "강원특별자치도 평창군 평창읍 문화예술길 51",
-      "query": "강원특별자치도평창군평창읍문화예술길 51",
-      "method": "kakao-road-address-exact",
-      "address": "강원특별자치도 평창군 평창읍 문화예술길 51"
-    },
-    {
       "id": "3450",
       "name": "한국영상대학교 드론교육 공주지원",
       "originalAddress": "세종특별자치시세종시장군면대학길 300(장군면금암리)",
@@ -1755,30 +1695,6 @@
           "url": "http://place.map.kakao.com/10985835"
         }
       ]
-    },
-    {
-      "id": "4406",
-      "name": "횡성군 문화예술회관",
-      "originalAddress": "강원특별자치도횡성군횡성읍문예로 75(횡성읍읍하리)",
-      "status": "matched",
-      "lat": 37.4886360324847,
-      "lng": 127.975201694609,
-      "matchedAddress": "강원특별자치도 횡성군 횡성읍 문예로 75",
-      "query": "강원특별자치도횡성군횡성읍문예로 75",
-      "method": "kakao-road-address-exact",
-      "address": "강원특별자치도 횡성군 횡성읍 문예로 75"
-    },
-    {
-      "id": "4407",
-      "name": "횡성군 보건소",
-      "originalAddress": "강원특별자치도횡성군횡성읍횡성로 379(횡성읍읍하리)",
-      "status": "matched",
-      "lat": 37.487095519625875,
-      "lng": 127.9844168846673,
-      "address": "강원특별자치도 횡성군 횡성읍 횡성로 379",
-      "placeName": "횡성군보건소",
-      "placeUrl": "http://place.map.kakao.com/8692082",
-      "method": "kakao-keyword-matched-road-address"
     }
   ]
 }
