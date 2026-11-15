@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-11-15T14:57:51.841Z",
+  "matched": 8,
+  "results": [
+    {
+      "id": "3404",
+      "name": "성주산자연휴양림",
+      "originalAddress": "충청남도보령시성주면화장골길 57(성주면성주리)",
+      "address": "충남 보령시 성주면 화장골길 57-228",
+      "lat": "36.333784091216685",
+      "lng": "126.66542203262738",
+      "url": "http://place.map.kakao.com/7958700",
+      "verificationSource": "https://tour.chungnam.go.kr/prog/trsrcn/kor/sub02_01_02/view.do?trsrcnNo=60"
+    },
+    {
+      "id": "3730",
+      "name": "창원시진해 종합사회복지관",
+      "originalAddress": "경상남도창원시 성산구진해대로 1101(양곡동)",
+      "address": "경남 창원시 진해구 진해대로 1101",
+      "lat": "35.1341741210038",
+      "lng": "128.710576985108",
+      "url": "http://place.map.kakao.com/11584299",
+      "verificationSource": "https://jh1004.or.kr/sub01-6-2/"
+    },
+    {
+      "id": "3798",
+      "name": "조선민화박물관",
+      "originalAddress": "강원특별자치도영월군김삿갓면김삿갓로 432(김삿갓면와석리, 432-10)",
+      "address": "강원특별자치도 영월군 김삿갓면 김삿갓로 432-10",
+      "lat": "37.096355645277924",
+      "lng": "128.60707863183734",
+      "url": "http://place.map.kakao.com/10809966",
+      "verificationSource": "https://www.much.go.kr/cooperation/net/min.do"
+    },
+    {
+      "id": "3799",
+      "name": "영월곤충박물관",
+      "originalAddress": "강원특별자치도영월군영월읍동강로 95(영월읍영흥리, 176)",
+      "address": "강원특별자치도 영월군 영월읍 동강로 716",
+      "lat": "37.2291439652772",
+      "lng": "128.50675259992",
+      "url": "http://place.map.kakao.com/1079946153",
+      "verificationSource": "https://lll.yw.go.kr/ywedu/contents.do?key=310"
+    },
+    {
+      "id": "3800",
+      "name": "호야지리박물관",
+      "originalAddress": "강원특별자치도영월군주천면무릉법흥로 303(주천면주천리)",
+      "address": "강원특별자치도 영월군 무릉도원면 무릉법흥로 303",
+      "lat": "37.29993938692589",
+      "lng": "128.26269495598416",
+      "url": "http://place.map.kakao.com/10985835",
+      "verificationSource": "https://www.yw.go.kr/tour/selectTourCntntsWebView.do?ctgry=2&key=560&pageUnit=9&searchCnd=all&tourNo=76"
+    },
+    {
+      "id": "3860",
+      "name": "양양군공설묘원",
+      "originalAddress": "강원특별자치도양양군서면남대천로 251- 123(서면용천리)",
+      "address": "강원특별자치도 양양군 양양읍 남대천로 251-123",
+      "lat": "38.049217777550844",
+      "lng": "128.61475022662322",
+      "url": "http://place.map.kakao.com/14650937",
+      "verificationSource": "https://gwd.go.kr/portal/partinfo/senior/funeral"
+    },
+    {
+      "id": "4102",
+      "name": "서면좋은사람안과의원",
+      "originalAddress": "부산광역시부산진구서면문화로 10- 015~16층 (부전동)",
+      "address": "부산 부산진구 서면문화로 10",
+      "lat": "35.15882384657717",
+      "lng": "129.05761357182374",
+      "url": "http://place.map.kakao.com/1296800696",
+      "verificationSource": "original-address-floor-format"
+    },
+    {
+      "id": "4111",
+      "name": "서울센트럴병원",
+      "originalAddress": "서울특별시관악구남부순환로 18143, 4, 8, 9층층 (봉천동)",
+      "address": "서울 관악구 남부순환로 1814",
+      "lat": "37.48108403642448",
+      "lng": "126.95160758657134",
+      "url": "http://place.map.kakao.com/145226086",
+      "verificationSource": "original-address-floor-format"
+    }
+  ]
+}

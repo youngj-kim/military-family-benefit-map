@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-15T14:56:03.743Z",
+  "checkedAt": "2026-11-15T14:57:32.150Z",
   "sourceFetchedAt": "2026-10-16T03:58:51.314Z",
   "overrides": {
     "1053": {
@@ -319,6 +319,18 @@
       "originalName": "상소오토캠핑장",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "3404": {
+      "lat": 36.333784091216685,
+      "lng": 126.66542203262738,
+      "address": "충남 보령시 성주면 화장골길 57-228",
+      "placeName": "성주산자연휴양림",
+      "placeUrl": "http://place.map.kakao.com/7958700",
+      "method": "verified-named-facility-address",
+      "originalName": "보령시 성주산자연휴양림",
+      "originalAddress": "충청남도보령시성주면화장골길 57(성주면성주리)",
+      "checkedAt": "2026-11-15T14:57:32.128Z",
+      "verificationSource": "https://tour.chungnam.go.kr/prog/trsrcn/kor/sub02_01_02/view.do?trsrcnNo=60"
+    },
     "3405": {
       "lat": 36.3261254820003,
       "lng": 126.652711806646,
@@ -634,6 +646,18 @@
       "originalName": "조종반다비문화체육센터",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "3730": {
+      "lat": 35.1341741210038,
+      "lng": 128.710576985108,
+      "address": "경남 창원시 진해구 진해대로 1101",
+      "placeName": "창원시진해 종합사회복지관",
+      "placeUrl": "http://place.map.kakao.com/11584299",
+      "method": "verified-named-facility-address",
+      "originalName": "창원시 진해종합사회복지관",
+      "originalAddress": "경상남도창원시 성산구진해대로 1101(양곡동)",
+      "checkedAt": "2026-11-15T14:57:32.150Z",
+      "verificationSource": "https://jh1004.or.kr/sub01-6-2/"
+    },
     "3731": {
       "lat": 35.115947549812,
       "lng": 128.48335187843,
@@ -808,6 +832,42 @@
       "originalAddress": "강원특별자치도영월군영월읍삼옥길 31(영월읍삼옥리)",
       "originalName": "국제현대미술관",
       "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3798": {
+      "lat": 37.096355645277924,
+      "lng": 128.60707863183734,
+      "address": "강원특별자치도 영월군 김삿갓면 김삿갓로 432-10",
+      "placeName": "조선민화박물관",
+      "placeUrl": "http://place.map.kakao.com/10809966",
+      "method": "verified-named-facility-address",
+      "originalName": "조선민화박물관",
+      "originalAddress": "강원특별자치도영월군김삿갓면김삿갓로 432(김삿갓면와석리, 432-10)",
+      "checkedAt": "2026-11-15T14:57:32.150Z",
+      "verificationSource": "https://www.much.go.kr/cooperation/net/min.do"
+    },
+    "3799": {
+      "lat": 37.2291439652772,
+      "lng": 128.50675259992,
+      "address": "강원특별자치도 영월군 영월읍 동강로 716",
+      "placeName": "영월곤충박물관",
+      "placeUrl": "http://place.map.kakao.com/1079946153",
+      "method": "verified-named-facility-address",
+      "originalName": "영월곤충박물관",
+      "originalAddress": "강원특별자치도영월군영월읍동강로 95(영월읍영흥리, 176)",
+      "checkedAt": "2026-11-15T14:57:32.150Z",
+      "verificationSource": "https://lll.yw.go.kr/ywedu/contents.do?key=310"
+    },
+    "3800": {
+      "lat": 37.29993938692589,
+      "lng": 128.26269495598416,
+      "address": "강원특별자치도 영월군 무릉도원면 무릉법흥로 303",
+      "placeName": "호야지리박물관",
+      "placeUrl": "http://place.map.kakao.com/10985835",
+      "method": "verified-named-facility-address",
+      "originalName": "호야지리박물관",
+      "originalAddress": "강원특별자치도영월군주천면무릉법흥로 303(주천면주천리)",
+      "checkedAt": "2026-11-15T14:57:32.150Z",
+      "verificationSource": "https://lll.yw.go.kr/ywedu/contents.do?key=307"
     },
     "3801": {
       "lat": 37.2931155744122,
@@ -1044,6 +1104,18 @@
       "originalName": "강릉 바다내음 캠핑장",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "3860": {
+      "lat": 38.049217777550844,
+      "lng": 128.61475022662322,
+      "address": "강원특별자치도 양양군 양양읍 남대천로 251-123",
+      "placeName": "양양군공설묘원",
+      "placeUrl": "http://place.map.kakao.com/14650937",
+      "method": "verified-named-facility-address",
+      "originalName": "양양군 공설묘지",
+      "originalAddress": "강원특별자치도양양군서면남대천로 251- 123(서면용천리)",
+      "checkedAt": "2026-11-15T14:57:32.150Z",
+      "verificationSource": "https://gwd.go.kr/portal/partinfo/senior/funeral"
+    },
     "3862": {
       "lat": 38.0777773464954,
       "lng": 128.627449093264,
@@ -1218,6 +1290,30 @@
       "originalName": "삼진어묵 부산역라마다점",
       "originalAddress": "부산광역시동구중앙대로196번길 10(초량동)",
       "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
+    "4102": {
+      "lat": 35.15882384657717,
+      "lng": 129.05761357182374,
+      "address": "부산 부산진구 서면문화로 10",
+      "placeName": "서면좋은사람안과의원",
+      "placeUrl": "http://place.map.kakao.com/1296800696",
+      "method": "verified-named-facility-address",
+      "originalName": "서면좋은사람안과의원",
+      "originalAddress": "부산광역시부산진구서면문화로 10- 015~16층 (부전동)",
+      "checkedAt": "2026-11-15T14:57:32.150Z",
+      "verificationSource": "original-address-floor-format"
+    },
+    "4111": {
+      "lat": 37.48108403642448,
+      "lng": 126.95160758657134,
+      "address": "서울 관악구 남부순환로 1814",
+      "placeName": "서울센트럴병원",
+      "placeUrl": "http://place.map.kakao.com/145226086",
+      "method": "verified-named-facility-address",
+      "originalName": "서울센트럴병원",
+      "originalAddress": "서울특별시관악구남부순환로 18143, 4, 8, 9층층 (봉천동)",
+      "checkedAt": "2026-11-15T14:57:32.150Z",
+      "verificationSource": "original-address-floor-format"
     },
     "4131": {
       "lat": 37.7292188989864,
