@@ -8,12 +8,15 @@
   const mainStatus = document.getElementById('install-main-status');
   const chromeLink = document.getElementById('install-open-chrome');
   const dismiss = document.getElementById('install-dismiss');
+  const hideForever = document.getElementById('install-hide-forever');
+  const hideKey = 'benefit-map-install-hidden';
   const ua = navigator.userAgent || '';
   const android = /Android/i.test(ua);
   const mobileWhale = android && /Whale\//i.test(ua);
   const embedded = android && /KAKAOTALK|NAVER|Instagram|FBAN|FBAV|;\s*wv\b/i.test(ua);
   const useChromeFallback = mobileWhale || embedded;
   let dismissed = false, waiting = false, prompting = false, waitTimer;
+  try { dismissed = window.localStorage.getItem(hideKey) === '1'; } catch {}
   const links = document.querySelectorAll('[data-app-install]');
   const mode = window.matchMedia('(display-mode: standalone)');
   let installed = mode.matches || navigator.standalone === true;
@@ -79,6 +82,12 @@
   if (button) button.addEventListener('click',install);
   if (mainButton) mainButton.addEventListener('click',mainInstall);
   if (dismiss) dismiss.addEventListener('click',() => { dismissed = true; update(); });
+  if (hideForever) hideForever.addEventListener('change',() => {
+    if (!hideForever.checked) return;
+    try { window.localStorage.setItem(hideKey,'1'); } catch {}
+    dismissed = true;
+    update();
+  });
   links.forEach(link => link.addEventListener('click',install));
   update();
   if (mobileWhale && !installed) message('모바일 웨일에서 설치 창이 열리지 않으면 Chrome에서 한 번 설치해 주세요. 평소 사용하는 브라우저는 바꾸지 않아도 됩니다.');

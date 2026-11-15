@@ -23,16 +23,39 @@ test('all pages advertise the same standalone app and correctly sized PNG icons'
     assert.equal(png.readUInt32BE(20),Number(icon.sizes.split('x')[1]));
   }
 });
-function fixture(standalone=false,userAgent=''){
+function fixture(standalone=false,userAgent='',storage=new Map()){
   const handlers={},nodes={},timers=new Map();let timerId=0;
-  for(const id of ['install-app','install-status','install-link','install-banner','install-main','install-main-status','install-open-chrome','install-dismiss'])nodes[id]={hidden:false,handlers:{},addEventListener(type,callback){this.handlers[type]=callback;}};
+  for(const id of ['install-app','install-status','install-link','install-banner','install-main','install-main-status','install-open-chrome','install-dismiss','install-hide-forever'])nodes[id]={hidden:false,handlers:{},addEventListener(type,callback){this.handlers[type]=callback;}};
   vm.runInNewContext(fs.readFileSync('dist/install.js','utf8'),{
-    window:{matchMedia:()=>({matches:standalone,addEventListener(){}}),addEventListener:(type,callback)=>{handlers[type]=callback;}},
+    window:{localStorage:{getItem:key=>storage.get(key),setItem:(key,value)=>storage.set(key,value)},matchMedia:()=>({matches:standalone,addEventListener(){}}),addEventListener:(type,callback)=>{handlers[type]=callback;}},
     navigator:{userAgent},document:{getElementById:id=>nodes[id],querySelectorAll:()=>[nodes['install-link']]},
     setTimeout:callback=>{timers.set(++timerId,callback);return timerId;},clearTimeout:id=>timers.delete(id)
   });
   return {handlers,nodes,timers};
 }
+test('hiding the install banner persists across visits and keeps manual installation available',()=>{
+  const storage=new Map();
+  const first=fixture(false,'Android Chrome',storage);
+  first.nodes['install-hide-forever'].checked=true;
+  first.nodes['install-hide-forever'].handlers.change();
+  assert.equal(first.nodes['install-banner'].hidden,true);
+  const next=fixture(false,'Android Chrome',storage);
+  assert.equal(next.nodes['install-banner'].hidden,true);
+  next.handlers.beforeinstallprompt({preventDefault(){},prompt:async()=>{},userChoice:Promise.resolve({outcome:'dismissed'})});
+  assert.equal(next.nodes['install-banner'].hidden,true);
+  assert.equal(next.nodes['install-link'].hidden,false);
+});
+test('closing without checking only hides the banner for the current visit',()=>{
+  const storage=new Map();
+  fixture(false,'Android Chrome',storage).nodes['install-dismiss'].handlers.click();
+  assert.equal(fixture(false,'Android Chrome',storage).nodes['install-banner'].hidden,false);
+});
+test('blocked browser storage still allows hiding the banner for the current visit',()=>{
+  const {nodes}=fixture(false,'Android Chrome',{get(){throw Error('blocked');},set(){throw Error('blocked');}});
+  nodes['install-hide-forever'].checked=true;
+  assert.doesNotThrow(()=>nodes['install-hide-forever'].handlers.change());
+  assert.equal(nodes['install-banner'].hidden,true);
+});
 test('unsupported browsers keep manual installation instructions without intercepting links',async()=>{
   const {nodes}=fixture();let intercepted=false;
   assert.equal(nodes['install-app'].hidden,true);assert.equal(nodes['install-link'].hidden,false);

@@ -1,4 +1,21 @@
 .menu-toggle{display:none}
+/* Keep controls and facility details outside the map canvas. */
+.map-section>.map-toolbar{position:static;inset:auto;flex:none;padding:8px 12px;background:var(--paper);border-bottom:1px solid var(--line);z-index:auto;pointer-events:auto}
+.map-section>.map-toolbar span{box-shadow:none}
+.map-info .legend{position:static!important;max-width:100%;margin:8px 0;padding:0;background:transparent!important}
+main>#detail{position:static;inset:auto;width:auto;max-width:none;min-width:0;min-height:0;margin:0;border-radius:0;box-shadow:none;max-height:none}
+main>#detail[hidden]{display:none}
+@media(min-width:1200px){
+  main:has(>#detail:not([hidden])){grid-template-columns:330px minmax(0,1fr) minmax(320px,380px)}
+  main>#detail{grid-column:3;grid-row:1;overflow:auto;border:0;border-left:1px solid var(--line)}
+}
+@media(min-width:761px) and (max-width:1199px){
+  main:has(>#detail:not([hidden])){grid-template-columns:300px minmax(0,1fr);grid-template-rows:minmax(240px,1fr) minmax(0,40%)}
+  main>aside{grid-column:1;grid-row:1 / -1}
+  main>.map-section{grid-column:2;grid-row:1}
+  main>#detail{grid-column:2;grid-row:2;overflow:auto;border:0;border-top:1px solid var(--line)}
+}
+@media(max-width:760px){main>#detail{order:1;margin:12px;overflow:visible;scroll-margin-top:12px}}
 .map-info{flex:none;background:var(--paper);border-top:1px solid var(--line);padding:10px 16px;color:var(--muted)}
 .map-info>summary{cursor:pointer;font-size:.875rem}
 .map-info .legend{position:static;max-width:none;width:fit-content;margin:10px 0;padding:0;background:transparent}

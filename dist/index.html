@@ -39,6 +39,8 @@
       <div class="tools"><button id="locate">◎ 내 위치 기준</button><button id="reset">초기화</button></div>
     </section>
     <section class="service-notice" aria-label="비공식 서비스 안내"><strong>비공식 서비스</strong><p>예우지도는 병무청 공식 서비스가 아닌 개인 운영 지도입니다. 실제 이용 대상·혜택·운영 여부는 공식 안내와 해당 시설에서 확인해 주세요.</p><div class="service-links"><a href="service.html?v=nav-20261105">서비스·데이터 안내</a><a data-app-install href="install.html?v=pwa-20261105">홈 화면에 설치</a></div></section>
+    <fieldset id="location-tabs" class="location-tabs"><legend class="sr-only">위치 등록 여부</legend><label><input type="radio" name="location-view" value="located" checked><span>지도 등록 <b id="located-count">0</b></span></label><label><input type="radio" name="location-view" value="unlocated"><span>위치 미등록 <b id="unlocated-count">0</b></span></label></fieldset>
+    <p id="unlocated-note" class="fine location-note" hidden>지도에 표시할 좌표가 없는 시설입니다. 목록에서 혜택과 적용 범위를 확인하세요.</p>
     <div class="results-heading"><strong id="count" aria-live="polite">시설 불러오는 중…</strong><label><input id="inbounds" type="checkbox"> 지도 안에서</label></div>
     <div id="results" aria-label="검색 결과"></div><button id="more" hidden>결과 더 보기</button>
     <footer id="data-note">병무청 공식 예우시설 데이터</footer>
@@ -59,6 +61,7 @@
   <button id="install-main" class="primary">예우지도 설치</button>
   <a id="install-open-chrome" class="install-browser-link" hidden>Chrome에서 열기</a>
   <p id="install-main-status" role="status" aria-live="polite"></p>
+  <label class="install-hide-option"><input id="install-hide-forever" type="checkbox"> 이 설치 안내 다시 보지 않기</label>
 </section>
 <nav class="mobile-nav" aria-label="화면 이동"><button id="show-map">지도 보기</button><button id="show-list">목록·검색 보기</button></nav>
 <p id="action-status" role="status" aria-live="polite"></p>

@@ -65,6 +65,14 @@ fieldset:disabled { opacity:.55; }
 [data-app-install][hidden],#install-app[hidden]{display:none!important}
 .install-banner{position:fixed;right:20px;bottom:24px;z-index:7;width:360px;max-width:calc(100% - 32px);padding:18px;background:white;border:1px solid #c6d7c5;border-radius:16px;box-shadow:0 8px 28px #173e3426}
 .install-banner[hidden],#install-main[hidden],#install-open-chrome[hidden]{display:none!important}
+.location-tabs{display:flex;margin:16px 20px 0;gap:8px}
+.location-tabs label{flex:1;text-align:center}
+.location-tabs span{display:block;padding:10px 6px}
+.location-tabs b{font-weight:normal}
+.location-note{margin:8px 20px}
+#map-status:empty{display:none}
+.install-hide-option{display:flex;align-items:center;gap:8px;min-height:44px;font-size:.875rem;cursor:pointer}
+.install-hide-option input{width:18px;height:18px;flex:none;margin:0;accent-color:var(--primary,#326b4e)}
 .install-banner-copy{display:flex;align-items:center;gap:12px;padding-right:22px;margin-bottom:14px}
 .install-banner-copy img{border-radius:10px;flex:none}
 .install-banner-copy strong{display:block;font-size:1.062rem;line-height:1.5}

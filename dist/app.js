@@ -50,9 +50,16 @@ function filterRows({resetLimit = true,preserveScroll = false} = {}) {
   const selectedType = source === 'mart' ? '' : type;
   $('types').disabled = source === 'mart'; $('category').disabled = source === 'mart';
   updateSourceNotes(source);
-  const bounds = map && $('inbounds').checked ? map.getBounds() : null;
-  filtered = facilities.filter(r => (source === 'all' || (r.sourceKind || 'mma') === source) && (!region || r.region === region) && (!category || r.category === category) && (!selectedType || r.type === selectedType) && (!query || [r.name,r.address,r.area,r.benefit,categoryName(r)].some(v => v.toLocaleLowerCase('ko').includes(query))) && (!bounds || (r.lat !== null && bounds.contain(new kakao.maps.LatLng(r.lat,r.lng)))));
+  const unlocatedView = document.querySelector('input[name="location-view"]:checked')?.value === 'unlocated';
+  $('inbounds').disabled = !map || unlocatedView;
+  $('unlocated-note').hidden = !unlocatedView;
+  const bounds = map && !unlocatedView && $('inbounds').checked ? map.getBounds() : null;
+  filtered = facilities.filter(r => (source === 'all' || (r.sourceKind || 'mma') === source) && (!region || r.region === region) && (!category || r.category === category) && (!selectedType || r.type === selectedType) && (!query || [r.name,r.address,r.area,r.benefit,categoryName(r)].some(v => v.toLocaleLowerCase('ko').includes(query))));
   if ($('saved-only').checked) filtered = filtered.filter(r => saved.has(facilityKey(r)));
+  $('located-count').textContent = filtered.filter(r => r.lat !== null).length.toLocaleString('ko');
+  $('unlocated-count').textContent = filtered.filter(r => r.lat === null).length.toLocaleString('ko');
+  filtered = filtered.filter(r => unlocatedView ? r.lat === null : r.lat !== null);
+  if (bounds) filtered = filtered.filter(r => r.lat !== null && bounds.contain(new kakao.maps.LatLng(r.lat,r.lng)));
   if (userPosition) filtered.sort((a,b) => distance(a)-distance(b));
   if (selected && !filtered.some(r => facilityKey(r) === facilityKey(selected))) closeDetail();
   if (resetLimit) limit = 60;
@@ -100,7 +107,7 @@ function renderMarkers() {
   if (added.length) clusterer.addMarkers(added,true);
   if (removed.length || added.length) clusterer.redraw();
   visibleMarkers = next;
-  $('map-status').textContent = `지도 표시 ${rows.length.toLocaleString('ko')}곳 · 위치 미등록 ${filtered.length-rows.length}곳`;
+  $('map-status').textContent = '';
 }
 function link(text,url,className) { const a = el('a',text,className); a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; return a; }
 function closeDetail() {
@@ -119,6 +126,7 @@ function selectFacility(r,trigger) {
   renderDetail(r);
   if (matchMedia('(max-width: 760px)').matches) $('detail').scrollIntoView({behavior:'smooth',block:'start'});
   $('detail').focus({preventScroll:true});
+  if (map) map.relayout();
   focusMap(r);
 }
 function focusMap(r) {
@@ -193,7 +201,7 @@ function connectMap(key) {
       clusterer = new kakao.maps.MarkerClusterer({map,averageCenter:true,minLevel:7}); info = new kakao.maps.InfoWindow({removable:true});
       $('map-placeholder').hidden = true; sdkLoading = false; clearTimeout(timeout); $('inbounds').disabled = false;
       kakao.maps.event.addListener(map,'idle',() => { clearTimeout(idleTimer); if ($('inbounds').checked) idleTimer = setTimeout(() => { if ($('inbounds').checked) filterRows({resetLimit:false,preserveScroll:true}); },180); });
-      new ResizeObserver(() => map.relayout()).observe($('map')); renderMarkers(); if (selected) focusMap(selected);
+      new ResizeObserver(() => { const center = selected && selected.lat !== null ? new kakao.maps.LatLng(selected.lat,selected.lng) : map.getCenter(); map.relayout(); map.setCenter(center); }).observe($('map')); renderMarkers(); if (selected) focusMap(selected);
     } catch { clearTimeout(timeout); map = null; mapFailure('지도를 준비하지 못했습니다. 페이지를 새로고침해 주세요.'); } });
   };
   document.head.append(script);
@@ -218,12 +226,12 @@ async function boot() {
   $('show-list').onclick = () => document.querySelector('aside').scrollIntoView({behavior:'smooth',block:'start'});
   document.addEventListener('keydown',event => { if (event.key === 'Escape' && !document.querySelector('dialog[open]')) closeDetail(); });
   window.addEventListener('storage',event => { if (event.key === savedKey || event.key === null) { try { saved = readSaved(localStorage.getItem(savedKey)); refreshSavedUi(); } catch {} } });
-  ['search','region','types','inbounds'].forEach(id => $(id).addEventListener(id === 'search' ? 'input' : 'change',filterRows));
+  ['search','region','types','inbounds','location-tabs'].forEach(id => $(id).addEventListener(id === 'search' ? 'input' : 'change',filterRows));
   $('category').addEventListener('change', () => { if($('category').value === '23')document.querySelector('input[name=dataset][value=all]').checked=true; filterRows(); });
   $('datasets').addEventListener('change', () => { $('category').value = ''; document.querySelector('input[name=type][value=""]').checked = true; filterRows(); });
   $('more').onclick = () => { limit += 60; renderList(); };
   $('fit').onclick = fitResults; $('retry-map').onclick = () => location.reload();
-  $('reset').onclick = () => { document.querySelector('input[name=dataset][value=mma]').checked=true; $('search').value=''; $('region').value=''; $('category').value=''; document.querySelector('input[name=type][value=""]').checked=true; $('inbounds').checked=false; $('saved-only').checked=false; userPosition=null; if (locationMarker) locationMarker.setMap(null); $('locate').textContent='◎ 내 위치 기준'; closeDetail(); filterRows(); if (map) fitResults(); };
+  $('reset').onclick = () => { document.querySelector('input[name="location-view"][value="located"]').checked = true; document.querySelector('input[name=dataset][value=mma]').checked=true; $('search').value=''; $('region').value=''; $('category').value=''; document.querySelector('input[name=type][value=""]').checked=true; $('inbounds').checked=false; $('saved-only').checked=false; userPosition=null; if (locationMarker) locationMarker.setMap(null); $('locate').textContent='◎ 내 위치 기준'; closeDetail(); filterRows(); if (map) fitResults(); };
   $('locate').onclick = () => { if (!navigator.geolocation) { $('map-status').textContent='이 브라우저에서는 위치 기능을 지원하지 않습니다.'; return; } $('locate').disabled=true; $('map-status').textContent='현재 위치 확인 중…'; navigator.geolocation.getCurrentPosition(p => { userPosition={lat:p.coords.latitude,lng:p.coords.longitude}; $('locate').disabled=false; $('locate').textContent='◎ 가까운 순 정렬'; if(map) { const pos = new kakao.maps.LatLng(userPosition.lat,userPosition.lng); map.setLevel(6); map.panTo(pos); if(locationMarker) locationMarker.setMap(null); locationMarker = new kakao.maps.Marker({map,position:pos,title:'내 위치'}); } filterRows(); if(!map) $('map-status').textContent='내 위치에서 가까운 순으로 목록을 정렬했습니다.'; },() => { $('locate').disabled=false; $('map-status').textContent='위치를 확인하지 못했습니다. 위치 권한을 허용하거나 지역을 직접 선택해 주세요.'; },{timeout:10000,maximumAge:60000}); };
   const load = async file => { const response=await fetch(file); if(!response.ok) throw Error('data');const data=await response.json();if(!Array.isArray(data.facilities))throw Error('schema');return data; };
   const sources=await Promise.allSettled([load('facilities.json'),load('marts.json')]);
@@ -233,7 +241,7 @@ async function boot() {
   const sharedId = new URL(location.href).searchParams.get('facility');
   if (sharedId) {
     const row = facilities.find(r => facilityKey(r) === normalizeKey(sharedId));
-    if (row) { document.querySelector(`input[name=dataset][value=${row.sourceKind || 'mma'}]`).checked = true; filterRows(); selectFacility(row); }
+    if (row) { document.querySelector(`input[name="location-view"][value="${row.lat === null ? 'unlocated' : 'located'}"]`).checked = true; document.querySelector(`input[name=dataset][value=${row.sourceKind || 'mma'}]`).checked = true; filterRows(); selectFacility(row); }
     else announce('공유된 시설을 찾을 수 없습니다. 최신 목록에서 다시 검색해 주세요.');
   }
   const key = window.BENEFIT_MAP_CONFIG?.kakaoJavascriptKey || ''; if (key) connectMap(key); else mapFailure('지도를 준비하지 못했습니다. 시설 목록에서 혜택과 길찾기를 이용해 주세요.');
