@@ -11,7 +11,7 @@ function addressMatches(original,road){
 }
 function selectPlace(row,documents){
  let matches=documents.filter(d=>addressMatches(row.address,d.road_address_name||''));
- const name=value=>value.toLowerCase().replace(/한국의학연구소|대한안과의사회|[\s()·-]/g,'');
+ const name=value=>String(value||'').toLowerCase().replace(/한국의학연구소|대한안과의사회|[\s()·-]/g,'');
  const named=matches.filter(d=>name(d.place_name||'')===name(row.name));
  if(named.length)matches=named;
  const unique=[...new Map(matches.map(d=>[d.x+','+d.y,d])).values()];
