@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-16T06:35:00.050Z",
+  "checkedAt": "2026-11-15T14:54:30.251Z",
   "sourceFetchedAt": "2026-10-16T03:58:51.314Z",
   "overrides": {
     "1053": {
@@ -10,6 +10,17 @@
       "originalAddress": "대전광역시서구관저동로 158(관저동)",
       "originalName": "건양대학교병원",
       "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "2102": {
+      "lat": 36.4885528578081,
+      "lng": 127.256509797509,
+      "address": "세종특별자치시 한누리대로 273",
+      "placeName": "세종우리성모안과",
+      "placeUrl": "http://place.map.kakao.com/27476953",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "대한안과의사회-세종우리성모안과",
+      "originalAddress": "세종특별자치시세종시한누리대로 273(나성동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
     },
     "2309": {
       "lat": 37.46109685606303,
@@ -40,6 +51,17 @@
       "originalAddress": "충청남도서산시호수공원6로 6(읍내동)",
       "originalName": "서산시 보건소",
       "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "2583": {
+      "lat": 37.4433199839931,
+      "lng": 126.664038842454,
+      "address": "인천 미추홀구 소성로 135",
+      "placeName": "석재홍한의원",
+      "placeUrl": "http://place.map.kakao.com/10491177",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "석재홍한의원",
+      "originalAddress": "인천광역시미추홀구소성로 1354층 (학익동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
     },
     "2968": {
       "lat": 35.2100136734652,
@@ -140,6 +162,17 @@
       "originalAddress": "",
       "checkedAt": "2026-10-16T06:35:00.050Z"
     },
+    "3106": {
+      "lat": 37.43980337425385,
+      "lng": 126.66183979469044,
+      "address": "인천 미추홀구 한나루로 353-1",
+      "placeName": "커피놀이터 학익점",
+      "placeUrl": "http://place.map.kakao.com/2040892740",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "커피놀이터",
+      "originalAddress": "인천광역시미추홀구한나루로 353- 12층 (학익동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
     "3203": {
       "lat": 35.146361806536,
       "lng": 129.009614631444,
@@ -193,6 +226,17 @@
       "originalAddress": "충청남도논산시부적면계백로 1575(부적면부황리)",
       "originalName": "뚜루뚜 무인항공교육센터",
       "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3357": {
+      "lat": 36.3069373091373,
+      "lng": 127.36289883147867,
+      "address": "대전 서구 계백로 1260",
+      "placeName": "드론미디어",
+      "placeUrl": "http://place.map.kakao.com/1239653391",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "대전드론미디어",
+      "originalAddress": "대전광역시서구계백로 12601층 (정림동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
     },
     "3360": {
       "lat": 36.1925168630204,
@@ -588,6 +632,17 @@
       "originalName": "창원시 진동종합복지타운",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "3732": {
+      "lat": 35.30040978377722,
+      "lng": 128.5951950642966,
+      "address": "경남 창원시 의창구 북면 동전로45번길 6",
+      "placeName": "감계복지센터",
+      "placeUrl": "http://place.map.kakao.com/76719524",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "창원시 감계복지센터",
+      "originalAddress": "경상남도창원시 의창구북면동전로45번길 6(북면감계리)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
     "3734": {
       "lat": 35.1560267653569,
       "lng": 128.706474801019,
@@ -614,6 +669,17 @@
       "originalAddress": "경상남도창원시 진해구장복산길 47(태백동)",
       "originalName": "창원 편백 치유의 숲",
       "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3743": {
+      "lat": 37.7378116374401,
+      "lng": 127.044554239425,
+      "address": "경기 의정부시 신흥로240번길 21",
+      "placeName": "청담i치과의원",
+      "placeUrl": "http://place.map.kakao.com/25706194",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "청담i치과",
+      "originalAddress": "경기도의정부시신흥로240번길 21(의정부동, 가연타워 3층, 4층)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
     },
     "3744": {
       "lat": 37.7574245622078,
@@ -813,6 +879,17 @@
       "originalName": "KMI한국의학연구소 광화문검진센터",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "3816": {
+      "lat": 37.52430207966344,
+      "lng": 126.92482758294145,
+      "address": "서울 영등포구 국제금융로2길 24",
+      "placeName": "KMI한국의학연구소 여의도검진센터",
+      "placeUrl": "http://place.map.kakao.com/7982087",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "KMI한국의학연구소 여의도검진센터",
+      "originalAddress": "서울특별시영등포구국제금융로2길 24(여의도동, BNK금융타워 13, 14, 15, 17, 18층)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
     "3817": {
       "lat": 37.5054936224827,
       "lng": 127.050863180985,
@@ -858,6 +935,28 @@
       "originalName": "KMI한국의학연구소 제주검진센터",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "3827": {
+      "lat": 37.4936023053868,
+      "lng": 126.726109267251,
+      "address": "인천 부평구 시장로 32",
+      "placeName": "강남브랜드안과의원 인천점",
+      "placeUrl": "http://place.map.kakao.com/1118936146",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "강남브랜드안과 인천점",
+      "originalAddress": "인천광역시부평구시장로 322층, 3층층 (부평동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
+    "3832": {
+      "lat": 37.490393633755886,
+      "lng": 126.72486246105025,
+      "address": "인천 부평구 광장로 28",
+      "placeName": "디지털해피스치과의원",
+      "placeUrl": "http://place.map.kakao.com/18535999",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "디지털해피스치과",
+      "originalAddress": "인천광역시부평구광장로 284층 (부평동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
     "3838": {
       "lat": 37.8184029737952,
       "lng": 128.857824469058,
@@ -884,6 +983,17 @@
       "originalAddress": "충청남도논산시논산대로 382(관촉동, 논산시보건소 보건행정과 진료팀)",
       "originalName": "논산시 보건소",
       "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3853": {
+      "lat": 37.4403207823471,
+      "lng": 126.656916350214,
+      "address": "인천 미추홀구 노적산로 70",
+      "placeName": "모먼트짐 학익점 헬스&PT",
+      "placeUrl": "http://place.map.kakao.com/1192837324",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "모먼트 짐 - 학익점",
+      "originalAddress": "인천광역시미추홀구노적산로 702층 (학익동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
     },
     "3854": {
       "lat": 37.7733097779031,
@@ -923,6 +1033,17 @@
       "originalName": "양양군 보건소",
       "originalAddress": "",
       "checkedAt": "2026-10-16T06:35:00.050Z"
+    },
+    "3896": {
+      "lat": 36.3221773827644,
+      "lng": 127.369888484775,
+      "address": "대전 서구 배재로 155-7",
+      "placeName": "경남컴퓨터학원",
+      "placeUrl": "http://place.map.kakao.com/16769410",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "경남컴퓨터학원",
+      "originalAddress": "대전광역시서구배재로 155- 7301호(도마동, 경남아파트상가)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
     },
     "3983": {
       "lat": 37.4988633818978,
@@ -987,6 +1108,17 @@
       "originalName": "클리어서울안과",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "4009": {
+      "lat": 37.6538301264536,
+      "lng": 127.060178780913,
+      "address": "서울 노원구 동일로 1405",
+      "placeName": "퍼스트성모안과의원",
+      "placeUrl": "http://place.map.kakao.com/590948239",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "퍼스트성모안과",
+      "originalAddress": "서울특별시노원구동일로 14058층 (상계동, KB금융 노원플라자)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
     "4020": {
       "lat": 38.1961225456267,
       "lng": 128.5759108927,
@@ -1023,6 +1155,28 @@
       "originalName": "삼척시 주차장",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "4030": {
+      "lat": 37.752515837078654,
+      "lng": 128.91556517857285,
+      "address": "강원특별자치도 강릉시 입암로92번길 30-16",
+      "placeName": "강릉시가족센터",
+      "placeUrl": "http://place.map.kakao.com/18696387",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "강릉시 가족센터",
+      "originalAddress": "강원특별자치도강릉시입암로92번길 30- 16(입암동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
+    "4033": {
+      "lat": 37.7441752828639,
+      "lng": 128.898848525638,
+      "address": "강원특별자치도 강릉시 남부로163번길 14",
+      "placeName": "애니멀스토리",
+      "placeUrl": "http://place.map.kakao.com/1853122162",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "애니멀스토리",
+      "originalAddress": "강원특별자치도강릉시남부로163번길 14(노암동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
     "4047": {
       "lat": 37.6470763328248,
       "lng": 126.783462699545,
@@ -1031,6 +1185,17 @@
       "originalAddress": "경기도고양시 일산동구중앙로 1100(백석동)",
       "originalName": "고양시 일산동구 보건소",
       "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4090": {
+      "lat": 35.1143128389037,
+      "lng": 129.04022472209203,
+      "address": "부산 동구 중앙대로196번길 10",
+      "placeName": "삼진어묵 부산역라마다점",
+      "placeUrl": "http://place.map.kakao.com/840366647",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "삼진어묵 부산역라마다점",
+      "originalAddress": "부산광역시동구중앙대로196번길 10(초량동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
     },
     "4131": {
       "lat": 37.7292188989864,
@@ -1049,6 +1214,17 @@
       "originalAddress": "서울특별시강남구테헤란로 326(역삼동, 역삼아이타워 2층)",
       "originalName": "카이안과",
       "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4141": {
+      "lat": 37.7131447480606,
+      "lng": 127.04710486231,
+      "address": "경기 의정부시 평화로 239",
+      "placeName": "진플란트치과의원",
+      "placeUrl": "http://place.map.kakao.com/891299122",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "진플란트치과",
+      "originalAddress": "경기도의정부시평화로 2393층 (호원동, 욱은빌딩)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
     },
     "4183": {
       "lat": 37.5162788961317,
@@ -1122,6 +1298,17 @@
       "originalName": "순천 부영CC",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "4197": {
+      "lat": 37.7602757008433,
+      "lng": 128.899596036767,
+      "address": "강원특별자치도 강릉시 옥가로 43",
+      "placeName": "디엠(DM)헬스클럽",
+      "placeUrl": "http://place.map.kakao.com/19723018",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "디엠DM 헬스장",
+      "originalAddress": "강원특별자치도강릉시옥가로 433층 (옥천동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
     "4302": {
       "lat": 33.4032956446708,
       "lng": 126.385746794734,
@@ -1140,6 +1327,17 @@
       "originalName": "케어라이프코리아(주) 케어라이프몰",
       "checkedAt": "2026-10-16T05:38:29.066Z"
     },
+    "4348": {
+      "lat": 37.3992573990106,
+      "lng": 126.92134090229,
+      "address": "경기 안양시 만안구 안양로 304",
+      "placeName": "으뜸50안경 안양1번가점",
+      "placeUrl": "http://place.map.kakao.com/1695133869",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "으뜸50안경 안양1번가점",
+      "originalAddress": "경기도안양시 만안구안양로 3041층 (안양동)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
     "4361": {
       "lat": 34.8207977287201,
       "lng": 126.421392306789,
@@ -1157,6 +1355,28 @@
       "originalAddress": "서울특별시강남구테헤란로 408(대치동, 대치빌딩 11~19층)",
       "originalName": "서울누네안과병원",
       "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "4403": {
+      "lat": 37.6404126435213,
+      "lng": 127.804843897445,
+      "address": "강원특별자치도 홍천군 홍천읍 며느리고개길 148-18",
+      "placeName": "홍천군반려동물놀이터",
+      "placeUrl": "http://place.map.kakao.com/1505451555",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "홍천군 반려동물놀이터",
+      "originalAddress": "강원특별자치도홍천군홍천읍며느리고개길 148- 18(홍천읍상오안리)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
+    },
+    "4415": {
+      "lat": 38.23770725968204,
+      "lng": 127.43939812046027,
+      "address": "강원특별자치도 철원군 서면 와수로166번길 16",
+      "placeName": "철원군장난감도서관",
+      "placeUrl": "http://place.map.kakao.com/2013310131",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "철원군 장난감도서관",
+      "originalAddress": "강원특별자치도철원군서면와수로166번길 16(서면와수리)",
+      "checkedAt": "2026-11-15T14:54:30.251Z"
     }
   }
 }
