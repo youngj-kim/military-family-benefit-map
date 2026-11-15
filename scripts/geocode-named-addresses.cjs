@@ -41,15 +41,21 @@ async function run(){
   let result=selectPlace(row,documents);
   if(result.status!=='matched'){
    const road=roadQuery(row.address),area=comparable(row.area||'');
-   if(road&&area){
-    const compact=comparable(road);
-    if(compact.startsWith(area)){
-     const query=row.area+' '+compact.slice(area.length);
+   const queryCorrections={'3837':'부산 남구 전포대로 133','3879':'경기 구리시 건원대로 36','3450':'세종특별자치시 장군면 대학길 300'};
+   if((road&&area)||queryCorrections[row.id]){
+    const compact=comparable(road||'');
+    if(compact.startsWith(area)||queryCorrections[row.id]){
+     const query=queryCorrections[row.id]||row.area+' '+compact.slice(area.length);
      const response=await fetch('https://dapi.kakao.com/v2/local/search/address.json?'+new URLSearchParams({query,size:30}),{headers:{Authorization:'KakaoAK '+key},signal:AbortSignal.timeout(15000)});
      if(!response.ok)throw Error('Kakao address HTTP '+response.status);
      const data=await response.json();
      const exact=selectExact(row,data.documents||[]);
      if(exact.status==='matched')result={...exact,address:exact.matchedAddress};
+     else {
+      const candidates=(data.documents||[]).filter(d=>d.road_address&&addressMatches(row.address,d.road_address.address_name));
+      const unique=[...new Map(candidates.map(d=>[d.x+','+d.y,d])).values()];
+      if(unique.length===1){const d=unique[0],lat=Number(d.y),lng=Number(d.x);if(lat>=32&&lat<=39.5&&lng>=124&&lng<=132)result={status:'matched',lat,lng,address:d.road_address.address_name,method:'kakao-keyword-matched-road-address'};}
+     }
     }
    }
   }
