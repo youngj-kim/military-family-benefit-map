@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/geocode-public-facilities.cjs'
+      - 'scripts/geocode-named-addresses.cjs'
       - '.github/workflows/geocode-public-facilities.yml'
       - 'dist/facilities.json'
 permissions:
@@ -27,17 +28,19 @@ jobs:
       - name: Collect unique facility and jurisdiction matches
         env:
           KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
-        run: node scripts/geocode-public-facilities.cjs
+        run: |
+          node scripts/geocode-public-facilities.cjs
+          node scripts/geocode-named-addresses.cjs
       - name: Commit separate enrichment and redeploy
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git diff --quiet -- data/location-overrides.json reports/public-facility-geocoding.json && test -z "$(git ls-files --others --exclude-standard reports/public-facility-geocoding.json)"; then
+          if git diff --quiet -- data/location-overrides.json reports/public-facility-geocoding.json reports/named-address-geocoding.json && test -z "$(git ls-files --others --exclude-standard reports/public-facility-geocoding.json reports/named-address-geocoding.json)"; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/location-overrides.json reports/public-facility-geocoding.json
+          git add data/location-overrides.json reports/public-facility-geocoding.json reports/named-address-geocoding.json
           git commit -m "Collect unique named public facility coordinates"
           git pull --rebase origin main
           git push origin HEAD:main

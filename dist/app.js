@@ -132,6 +132,25 @@ function selectFacility(r,trigger) {
 function focusMap(r) {
   if (map && r.lat !== null) { const pos = new kakao.maps.LatLng(r.lat,r.lng); if (map.getLevel()>5) map.setLevel(5); map.panTo(pos); const label = el('div',r.name); label.style.cssText='padding:8px 12px;font-size:12px;white-space:nowrap'; info.setContent(label); info.setPosition(pos); info.open(map); }
 }
+function openDirections(event,row,provider) {
+  if(event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)return;
+  event.preventDefault();
+  const fallback=window.BENEFIT_ROUTE_LINKS.destinationRouteUrl(row,provider);
+  // Reserve the tab during the click so location permission cannot trigger popup blocking.
+  const routeWindow=window.open('about:blank','_blank');
+  if(routeWindow)routeWindow.opener=null;
+  const navigate=origin=>{
+    const url=window.BENEFIT_ROUTE_LINKS.destinationRouteUrl(row,provider,origin);
+    if(routeWindow&&!routeWindow.closed)routeWindow.location.replace(url);
+    else window.location.assign(url||fallback);
+  };
+  if(!navigator.geolocation){announce('위치 기능을 지원하지 않아 목적지만 지정해 엽니다.');navigate();return;}
+  announce('길찾기 출발지로 사용할 현재 위치를 확인하고 있습니다.');
+  navigator.geolocation.getCurrentPosition(position=>{
+    navigate({lat:position.coords.latitude,lng:position.coords.longitude});
+    announce('현재 위치를 출발지로 지정해 길찾기를 열었습니다.');
+  },()=>{announce('현재 위치를 확인하지 못해 목적지만 지정해 엽니다. 지도에서 출발지를 입력해 주세요.');navigate();},{timeout:10000,maximumAge:60000,enableHighAccuracy:true});
+}
 function renderDetail(r) {
   const detail = $('detail'); detail.replaceChildren(); detail.hidden = false;
   const close = el('button','×','close'); close.setAttribute('aria-label','상세 닫기'); close.onclick = closeDetail;
@@ -171,7 +190,11 @@ function renderDetail(r) {
   const addressOnly = r.lat === null;
   const routeAction = (provider,label,className) => {
     const url = window.BENEFIT_ROUTE_LINKS.destinationRouteUrl(r,provider);
-    if (url) return link(label,url,className);
+    if (url) {
+      const action = link(label,url,className);
+      if (!addressOnly) action.addEventListener('click',event => openDirections(event,r,provider));
+      return action;
+    }
     const button = el('button',label,className); button.type='button'; button.disabled=true; return button;
   };
   const route = routeAction('kakao',addressOnly ? '카카오 주소로 찾기 ↗' : '카카오 길찾기 ↗','primary');

@@ -25,3 +25,13 @@ test('missing coordinates fall back to encoded address search on each provider',
  assert.equal(addressSearchUrl({address:'  '}),null);
  assert.equal(destinationRouteUrl({...r,address:''}),null);
 });
+test('explicit current position becomes the route origin for both providers',()=>{
+ const origin={lat:37.5,lng:127.1};
+ const kakao=new URL(destinationRouteUrl(row,'kakao',origin));
+ assert.ok(decodeURIComponent(kakao.pathname).startsWith('/link/by/car/현재 위치,37.5,127.1/'));
+ const naver=new URL(destinationRouteUrl(row,'naver',origin));
+ assert.equal(naver.searchParams.get('slat'),'37.5');
+ assert.equal(naver.searchParams.get('slng'),'127.1');
+ assert.equal(naver.searchParams.get('stext'),'현재 위치');
+ assert.equal(naver.searchParams.get('elat'),String(row.lat));
+});
