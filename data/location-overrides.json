@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-15T14:57:32.150Z",
+  "checkedAt": "2026-11-15T14:59:09.263Z",
   "sourceFetchedAt": "2026-10-16T03:58:51.314Z",
   "overrides": {
     "1053": {
@@ -494,6 +494,15 @@
       "originalAddress": "충청남도부여군부여읍중정1길 60(부여읍중정리)",
       "originalName": "부여드론융합기술센터",
       "checkedAt": "2026-10-16T05:38:29.066Z"
+    },
+    "3450": {
+      "lat": 36.4624110935815,
+      "lng": 127.209743812094,
+      "address": "세종특별자치시 장군면 대학길 300",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "한국영상대학교 드론교육 공주지원",
+      "originalAddress": "세종특별자치시세종시장군면대학길 300(장군면금암리)",
+      "checkedAt": "2026-11-15T14:59:09.263Z"
     },
     "3452": {
       "lat": 35.4171303133021,
@@ -1039,6 +1048,15 @@
       "originalAddress": "인천광역시부평구광장로 284층 (부평동)",
       "checkedAt": "2026-11-15T14:54:30.251Z"
     },
+    "3837": {
+      "lat": 35.1482823676143,
+      "lng": 129.065472544207,
+      "address": "부산 남구 전포대로 133",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "미래메디컬그룹",
+      "originalAddress": "부산광역시남구전포대로 1332층 (문현동, IFC몰)",
+      "checkedAt": "2026-11-15T14:59:09.263Z"
+    },
     "3838": {
       "lat": 37.8184029737952,
       "lng": 128.857824469058,
@@ -1127,6 +1145,15 @@
       "originalName": "양양군 보건소",
       "originalAddress": "",
       "checkedAt": "2026-10-16T06:35:00.050Z"
+    },
+    "3879": {
+      "lat": 37.6044311428955,
+      "lng": 127.140488843483,
+      "address": "경기 구리시 건원대로 36",
+      "method": "kakao-keyword-matched-road-address",
+      "originalName": "우리컴퓨터아카데미(지점)",
+      "originalAddress": "경기도구리시건원대로 36406호(인창동)",
+      "checkedAt": "2026-11-15T14:59:09.263Z"
     },
     "3896": {
       "lat": 36.3221773827644,
