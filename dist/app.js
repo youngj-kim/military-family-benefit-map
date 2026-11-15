@@ -136,20 +136,23 @@ function openDirections(event,row,provider) {
   if(event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)return;
   event.preventDefault();
   const fallback=window.BENEFIT_ROUTE_LINKS.destinationRouteUrl(row,provider);
-  // Reserve the tab during the click so location permission cannot trigger popup blocking.
-  const routeWindow=window.open('about:blank','_blank');
-  if(routeWindow)routeWindow.opener=null;
+  // Keep this page visible while the browser asks for location permission.
+  let finished=false,routeTimer;
   const navigate=origin=>{
+    if(finished)return;
+    finished=true;
+    clearTimeout(routeTimer);
     const url=window.BENEFIT_ROUTE_LINKS.destinationRouteUrl(row,provider,origin);
-    if(routeWindow&&!routeWindow.closed)routeWindow.location.replace(url);
-    else window.location.assign(url||fallback);
+    window.location.assign(url||fallback);
   };
+  const unavailable=()=>{if(finished)return;announce('현재 위치를 확인하지 못해 목적지만 지정해 엽니다. 지도에서 출발지를 입력해 주세요.');navigate();};
   if(!navigator.geolocation){announce('위치 기능을 지원하지 않아 목적지만 지정해 엽니다.');navigate();return;}
   announce('길찾기 출발지로 사용할 현재 위치를 확인하고 있습니다.');
-  navigator.geolocation.getCurrentPosition(position=>{
+  routeTimer=setTimeout(unavailable,12000);
+  try { navigator.geolocation.getCurrentPosition(position=>{
+    if(finished)return;
     navigate({lat:position.coords.latitude,lng:position.coords.longitude});
-    announce('현재 위치를 출발지로 지정해 길찾기를 열었습니다.');
-  },()=>{announce('현재 위치를 확인하지 못해 목적지만 지정해 엽니다. 지도에서 출발지를 입력해 주세요.');navigate();},{timeout:10000,maximumAge:60000,enableHighAccuracy:true});
+  },unavailable,{timeout:10000,maximumAge:60000,enableHighAccuracy:true}); } catch { unavailable(); }
 }
 function renderDetail(r) {
   const detail = $('detail'); detail.replaceChildren(); detail.hidden = false;
